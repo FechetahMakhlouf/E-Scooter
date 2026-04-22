@@ -2,9 +2,9 @@
    E-SCOOT — WhatsApp Integration
    ============================================= */
 
-const WHATSAPP_NUMBER = '213540000000'; // Format: 213 + numéro sans 0
+const WHATSAPP_NUMBER = '0';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   initWhatsAppFloat();
   initWhatsAppProductButtons();
 });
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initWhatsAppFloat() {
   const floatBtn = document.querySelector('.whatsapp-float');
   if (!floatBtn) return;
-  
+
   floatBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour, je suis intéressé par vos véhicules électriques.')}`;
 }
 

@@ -2,10 +2,10 @@
    E-SCOOT v2.0 — Filtering & Product Grid
    ============================================= */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.models-page')) {
     initFilters();
-    renderProductGrid(PRODUCTS);
+    applyFilters();  // ← au lieu de renderProductGrid(PRODUCTS)
   }
 });
 
@@ -20,19 +20,19 @@ function initFilters() {
       applyFilters();
     });
   });
-  
+
   // Sort select
   const sortSelect = document.getElementById('sortSelect');
   if (sortSelect) {
     sortSelect.addEventListener('change', applyFilters);
   }
-  
+
   // Price range
   const priceSelect = document.getElementById('priceSelect');
   if (priceSelect) {
     priceSelect.addEventListener('change', applyFilters);
   }
-  
+
   // Check URL params for category
   const urlCategory = getUrlParam('category');
   if (urlCategory) {
@@ -40,7 +40,7 @@ function initFilters() {
       if (tag.dataset.category === urlCategory) {
         categoryTags.forEach(t => t.classList.remove('active'));
         tag.classList.add('active');
-        applyFilters();
+        // Ne plus appeler applyFilters() ici, l'appel global le fera
       }
     });
   }
@@ -49,7 +49,7 @@ function initFilters() {
 /* ---- Apply all filters ---- */
 function applyFilters() {
   let filtered = [...PRODUCTS];
-  
+
   // Category filter
   const activeCategory = document.querySelector('.filter-tag[data-category].active');
   if (activeCategory) {
@@ -58,7 +58,7 @@ function applyFilters() {
       filtered = filtered.filter(p => p.category === category);
     }
   }
-  
+
   // Price filter
   const priceSelect = document.getElementById('priceSelect');
   if (priceSelect) {
@@ -71,12 +71,12 @@ function applyFilters() {
       });
     }
   }
-  
+
   // Sort
   const sortSelect = document.getElementById('sortSelect');
   if (sortSelect) {
     const sort = sortSelect.value;
-    switch(sort) {
+    switch (sort) {
       case 'price-asc':
         filtered.sort((a, b) => a.price - b.price);
         break;
@@ -88,7 +88,7 @@ function applyFilters() {
         break;
     }
   }
-  
+
   renderProductGrid(filtered);
   updateResultsCount(filtered.length);
 }
@@ -97,7 +97,7 @@ function applyFilters() {
 function renderProductGrid(products) {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
-  
+
   if (products.length === 0) {
     grid.innerHTML = `
       <div class="text-center" style="grid-column: 1/-1; padding: 4rem 0;">
@@ -108,7 +108,7 @@ function renderProductGrid(products) {
     `;
     return;
   }
-  
+
   grid.innerHTML = products.map((product, index) => `
     <div class="card product-card reveal" style="animation-delay: ${index * 0.05}s">
       <a href="produit.html?id=${product.id}">
@@ -152,7 +152,7 @@ function renderProductGrid(products) {
       </a>
     </div>
   `).join('');
-  
+
   // Re-init scroll reveal for new elements
   if (typeof initScrollReveal === 'function') {
     setTimeout(initScrollReveal, 100);

@@ -621,33 +621,124 @@ h4 {
 }
 
 /* ---- Product Card ---- */
+/* ===== PRODUCT CARD - MODERN ENHANCEMENTS ===== */
+
 .product-card {
   position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+    box-shadow 0.3s ease,
+    background 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Effet de bordure lumineuse au survol */
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.4);
+  background: var(--bg-card-hover, var(--bg-card));
+}
+
+.product-card:hover::after {
+  opacity: 1;
+}
+
+/* Badge repositionné mais avec style modernisé */
 .product-card .badge {
   position: absolute;
   top: var(--space-md);
   left: var(--space-md);
   z-index: 2;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Image avec zoom au survol */
 .product-card .card-image {
   aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #0a0a0a;
 }
 
+.product-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out, filter 0.3s;
+  transform: scale(1.02);
+}
+
+.product-card:hover .card-image img {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.02);
+}
+
+/* Contenu */
+.product-card .card-content {
+  padding: var(--space-md);
+  position: relative;
+}
+
+.product-card .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin: 0.25rem 0;
+  background: linear-gradient(135deg, var(--text-primary), #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.product-card .card-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  border-left: 2px solid var(--primary);
+  padding-left: 0.6rem;
+}
+
+/* Aperçu des spécifications */
 .product-card .specs-preview {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-sm);
   padding-top: var(--space-sm);
   border-top: 1px solid var(--border);
+  margin-bottom: var(--space-sm);
 }
 
 .spec-item {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1;
+  text-align: center;
 }
 
 .spec-item .spec-label {
@@ -659,8 +750,38 @@ h4 {
 
 .spec-item .spec-value {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: var(--primary-light, var(--primary));
+}
+
+/* Section prix + "Voir" */
+.product-card .flex.justify-between {
+  transition: all 0.2s;
+}
+
+.product-card:hover .flex.justify-between span:last-child {
+  transform: translateX(5px);
+  color: var(--primary) !important;
+}
+
+.product-card .flex.justify-between span:last-child {
+  transition: transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+/* Animation d'entrée (si vous utilisez reveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---- Badge ---- */
@@ -1133,67 +1254,135 @@ h4 {
 }
 
 /* ---- Feature/Stat Card ---- */
+/* ============================================
+   FEATURE CARDS - Modern Design
+   ============================================ */
+
 .feature-card {
-  text-align: center;
-  padding: var(--space-2xl) var(--space-lg);
-  background: var(--gradient-card);
+  background: var(--bg-card);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--border);
-  transition: all var(--transition-normal);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(0px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Effet de bordure lumineuse animée */
 .feature-card::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-primary);
-  transform: scaleX(0);
-  transition: transform var(--transition-normal);
-}
-
-.feature-card:hover {
-  border-color: var(--border-glow);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: left 0.6s ease;
 }
 
 .feature-card:hover::before {
-  transform: scaleX(1);
+  left: 100%;
 }
 
+/* Fond de carte au survol */
+.feature-card:hover {
+  transform: translateY(-8px);
+  background: var(--bg-card-hover, var(--bg-card));
+  border-color: rgba(var(--primary-rgb, 99, 102, 241), 0.3);
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
+}
+
+/* Icône moderne */
 .feature-icon {
-  width: 64px;
-  height: 64px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-lg);
-  font-size: 1.5rem;
-  color: white;
-  box-shadow: var(--shadow-glow);
-  transition: transform var(--transition-bounce);
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  display: inline-block;
+  transition: transform 0.3s ease, filter 0.3s;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
 .feature-card:hover .feature-icon {
-  transform: scale(1.1) rotate(-5deg);
+  transform: scale(1.1) translateY(-4px);
+  filter: drop-shadow(0 8px 12px rgba(var(--primary-rgb, 99, 102, 241), 0.4));
 }
 
+/* Titre */
 .feature-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
   margin-bottom: var(--space-sm);
-  font-size: 1.15rem;
+  background: linear-gradient(135deg, var(--text-primary), #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.3px;
 }
 
+/* Description */
 .feature-card p {
   color: var(--text-secondary);
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+.feature-card:hover p {
+  color: var(--text-primary);
+}
+
+/* Variante avec icône SVG (optionnel, si vous passez aux SVG) */
+.feature-card .feature-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Animation d'entrée (reveal) */
+.feature-card.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.feature-card.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Délais personnalisés */
+.feature-card.reveal-delay-1 {
+  transition-delay: 0.05s;
+}
+
+.feature-card.reveal-delay-2 {
+  transition-delay: 0.1s;
+}
+
+.feature-card.reveal-delay-3 {
+  transition-delay: 0.15s;
+}
+
+/* Grille responsive (optionnel) */
+@media (max-width: 992px) {
+  .grid.grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .grid.grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: var(--space-lg);
+  }
 }
 
 /* ---- Footer ---- */
