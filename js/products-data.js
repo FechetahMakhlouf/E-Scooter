@@ -1,8 +1,40 @@
 /* =============================================
-   E-SCOOT — Products Data (Updated with Real Images)
+   E-SCOOT — Base de données Produits
+   =============================================
+   Fichier de données central chargé en premier
+   sur toutes les pages (via <script> avant main.js).
+
+   Structure de chaque produit :
+   - id            : identifiant URL (ex: "q11-max")
+   - name          : nom affiché
+   - subtitle      : sous-titre
+   - category      : "electric-motorcycle" | "electric-scooter"
+   - categoryLabel : label lisible pour l'affichage
+   - price         : prix en DA (Dinars Algériens)
+   - oldPrice      : ancien prix barré (null si pas de promo)
+   - badge         : texte du badge (ex: "Populaire")
+   - badgeColor    : couleur du badge (primary|accent|warning|danger)
+   - mainImage     : image principale (chemin relatif)
+   - images        : tableau de toutes les images du produit
+   - colors        : tableau de variantes couleur { name, hex, images[] }
+   - specs         : objet clé/valeur des spécifications techniques
+   - features      : tableau { icon, title, desc } des points forts
+   - description   : texte long de description
+   - shortDesc     : description courte (meta / résumé)
+
+   Fonctions utilitaires exportées en bas de fichier :
+   - getProductById(id)
+   - getProductsByCategory(category)
+   - getRelatedProducts(productId, limit)
+   - formatPrice(price)
    ============================================= */
 
 const PRODUCTS = [
+
+  /* ------------------------------------------
+     MOTOS ÉLECTRIQUES
+  ------------------------------------------ */
+
   {
     id: "q11-max",
     name: "Q11 MAX",
@@ -24,8 +56,8 @@ const PRODUCTS = [
       "assets/images/models/q11-max/Q11_6.jpeg"
     ],
     colors: [
-      { 
-        name: "Noir", 
+      {
+        name: "Noir",
         hex: "#1a1a1a",
         images: [
           "assets/images/models/q11-max/main.jpg",
@@ -37,8 +69,8 @@ const PRODUCTS = [
           "assets/images/models/q11-max/Q11_6.jpeg"
         ]
       },
-      { 
-        name: "Rouge", 
+      {
+        name: "Rouge",
         hex: "#cc0000",
         images: [
           "assets/images/models/q11-max/Q11_3.jpeg",
@@ -74,6 +106,7 @@ const PRODUCTS = [
     description: "La Q11 MAX est notre moto électrique phare, alliant puissance et autonomie exceptionnelles. Avec son moteur de 3000W et sa batterie lithium-ion 72V 40Ah, elle offre des performances équivalentes aux scooters thermiques 125cc, sans émissions et avec des coûts de fonctionnement réduits. Parfaite pour les déplacements urbains et périurbains en Algérie.",
     shortDesc: "Moto électrique puissante 3000W, autonomie 120-140 km, vitesse max 90 km/h."
   },
+
   {
     id: "q11-pro",
     name: "Q11 PRO",
@@ -95,8 +128,8 @@ const PRODUCTS = [
       "assets/images/models/q11-pro/Q11_12.jpeg"
     ],
     colors: [
-      { 
-        name: "Rouge", 
+      {
+        name: "Rouge",
         hex: "#cc0000",
         images: [
           "assets/images/models/q11-pro/main.jpg",
@@ -108,8 +141,8 @@ const PRODUCTS = [
           "assets/images/models/q11-pro/Q11_12.jpeg"
         ]
       },
-      { 
-        name: "Noir", 
+      {
+        name: "Noir",
         hex: "#1a1a1a",
         images: [
           "assets/images/models/q11-pro/Q11_9.jpeg",
@@ -145,6 +178,7 @@ const PRODUCTS = [
     description: "La Q11 PRO offre un excellent rapport puissance/prix. Avec son moteur 2000W, elle atteint 80 km/h et offre une autonomie de 100-120 km. Le design élégant et les finitions soignées en font une moto électrique idéale pour les déplacements quotidiens.",
     shortDesc: "Moto électrique 2000W, autonomie 100-120 km, vitesse max 80 km/h."
   },
+
   {
     id: "m8-moto",
     name: "M8 MOTO",
@@ -168,8 +202,8 @@ const PRODUCTS = [
       "assets/images/models/m8-moto/M8_8.jpeg"
     ],
     colors: [
-      { 
-        name: "Vert Mint", 
+      {
+        name: "Vert Mint",
         hex: "#98d8c8",
         images: [
           "assets/images/models/m8-moto/main.jpg",
@@ -183,8 +217,8 @@ const PRODUCTS = [
           "assets/images/models/m8-moto/M8_8.jpeg"
         ]
       },
-      { 
-        name: "Crème", 
+      {
+        name: "Crème",
         hex: "#f5f5dc",
         images: [
           "assets/images/models/m8-moto/M8_3.jpeg",
@@ -222,6 +256,7 @@ const PRODUCTS = [
     description: "La M8 MOTO allie le charme vintage des années 60 à la technologie électrique moderne. Son design rétro avec phare rond, garde-boue chromé et couleur mint unique en font une moto qui attire tous les regards. Parfaite pour les amateurs de style et l'urbanisme quotidien.",
     shortDesc: "Moto électrique vintage 1500W, style rétro unique, autonomie 80-100 km."
   },
+
   {
     id: "n7-super",
     name: "N7 SUPER",
@@ -238,16 +273,16 @@ const PRODUCTS = [
       "assets/images/models/n7/N7_5.jpeg"
     ],
     colors: [
-      { 
-        name: "Racing Blanc", 
+      {
+        name: "Racing Blanc",
         hex: "#ffffff",
         images: [
           "assets/images/models/n7/main.jpg",
           "assets/images/models/n7/N7_5.jpeg"
         ]
       },
-      { 
-        name: "Racing Noir", 
+      {
+        name: "Racing Noir",
         hex: "#1a1a1a",
         images: [
           "assets/images/models/n7/N7_5.jpeg",
@@ -278,6 +313,11 @@ const PRODUCTS = [
     description: "La N7 SUPER est la moto électrique racing de notre gamme. Avec son look inspiré de la MotoGP, son moteur 3000W et ses freins sport, elle offre des sensations de conduite uniques. La version TC (Total Control) ajoute un mode de conduite avancé pour les passionnés.",
     shortDesc: "Moto racing électrique 3000W, look MotoGP, vitesse 90 km/h."
   },
+
+  /* ------------------------------------------
+     TROTTINETTES ÉLECTRIQUES
+  ------------------------------------------ */
+
   {
     id: "g63",
     name: "G-63",
@@ -299,8 +339,8 @@ const PRODUCTS = [
       "assets/images/models/g63/G63_6.jpeg"
     ],
     colors: [
-      { 
-        name: "Noir", 
+      {
+        name: "Noir",
         hex: "#1a1a1a",
         images: [
           "assets/images/models/g63/main.jpg",
@@ -312,8 +352,8 @@ const PRODUCTS = [
           "assets/images/models/g63/G63_6.jpeg"
         ]
       },
-      { 
-        name: "Vert Militaire", 
+      {
+        name: "Vert Militaire",
         hex: "#4b5320",
         images: [
           "assets/images/models/g63/G63_3.jpeg",
@@ -349,6 +389,7 @@ const PRODUCTS = [
     description: "La G-63 est une trottinette tout-terrain unique en son genre. Avec ses deux moteurs de 1200W et son système de chenille amovible, elle peut affronter n'importe quel terrain : sable, neige, boue, gravier. La double suspension et les freins hydrauliques assurent sécurité et confort.",
     shortDesc: "Trottinette tout-terrain 4x4 électrique, double moteur 2x1200W."
   },
+
   {
     id: "m8-scooter",
     name: "M8 SCOOTER",
@@ -364,20 +405,8 @@ const PRODUCTS = [
       "assets/images/models/m8-scooter/main.jpg"
     ],
     colors: [
-      { 
-        name: "Noir", 
-        hex: "#1a1a1a",
-        images: [
-          "assets/images/models/m8-scooter/main.jpg"
-        ]
-      },
-      { 
-        name: "Gris", 
-        hex: "#666666",
-        images: [
-          "assets/images/models/m8-scooter/main.jpg"
-        ]
-      }
+      { name: "Noir", hex: "#1a1a1a", images: ["assets/images/models/m8-scooter/main.jpg"] },
+      { name: "Gris", hex: "#666666", images: ["assets/images/models/m8-scooter/main.jpg"] }
     ],
     specs: {
       "Vitesse Max": "35 km/h",
@@ -402,6 +431,7 @@ const PRODUCTS = [
     description: "La M8 SCOOTER est une trottinette électrique urbaine conçue avec un accent particulier sur la sécurité. Ses clignotants intégrés au guidon et son éclairage complet en font la trottinette la plus sûre pour circuler en ville, de jour comme de nuit.",
     shortDesc: "Trottinette électrique avec clignotants intégrés, autonomie 50 km."
   },
+
   {
     id: "t7",
     name: "T7",
@@ -417,20 +447,8 @@ const PRODUCTS = [
       "assets/images/models/t7/main.jpg"
     ],
     colors: [
-      { 
-        name: "Noir", 
-        hex: "#1a1a1a",
-        images: [
-          "assets/images/models/t7/main.jpg"
-        ]
-      },
-      { 
-        name: "Blanc", 
-        hex: "#f5f5f5",
-        images: [
-          "assets/images/models/t7/main.jpg"
-        ]
-      }
+      { name: "Noir", hex: "#1a1a1a", images: ["assets/images/models/t7/main.jpg"] },
+      { name: "Blanc", hex: "#f5f5f5", images: ["assets/images/models/t7/main.jpg"] }
     ],
     specs: {
       "Vitesse Max": "30 km/h",
@@ -455,6 +473,7 @@ const PRODUCTS = [
     description: "La T7 est la trottinette urbaine par excellence. Légère, pliable et élégante, elle est parfaite pour les derniers kilomètres et les déplacements en ville. Sa batterie amovible permet de la recharger facilement au bureau ou à la maison.",
     shortDesc: "Trottinette urbaine pliable 350W, 12.5 kg, autonomie 45 km."
   },
+
   {
     id: "t5",
     name: "T5",
@@ -470,20 +489,8 @@ const PRODUCTS = [
       "assets/images/models/t5/main.jpg"
     ],
     colors: [
-      { 
-        name: "Blanc/Mint", 
-        hex: "#98d8c8",
-        images: [
-          "assets/images/models/t5/main.jpg"
-        ]
-      },
-      { 
-        name: "Rose", 
-        hex: "#ffb6c1",
-        images: [
-          "assets/images/models/t5/main.jpg"
-        ]
-      }
+      { name: "Blanc/Mint", hex: "#98d8c8", images: ["assets/images/models/t5/main.jpg"] },
+      { name: "Rose", hex: "#ffb6c1", images: ["assets/images/models/t5/main.jpg"] }
     ],
     specs: {
       "Vitesse Max": "16 km/h (limitée)",
@@ -508,17 +515,38 @@ const PRODUCTS = [
     description: "La T5 est la trottinette électrique parfaite pour les enfants. Avec sa vitesse limitée à 16 km/h, ses lumières LED colorées et son poids plume de 6.5 kg, elle offre une expérience de conduite sûre et amusante pour les plus jeunes.",
     shortDesc: "Trottinette électrique pour enfant, vitesse limitée 16 km/h, sécurisée."
   }
+
 ];
 
-/* Helper functions */
+
+/* ===========================================
+   FONCTIONS UTILITAIRES
+   =========================================== */
+
+/**
+ * Retourne un produit par son identifiant.
+ * @param {string} id - Identifiant du produit (ex: "q11-max")
+ * @returns {object|undefined}
+ */
 function getProductById(id) {
   return PRODUCTS.find(p => p.id === id);
 }
 
+/**
+ * Retourne tous les produits d'une catégorie donnée.
+ * @param {string} category - "electric-motorcycle" | "electric-scooter"
+ * @returns {object[]}
+ */
 function getProductsByCategory(category) {
   return PRODUCTS.filter(p => p.category === category);
 }
 
+/**
+ * Retourne des produits similaires (même catégorie, hors produit courant).
+ * @param {string} productId - ID du produit courant à exclure
+ * @param {number} limit     - Nombre max de résultats (défaut : 3)
+ * @returns {object[]}
+ */
 function getRelatedProducts(productId, limit = 3) {
   const product = getProductById(productId);
   if (!product) return [];
@@ -527,11 +555,16 @@ function getRelatedProducts(productId, limit = 3) {
     .slice(0, limit);
 }
 
+/**
+ * Formate un prix en Dinars Algériens avec séparateurs de milliers.
+ * @param {number} price
+ * @returns {string} ex: "219 000 DA"
+ */
 function formatPrice(price) {
   return price.toLocaleString('fr-FR') + ' DA';
 }
 
-// Export for module usage
+/* Export pour usage en module Node.js (tests) */
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PRODUCTS, getProductById, getProductsByCategory, getRelatedProducts, formatPrice };
 }

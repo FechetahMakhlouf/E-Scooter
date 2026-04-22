@@ -1,11 +1,37 @@
 /* =============================================
-   E-SCOOT v2.0 — Modern Electric Vehicles Store
-   Enhanced Design with Glassmorphism & Animations
+   E-SCOOT v2.0 — Styles Principaux
+   Glassmorphism · Animations · Responsive
+   =============================================
+   TABLE DES MATIÈRES
+   ------------------
+   1.  Variables CSS (thème sombre + clair)
+   2.  Import de police
+   3.  Reset & Base
+   4.  Typographie
+   5.  Mise en page (container, section)
+   6.  Navigation & Logo
+   7.  Boutons
+   8.  Cartes génériques
+   9.  Carte Produit
+   10. Badge
+   11. Grille
+   12. Section Hero (page d'accueil)
+   13. Cartes Catégorie
+   14. Cartes Feature
+   15. Footer
+   16. Animations & Scroll Reveal
+   17. Utilitaires
+   18. Scrollbar & Sélection
+   19. Responsive
    ============================================= */
 
-/* ---- CSS Variables ---- */
+
+/* ===========================================
+   1. VARIABLES CSS
+   =========================================== */
+
 :root {
-  /* Primary Palette */
+  /* Palette principale */
   --primary: #00d4aa;
   --primary-dark: #00b894;
   --primary-light: #00f5c4;
@@ -15,7 +41,7 @@
   --danger: #ef4444;
   --success: #10b981;
 
-  /* Dark theme (default) */
+  /* Thème sombre (défaut) */
   --bg-primary: #0a0e1a;
   --bg-secondary: #0f1425;
   --bg-card: rgba(255, 255, 255, 0.03);
@@ -29,7 +55,7 @@
   --border-light: rgba(255, 255, 255, 0.12);
   --border-glow: rgba(0, 212, 170, 0.2);
 
-  /* Gradients */
+  /* Dégradés */
   --gradient-primary: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
   --gradient-accent: linear-gradient(135deg, #6366f1 0%, #00d4aa 100%);
   --gradient-dark: linear-gradient(180deg, #0a0e1a 0%, #0f1425 100%);
@@ -41,7 +67,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-blur: blur(20px);
 
-  /* Shadows */
+  /* Ombres */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
@@ -49,11 +75,10 @@
   --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.25);
   --shadow-accent: 0 0 30px rgba(99, 102, 241, 0.15);
 
-  /* Typography */
+  /* Typographie */
   --font-main: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', monospace;
 
-  /* Spacing */
+  /* Espacements */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -63,7 +88,7 @@
   --space-3xl: 4rem;
   --space-4xl: 6rem;
 
-  /* Radius */
+  /* Rayons */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -78,7 +103,7 @@
   --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Light theme */
+/* Thème clair */
 [data-theme="light"] {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
@@ -99,10 +124,18 @@
   --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.2);
 }
 
-/* Import Inter font */
+
+/* ===========================================
+   2. IMPORT DE POLICE
+   =========================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* ---- Reset & Base ---- */
+
+/* ===========================================
+   3. RESET & BASE
+   =========================================== */
+
 *,
 *::before,
 *::after {
@@ -157,7 +190,11 @@ select {
   color: inherit;
 }
 
-/* ---- Typography ---- */
+
+/* ===========================================
+   4. TYPOGRAPHIE
+   =========================================== */
+
 h1,
 h2,
 h3,
@@ -185,21 +222,35 @@ h4 {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
 }
 
+/* Texte dégradé animé — utilisé partout (.text-gradient) */
 .text-gradient {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #00d4aa 0%, #6366f1 50%, #00d4aa 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  animation: gradientShift 3s ease infinite;
 }
 
-.text-gradient-accent {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-/* ---- Layout ---- */
+
+/* ===========================================
+   5. MISE EN PAGE
+   =========================================== */
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -227,7 +278,12 @@ h4 {
   font-size: 1.1rem;
 }
 
-/* ---- Navigation ---- */
+
+/* ===========================================
+   6. NAVIGATION & LOGO
+   =========================================== */
+
+/* Barre de navigation fixe */
 .navbar {
   position: fixed;
   top: 0;
@@ -239,6 +295,7 @@ h4 {
   background: transparent;
 }
 
+/* Effet glassmorphique au défilement (ajouté via JS) */
 .navbar.scrolled {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -256,7 +313,7 @@ h4 {
   justify-content: space-between;
 }
 
-/* Logo modernisé */
+/* Logo — texte dégradé + icône glassmorphique */
 .logo {
   display: flex;
   align-items: center;
@@ -266,7 +323,6 @@ h4 {
   isolation: isolate;
 }
 
-/* Effet de texte gradient moderne */
 .logo span {
   font-size: 1.5rem;
   font-weight: 800;
@@ -280,14 +336,13 @@ h4 {
   position: relative;
 }
 
-/* Animation du texte au hover */
 .logo:hover span {
   background-position: 100% 0;
   letter-spacing: -0.01em;
   text-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
 }
 
-/* Icône moderne avec effet glassmorphique + néon */
+/* Icône du logo */
 .logo-icon {
   width: 44px;
   height: 44px;
@@ -307,7 +362,7 @@ h4 {
   z-index: 1;
 }
 
-/* Effet de brillance intérieure sur l'icône */
+/* Reflet lumineux à l'intérieur de l'icône */
 .logo-icon::before {
   content: '';
   position: absolute;
@@ -322,7 +377,6 @@ h4 {
   transform: translateX(100%);
 }
 
-/* Animation au hover : élévation + rotation + lueur */
 .logo:hover .logo-icon {
   transform: translateY(-3px) scale(1.08) rotate(5deg);
   border-color: var(--primary);
@@ -331,13 +385,12 @@ h4 {
   background: var(--gradient-primary);
 }
 
-/* Cercle lumineux externe au hover */
+/* Halo lumineux externe au survol */
 .logo::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 22px;
-  /* centre approximatif de l'icône */
   width: 44px;
   height: 44px;
   background: radial-gradient(circle, rgba(0, 212, 170, 0.4), transparent 70%);
@@ -354,7 +407,7 @@ h4 {
   opacity: 0.6;
 }
 
-/* Adaptation thème clair */
+/* Adaptations thème clair */
 [data-theme="light"] .logo-icon {
   background: rgba(0, 212, 170, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -368,25 +421,7 @@ h4 {
   background: radial-gradient(circle, rgba(0, 212, 170, 0.25), transparent 70%);
 }
 
-/* Responsive : ajustement sur mobile */
-@media (max-width: 640px) {
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1.1rem;
-  }
-
-  .logo span {
-    font-size: 1.25rem;
-  }
-
-  .logo::after {
-    width: 36px;
-    height: 36px;
-    left: 18px;
-  }
-}
-
+/* Liens de navigation */
 .nav-links {
   display: flex;
   align-items: center;
@@ -407,6 +442,7 @@ h4 {
   color: var(--primary);
 }
 
+/* Soulignement animé */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -431,7 +467,7 @@ h4 {
   gap: var(--space-md);
 }
 
-/* Theme toggle */
+/* Bouton bascule du thème */
 #themeToggle {
   width: 42px;
   height: 42px;
@@ -452,7 +488,7 @@ h4 {
   transform: rotate(15deg);
 }
 
-/* Mobile menu */
+/* Bouton menu mobile (hamburger) */
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -470,6 +506,7 @@ h4 {
   border-radius: var(--radius-full);
 }
 
+/* Animation X du hamburger */
 .mobile-toggle.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -483,7 +520,11 @@ h4 {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ---- Buttons ---- */
+
+/* ===========================================
+   7. BOUTONS
+   =========================================== */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -498,44 +539,49 @@ h4 {
   border: none;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
+/* Reflet lumineux au survol */
 .btn::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
 }
 
 .btn:hover::before {
-  transform: translateX(100%);
+  left: 100%;
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: white;
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 4px 15px rgba(0, 212, 170, 0.2);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 212, 170, 0.4);
 }
 
 .btn-secondary {
-  background: var(--glass-bg);
+  background: transparent;
   color: var(--text-primary);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  border: 2px solid var(--border-light);
+  backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
   border-color: var(--primary);
-  color: var(--primary);
-  background: rgba(0, 212, 170, 0.05);
-  transform: translateY(-2px);
+  background: rgba(0, 212, 170, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 212, 170, 0.15);
 }
 
 .btn-ghost {
@@ -562,7 +608,11 @@ h4 {
   width: 100%;
 }
 
-/* ---- Cards ---- */
+
+/* ===========================================
+   8. CARTES GÉNÉRIQUES
+   =========================================== */
+
 .card {
   background: var(--gradient-card);
   backdrop-filter: blur(10px);
@@ -620,8 +670,10 @@ h4 {
   margin-top: var(--space-sm);
 }
 
-/* ---- Product Card ---- */
-/* ===== PRODUCT CARD - MODERN ENHANCEMENTS ===== */
+
+/* ===========================================
+   9. CARTE PRODUIT
+   =========================================== */
 
 .product-card {
   position: relative;
@@ -634,7 +686,7 @@ h4 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Effet de bordure lumineuse au survol */
+/* Bordure lumineuse animée au survol */
 .product-card::after {
   content: '';
   position: absolute;
@@ -661,7 +713,7 @@ h4 {
   opacity: 1;
 }
 
-/* Badge repositionné mais avec style modernisé */
+/* Badge positionné en absolu sur l'image */
 .product-card .badge {
   position: absolute;
   top: var(--space-md);
@@ -677,7 +729,6 @@ h4 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Image avec zoom au survol */
 .product-card .card-image {
   aspect-ratio: 4/3;
   overflow: hidden;
@@ -697,12 +748,12 @@ h4 {
   filter: brightness(1.05) contrast(1.02);
 }
 
-/* Contenu */
 .product-card .card-content {
   padding: var(--space-md);
   position: relative;
 }
 
+/* Titre avec dégradé */
 .product-card .card-title {
   font-size: 1.3rem;
   font-weight: 700;
@@ -715,6 +766,7 @@ h4 {
   display: inline-block;
 }
 
+/* Sous-titre avec barre gauche */
 .product-card .card-subtitle {
   color: var(--text-secondary);
   font-size: 0.85rem;
@@ -754,16 +806,7 @@ h4 {
   color: var(--primary-light, var(--primary));
 }
 
-/* Section prix + "Voir" */
-.product-card .flex.justify-between {
-  transition: all 0.2s;
-}
-
-.product-card:hover .flex.justify-between span:last-child {
-  transform: translateX(5px);
-  color: var(--primary) !important;
-}
-
+/* Animation du bouton "Voir →" */
 .product-card .flex.justify-between span:last-child {
   transition: transform 0.2s ease;
   display: inline-flex;
@@ -772,19 +815,16 @@ h4 {
   font-weight: 500;
 }
 
-/* Animation d'entrée (si vous utilisez reveal) */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+.product-card:hover .flex.justify-between span:last-child {
+  transform: translateX(5px);
+  color: var(--primary) !important;
 }
 
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-/* ---- Badge ---- */
+/* ===========================================
+   10. BADGE
+   =========================================== */
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -824,18 +864,18 @@ h4 {
 .badge-ghost {
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ---- Grid ---- */
+
+/* ===========================================
+   11. GRILLE
+   =========================================== */
+
+/* Note : .grid-2 supprimé — non utilisé dans aucune page */
 .grid {
   display: grid;
   gap: var(--space-lg);
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .grid-3 {
@@ -846,8 +886,11 @@ h4 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* ---- Hero ---- */
-/* Hero section modernisée */
+
+/* ===========================================
+   12. SECTION HERO (page d'accueil)
+   =========================================== */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -858,7 +901,7 @@ h4 {
   isolation: isolate;
 }
 
-/* Image de fond avec effet zoom/parallaxe */
+/* Fond avec image et parallaxe JS */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -877,7 +920,7 @@ h4 {
   will-change: transform;
 }
 
-/* Overlay dynamique avec dégradé moderne */
+/* Overlay dégradé radial */
 .hero-bg::after {
   content: '';
   position: absolute;
@@ -889,14 +932,12 @@ h4 {
   z-index: 1;
 }
 
-/* Effet de glow animé en arrière-plan */
+/* Glow animé en arrière-plan */
 .hero-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 30%,
-      rgba(0, 212, 170, 0.2) 0%,
-      transparent 50%);
+  background: radial-gradient(circle at 70% 30%, rgba(0, 212, 170, 0.2) 0%, transparent 50%);
   z-index: 2;
   opacity: 0.6;
   animation: heroGlow 8s ease-in-out infinite alternate;
@@ -914,7 +955,7 @@ h4 {
   }
 }
 
-/* Particules flottantes (à ajouter via JS ou pseudo-éléments) */
+/* Motif de particules flottantes */
 .hero::before {
   content: '';
   position: absolute;
@@ -947,11 +988,9 @@ h4 {
 
 .hero-inner {
   max-width: 700px;
-  transform: translateY(0);
-  opacity: 1;
 }
 
-/* Badge avec effet glassmorphique et animation d'entrée */
+/* Badge d'accroche */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -977,7 +1016,7 @@ h4 {
   transform: translateY(-2px);
 }
 
-/* Titre avec effet de révélation au scroll */
+/* Titre Hero avec entrée animée */
 .hero h1 {
   margin-bottom: var(--space-lg);
   font-size: 4rem;
@@ -987,31 +1026,6 @@ h4 {
   transform: translateY(30px);
 }
 
-/* Texte gradient animé */
-.text-gradient {
-  background: linear-gradient(135deg, #00d4aa 0%, #6366f1 50%, #00d4aa 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Paragraphe avec line-clamp moderne */
 .hero p {
   font-size: 1.2rem;
   color: var(--text-secondary);
@@ -1021,58 +1035,9 @@ h4 {
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.2s forwards;
   opacity: 0;
   transform: translateY(30px);
-  backdrop-filter: blur(2px);
 }
 
-/* Boutons modernes avec effet de lueur */
-.btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  z-index: 1;
-}
-
-.btn-primary {
-  background: var(--gradient-primary);
-  border: none;
-  box-shadow: 0 4px 15px rgba(0, 212, 170, 0.2);
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-  z-index: -1;
-}
-
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0, 212, 170, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid var(--border-light);
-  backdrop-filter: blur(8px);
-}
-
-.btn-secondary:hover {
-  border-color: var(--primary);
-  background: rgba(0, 212, 170, 0.1);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 212, 170, 0.15);
-}
-
-/* Stats modernes avec effet néon */
+/* Statistiques Hero */
 .hero-stats {
   display: flex;
   gap: var(--space-3xl);
@@ -1096,6 +1061,7 @@ h4 {
   transform: translateY(-5px);
 }
 
+/* Séparateur vertical entre stats */
 .hero-stat:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -1136,7 +1102,6 @@ h4 {
   color: var(--primary);
 }
 
-/* Animations clés */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -1149,59 +1114,17 @@ h4 {
   }
 }
 
-/* Effet de survol sur l'image (parallaxe au scroll) */
 @media (prefers-reduced-motion: no-preference) {
   .hero-bg img {
     transition: transform 0.1s linear;
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
 
-  .hero p {
-    font-size: 1rem;
-  }
+/* ===========================================
+   13. CARTES CATÉGORIE
+   =========================================== */
 
-  .hero-actions {
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .hero-stats {
-    gap: var(--space-xl);
-    margin-top: var(--space-xl);
-  }
-
-  .hero-stat:not(:last-child)::after {
-    right: calc(-1 * var(--space-lg));
-  }
-
-  .hero-stat-value {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-stats {
-    gap: var(--space-lg);
-    justify-content: space-between;
-  }
-
-  .hero-stat:not(:last-child)::after {
-    display: none;
-  }
-}
-
-/* ---- Category Cards ---- */
 .category-card {
   position: relative;
   border-radius: var(--radius-xl);
@@ -1253,10 +1176,10 @@ h4 {
   color: var(--text-secondary);
 }
 
-/* ---- Feature/Stat Card ---- */
-/* ============================================
-   FEATURE CARDS - Modern Design
-   ============================================ */
+
+/* ===========================================
+   14. CARTES FEATURE
+   =========================================== */
 
 .feature-card {
   background: var(--bg-card);
@@ -1266,12 +1189,11 @@ h4 {
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(0px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Effet de bordure lumineuse animée */
+/* Reflet lumineux traversant au survol */
 .feature-card::before {
   content: '';
   position: absolute;
@@ -1287,15 +1209,13 @@ h4 {
   left: 100%;
 }
 
-/* Fond de carte au survol */
 .feature-card:hover {
   transform: translateY(-8px);
   background: var(--bg-card-hover, var(--bg-card));
-  border-color: rgba(var(--primary-rgb, 99, 102, 241), 0.3);
+  border-color: rgba(99, 102, 241, 0.3);
   box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
 }
 
-/* Icône moderne */
 .feature-icon {
   font-size: 3rem;
   margin-bottom: var(--space-md);
@@ -1306,10 +1226,9 @@ h4 {
 
 .feature-card:hover .feature-icon {
   transform: scale(1.1) translateY(-4px);
-  filter: drop-shadow(0 8px 12px rgba(var(--primary-rgb, 99, 102, 241), 0.4));
+  filter: drop-shadow(0 8px 12px rgba(99, 102, 241, 0.4));
 }
 
-/* Titre */
 .feature-card h3 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -1321,7 +1240,6 @@ h4 {
   letter-spacing: -0.3px;
 }
 
-/* Description */
 .feature-card p {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -1333,28 +1251,7 @@ h4 {
   color: var(--text-primary);
 }
 
-/* Variante avec icône SVG (optionnel, si vous passez aux SVG) */
-.feature-card .feature-icon svg {
-  width: 48px;
-  height: 48px;
-  stroke: var(--primary);
-  stroke-width: 1.5;
-  fill: none;
-}
-
-/* Animation d'entrée (reveal) */
-.feature-card.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-}
-
-.feature-card.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Délais personnalisés */
+/* Délais pour animation séquentielle reveal */
 .feature-card.reveal-delay-1 {
   transition-delay: 0.05s;
 }
@@ -1367,25 +1264,11 @@ h4 {
   transition-delay: 0.15s;
 }
 
-/* Grille responsive (optionnel) */
-@media (max-width: 992px) {
-  .grid.grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
 
-@media (max-width: 576px) {
-  .grid.grid-4 {
-    grid-template-columns: 1fr;
-  }
+/* ===========================================
+   15. FOOTER
+   =========================================== */
 
-  .feature-card {
-    padding: var(--space-lg);
-  }
-}
-
-/* ---- Footer ---- */
 .footer {
   background: #060a14;
   border-top: 1px solid var(--border);
@@ -1393,6 +1276,7 @@ h4 {
   position: relative;
 }
 
+/* Ligne dégradée en haut du footer */
 .footer::before {
   content: '';
   position: absolute;
@@ -1474,19 +1358,12 @@ h4 {
   font-size: 0.85rem;
 }
 
-/* ---- Animations ---- */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ===========================================
+   16. ANIMATIONS & SCROLL REVEAL
+   =========================================== */
 
+/* Animation principale d'entrée vers le haut */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1497,95 +1374,7 @@ h4 {
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(0, 212, 170, 0.2);
-  }
-
-  50% {
-    box-shadow: 0 0 40px rgba(0, 212, 170, 0.4);
-  }
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.8s ease both;
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease both;
-}
-
-/* Scroll reveal */
+/* Révélation au scroll — classe ajoutée par JS via IntersectionObserver */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -1598,6 +1387,7 @@ h4 {
   transform: translateY(0);
 }
 
+/* Délais d'apparition séquentielle */
 .reveal-delay-1 {
   transition-delay: 0.1s;
 }
@@ -1610,53 +1400,30 @@ h4 {
   transition-delay: 0.3s;
 }
 
-.reveal-delay-4 {
-  transition-delay: 0.4s;
+/* Animation d'entrée whatsapp-float (.float keyframe) */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
-/* ---- Utilities ---- */
+
+/* ===========================================
+   17. UTILITAIRES
+   =========================================== */
+
+/* Note: les classes spacing (mt-*, mb-*, gap-*) et text-right/text-left
+   ont été supprimées car elles n'apparaissent dans aucune page HTML.
+   Seul text-center est conservé (utilisé via JS dans filtering.js). */
+
 .text-center {
   text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.mt-1 {
-  margin-top: var(--space-sm);
-}
-
-.mt-2 {
-  margin-top: var(--space-md);
-}
-
-.mt-3 {
-  margin-top: var(--space-lg);
-}
-
-.mt-4 {
-  margin-top: var(--space-xl);
-}
-
-.mb-1 {
-  margin-bottom: var(--space-sm);
-}
-
-.mb-2 {
-  margin-bottom: var(--space-md);
-}
-
-.mb-3 {
-  margin-bottom: var(--space-lg);
-}
-
-.mb-4 {
-  margin-bottom: var(--space-xl);
 }
 
 .flex {
@@ -1671,15 +1438,11 @@ h4 {
   justify-content: space-between;
 }
 
-.gap-1 {
-  gap: var(--space-sm);
-}
 
-.gap-2 {
-  gap: var(--space-md);
-}
+/* ===========================================
+   18. SCROLLBAR & SÉLECTION
+   =========================================== */
 
-/* ---- Scrollbar ---- */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -1697,15 +1460,15 @@ h4 {
   background: var(--text-muted);
 }
 
-/* Selection color */
 ::selection {
   background: rgba(0, 212, 170, 0.3);
   color: var(--text-primary);
 }
 
-/* =============================================
-   RESPONSIVE
-   ============================================= */
+
+/* ===========================================
+   19. RESPONSIVE
+   =========================================== */
 
 @media (max-width: 1024px) {
   .grid-4 {
@@ -1732,10 +1495,7 @@ h4 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-
+  /* Menu mobile en plein écran */
   .nav-links {
     display: none;
     position: fixed;
@@ -1805,11 +1565,28 @@ h4 {
   }
 }
 
+@media (max-width: 640px) {
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .logo span {
+    font-size: 1.25rem;
+  }
+
+  .logo::after {
+    width: 36px;
+    height: 36px;
+    left: 18px;
+  }
+}
+
 @media (max-width: 480px) {
 
   .grid-3,
-  .grid-4,
-  .grid-2 {
+  .grid-4 {
     grid-template-columns: 1fr;
   }
 
@@ -1826,5 +1603,13 @@ h4 {
   .hero-stat {
     text-align: center;
     min-width: 45%;
+  }
+
+  .grid.grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: var(--space-lg);
   }
 }

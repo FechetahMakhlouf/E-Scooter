@@ -1,13 +1,29 @@
 /* =============================================
-   E-SCOOT v2.0 — Component Styles
-   Product Page, Gallery, Filters, Contact
+   E-SCOOT v2.0 — Styles des Composants
+   =============================================
+   TABLE DES MATIÈRES
+   ------------------
+   1.  Page Produit (hero, galerie, infos)
+   2.  Sélecteur de couleur
+   3.  Onglets (Tabs)
+   4.  Tableau de spécifications
+   5.  Liste des caractéristiques
+   6.  Section CTA (page d'accueil)
+   7.  Filtres (page Modèles)
+   8.  Page Galerie & Lightbox
+   9.  Page Contact (grille, formulaire, carte)
+   10. Éléments flottants (WhatsApp, back-to-top)
+   11. Fil d'Ariane (Breadcrumb)
+   12. Toast Notifications
+   13. Responsive Composants
    ============================================= */
 
-/* =============================================
-   PRODUCT PAGE
-   ============================================= */
 
-/* Product Hero */
+/* ===========================================
+   1. PAGE PRODUIT
+   =========================================== */
+
+/* Hero du produit — fond secondaire avec halo vert */
 .product-hero {
   padding-top: 100px;
   padding-bottom: var(--space-4xl);
@@ -26,6 +42,7 @@
   pointer-events: none;
 }
 
+/* Grille 2 colonnes : galerie | infos */
 .product-hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -35,198 +52,7 @@
   z-index: 1;
 }
 
-
-/* ============================================
-   CTA SECTION - Modern Glassmorphism
-   ============================================ */
-
-.cta-section {
-  position: relative;
-  padding: 5rem 0;
-  background: var(--bg-secondary);
-  overflow: hidden;
-}
-
-/* Glow animé en arrière-plan */
-.cta-glow {
-  position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 140%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(var(--primary-rgb, 99, 102, 241), 0.15), transparent 70%);
-  pointer-events: none;
-  animation: glowPulse 8s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-/* Carte principale */
-.cta-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: rgba(18, 18, 24, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 2rem;
-  padding: 2.5rem;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cta-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.4);
-  border-color: rgba(var(--primary-rgb, 99, 102, 241), 0.3);
-}
-
-/* Badge */
-.cta-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, rgba(var(--primary-rgb, 99, 102, 241), 0.2), rgba(var(--primary-rgb, 99, 102, 241), 0.05));
-  padding: 0.25rem 1rem;
-  border-radius: 40px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  border: 1px solid rgba(var(--primary-rgb, 99, 102, 241), 0.3);
-  backdrop-filter: blur(4px);
-}
-
-/* Titre */
-.cta-card h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-
-/* Description */
-.cta-card p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-/* Boutons avec icônes SVG */
-.cta-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.cta-buttons .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s;
-}
-
-.cta-buttons .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.cta-buttons .btn svg {
-  transition: transform 0.2s;
-}
-
-.cta-buttons .btn:hover svg {
-  transform: scale(1.05);
-}
-
-/* Statistiques */
-.cta-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--text-primary), var(--primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.2;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .cta-section {
-    padding: 3rem 0;
-  }
-
-  .cta-card {
-    padding: 1.5rem;
-    margin: 0 1rem;
-  }
-
-  .cta-card h2 {
-    font-size: 1.8rem;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .cta-stats {
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    flex: 1;
-    min-width: 80px;
-  }
-}
-
-/* Animation d'entrée (reveal) déjà présente dans votre code */
-.cta-card.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-}
-
-.cta-card.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Gallery */
+/* --- Galerie principale --- */
 .gallery-main {
   position: relative;
   border-radius: var(--radius-xl);
@@ -249,6 +75,7 @@
   transform: scale(1.02);
 }
 
+/* Flèches de navigation de la galerie */
 .gallery-main .nav-arrow {
   position: absolute;
   top: 50%;
@@ -266,7 +93,6 @@
   cursor: pointer;
   transition: all var(--transition-normal);
   z-index: 2;
-  font-size: 1.2rem;
 }
 
 .gallery-main .nav-arrow:hover {
@@ -284,6 +110,7 @@
   right: var(--space-md);
 }
 
+/* Miniatures de la galerie */
 .gallery-thumbs {
   display: flex;
   gap: var(--space-sm);
@@ -331,6 +158,7 @@
   box-shadow: 0 4px 12px rgba(0, 212, 170, 0.2);
 }
 
+/* Contour interne sur la miniature active */
 .gallery-thumb.active::after {
   content: '';
   position: absolute;
@@ -340,7 +168,7 @@
   pointer-events: none;
 }
 
-/* Product Info */
+/* --- Informations produit --- */
 .product-info h1 {
   font-size: 2.5rem;
   margin-bottom: var(--space-xs);
@@ -352,6 +180,7 @@
   font-size: 1.1rem;
 }
 
+/* Ligne prix + ancien prix */
 .product-price-row {
   display: flex;
   align-items: baseline;
@@ -389,6 +218,7 @@
   font-size: 1rem;
 }
 
+/* Boutons Commander / Appeler */
 .product-actions {
   display: flex;
   gap: var(--space-md);
@@ -396,6 +226,7 @@
   flex-wrap: wrap;
 }
 
+/* Grille de métadonnées (moteur, batterie, vitesse, autonomie) */
 .product-meta-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -424,9 +255,10 @@
   font-size: 1.1rem;
 }
 
-/* =============================================
-   COLOR SELECTOR (Enhanced)
-   ============================================= */
+
+/* ===========================================
+   2. SÉLECTEUR DE COULEUR
+   =========================================== */
 
 .color-selector {
   margin-bottom: var(--space-lg);
@@ -455,6 +287,7 @@
   flex-wrap: wrap;
 }
 
+/* Conteneur d'une option couleur */
 .color-option {
   display: flex;
   flex-direction: column;
@@ -467,6 +300,7 @@
   border: 2px solid transparent;
 }
 
+/* Pastille couleur */
 .color-option-swatch {
   width: 44px;
   height: 44px;
@@ -477,6 +311,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Halo de sélection visible au survol */
 .color-option-swatch::after {
   content: '';
   position: absolute;
@@ -495,6 +330,7 @@
   border-color: var(--border-light);
 }
 
+/* État actif — cercle vert autour de la pastille */
 .color-option.active .color-option-swatch {
   border-color: white;
   box-shadow: 0 0 0 3px var(--primary), 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -517,9 +353,10 @@
   font-weight: 600;
 }
 
-/* =============================================
-   TABS (Enhanced)
-   ============================================= */
+
+/* ===========================================
+   3. ONGLETS (TABS)
+   =========================================== */
 
 .tabs-nav {
   display: flex;
@@ -528,16 +365,6 @@
   margin-bottom: var(--space-xl);
   overflow-x: auto;
   position: relative;
-}
-
-.tabs-nav::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  transition: all var(--transition-normal);
 }
 
 .tab-btn {
@@ -570,9 +397,10 @@
   animation: fadeIn 0.4s ease;
 }
 
-/* =============================================
-   SPECS TABLE (Enhanced)
-   ============================================= */
+
+/* ===========================================
+   4. TABLEAU DE SPÉCIFICATIONS
+   =========================================== */
 
 .specs-table-wrapper {
   background: var(--bg-card);
@@ -604,6 +432,7 @@
   font-size: 0.95rem;
 }
 
+/* Colonne gauche : nom de la spec */
 .specs-table td:first-child {
   color: var(--text-secondary);
   width: 40%;
@@ -613,12 +442,13 @@
   gap: var(--space-sm);
 }
 
+/* Colonne droite : valeur */
 .specs-table td:last-child {
   color: var(--text-primary);
   font-weight: 600;
 }
 
-/* Spec icon */
+/* Icône ronde à gauche du nom de spec */
 .spec-icon {
   width: 32px;
   height: 32px;
@@ -631,10 +461,12 @@
   font-size: 0.9rem;
 }
 
-/* =============================================
-   FEATURES LIST (Enhanced)
-   ============================================= */
 
+/* ===========================================
+   5. LISTE DES CARACTÉRISTIQUES
+   =========================================== */
+
+/* Grille 2 colonnes d'éléments features */
 .features-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -658,6 +490,7 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Icône carrée dégradée */
 .feature-item .icon {
   width: 44px;
   height: 44px;
@@ -683,14 +516,176 @@
   line-height: 1.5;
 }
 
-/* =============================================
-   MODELS PAGE — FILTERS
-   ============================================= */
 
+/* ===========================================
+   6. SECTION CTA (page d'accueil)
+   =========================================== */
+
+.cta-section {
+  position: relative;
+  padding: 5rem 0;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+/* Halo animé en arrière-plan */
+.cta-glow {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15), transparent 70%);
+  pointer-events: none;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Carte principale de la CTA */
+.cta-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(18, 18, 24, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.4);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Badge "Offre limitée" */
+.cta-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
+  padding: 0.25rem 1rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.cta-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Boutons d'action */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s;
+}
+
+.cta-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-buttons .btn svg {
+  transition: transform 0.2s;
+}
+
+.cta-buttons .btn:hover svg {
+  transform: scale(1.05);
+}
+
+/* Statistiques sous les boutons */
+.cta-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animation reveal sur la carte CTA */
+.cta-card.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+    transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.cta-card.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===========================================
+   7. FILTRES (page Modèles)
+   =========================================== */
+
+/* Corps de page avec padding pour la navbar fixe */
 .models-page {
   padding-top: 100px;
 }
 
+/* En-tête de page commun (Modèles, Galerie, Contact) */
 .page-header {
   padding: var(--space-4xl) 0 var(--space-2xl);
   text-align: center;
@@ -720,6 +715,7 @@
   position: relative;
 }
 
+/* Barre de filtres glassmorphique */
 .filters-bar {
   display: flex;
   align-items: center;
@@ -746,6 +742,7 @@
   font-weight: 600;
 }
 
+/* Select de filtre */
 .filter-select {
   padding: 0.55rem 1rem;
   background: var(--bg-input);
@@ -764,6 +761,7 @@
   box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
 }
 
+/* Tags de filtre (catégories) */
 .filter-tags {
   display: flex;
   gap: var(--space-sm);
@@ -802,21 +800,23 @@
   font-weight: 500;
 }
 
-/* Product Grid (Models Page) */
+/* Grille produits auto-fill */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-lg);
 }
 
-/* =============================================
-   GALLERY PAGE
-   ============================================= */
+
+/* ===========================================
+   8. PAGE GALERIE & LIGHTBOX
+   =========================================== */
 
 .gallery-page {
   padding-top: 100px;
 }
 
+/* Onglets de catégorie galerie */
 .gallery-tabs {
   display: flex;
   gap: var(--space-sm);
@@ -824,12 +824,14 @@
   flex-wrap: wrap;
 }
 
+/* Grille de photos */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-md);
 }
 
+/* Élément photo de la galerie */
 .gallery-item {
   position: relative;
   border-radius: var(--radius-xl);
@@ -856,6 +858,7 @@
   transform: scale(1.1);
 }
 
+/* Overlay zoom au survol */
 .gallery-item-overlay {
   position: absolute;
   inset: 0;
@@ -870,6 +873,7 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
+/* Icône loupe */
 .gallery-item-overlay .zoom-icon {
   width: 56px;
   height: 56px;
@@ -892,7 +896,7 @@
   transform: scale(1);
 }
 
-/* Lightbox */
+/* --- Lightbox --- */
 .lightbox {
   display: none;
   position: fixed;
@@ -931,7 +935,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
   cursor: pointer;
   transition: all var(--transition-normal);
 }
@@ -956,7 +959,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
   cursor: pointer;
   transition: all var(--transition-normal);
 }
@@ -975,6 +977,7 @@
   right: var(--space-lg);
 }
 
+/* Compteur "1 / 12" */
 .lightbox-counter {
   position: absolute;
   bottom: var(--space-lg);
@@ -990,14 +993,16 @@
   font-weight: 500;
 }
 
-/* =============================================
-   CONTACT PAGE
-   ============================================= */
+
+/* ===========================================
+   9. PAGE CONTACT
+   =========================================== */
 
 .contact-page {
   padding-top: 100px;
 }
 
+/* Grille 50/50 : infos | formulaire */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1015,6 +1020,7 @@
   line-height: 1.7;
 }
 
+/* Bloc de méthode de contact (WhatsApp, tél, email, adresse) */
 .contact-method {
   display: flex;
   align-items: flex-start;
@@ -1057,7 +1063,7 @@
   font-size: 0.9rem;
 }
 
-/* Contact Form */
+/* Formulaire de contact */
 .contact-form {
   background: var(--gradient-card);
   backdrop-filter: blur(10px);
@@ -1068,6 +1074,7 @@
   overflow: hidden;
 }
 
+/* Ligne dégradée en haut du formulaire */
 .contact-form::before {
   content: '';
   position: absolute;
@@ -1122,6 +1129,7 @@ textarea.form-control {
   min-height: 120px;
 }
 
+/* 2 colonnes pour prénom/nom */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1134,7 +1142,7 @@ textarea.form-control {
   margin-top: var(--space-xs);
 }
 
-/* Social Links Large */
+/* Liens sociaux (Facebook, Instagram, WhatsApp) */
 .social-links-large {
   display: flex;
   gap: var(--space-md);
@@ -1162,7 +1170,7 @@ textarea.form-control {
   transform: translateY(-2px);
 }
 
-/* Map Placeholder */
+/* Placeholder carte Google Maps */
 .map-container {
   width: 100%;
   height: 400px;
@@ -1185,7 +1193,12 @@ textarea.form-control {
   background: var(--gradient-card);
 }
 
-/* WhatsApp Float Button */
+
+/* ===========================================
+   10. ÉLÉMENTS FLOTTANTS
+   =========================================== */
+
+/* Bouton WhatsApp flottant */
 .whatsapp-float {
   position: fixed;
   bottom: var(--space-xl);
@@ -1203,6 +1216,7 @@ textarea.form-control {
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
   transition: all var(--transition-normal);
   animation: float 3s ease-in-out infinite;
+  /* @keyframes float défini dans main.css */
 }
 
 .whatsapp-float:hover {
@@ -1210,7 +1224,7 @@ textarea.form-control {
   box-shadow: 0 8px 32px rgba(37, 211, 102, 0.6);
 }
 
-/* Back to Top */
+/* Bouton "Retour en haut" */
 .back-to-top {
   position: fixed;
   bottom: var(--space-xl);
@@ -1226,7 +1240,6 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   color: var(--text-primary);
-  font-size: 1.3rem;
   cursor: pointer;
   opacity: 0;
   transform: translateY(20px);
@@ -1247,7 +1260,11 @@ textarea.form-control {
   transform: translateY(-4px);
 }
 
-/* Breadcrumb */
+
+/* ===========================================
+   11. FIL D'ARIANE (BREADCRUMB)
+   =========================================== */
+
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -1277,62 +1294,12 @@ textarea.form-control {
   font-weight: 600;
 }
 
-/* Compare Bar */
-.compare-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  border-top: 1px solid var(--glass-border);
-  padding: var(--space-md) var(--space-lg);
-  transform: translateY(100%);
-  transition: transform var(--transition-normal);
-}
 
-.compare-bar.active {
-  transform: translateY(0);
-}
+/* ===========================================
+   12. TOAST NOTIFICATIONS
+   =========================================== */
 
-.compare-bar-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.compare-items {
-  display: flex;
-  gap: var(--space-md);
-}
-
-.compare-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--bg-input);
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
-}
-
-.compare-item .remove {
-  width: 20px;
-  height: 20px;
-  background: var(--danger);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.7rem;
-  cursor: pointer;
-}
-
-/* Toast Notification */
+/* Conteneur positionné en haut à droite */
 .toast-container {
   position: fixed;
   top: var(--space-xl);
@@ -1358,6 +1325,18 @@ textarea.form-control {
   max-width: 380px;
 }
 
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .toast.success {
   border-color: rgba(0, 212, 170, 0.3);
 }
@@ -1379,11 +1358,14 @@ textarea.form-control {
   color: var(--danger);
 }
 
-/* =============================================
-   RESPONSIVE COMPONENTS
-   ============================================= */
+
+/* ===========================================
+   13. RESPONSIVE COMPOSANTS
+   =========================================== */
 
 @media (max-width: 1024px) {
+
+  /* Galerie produit passe en 1 colonne */
   .product-hero-grid {
     grid-template-columns: 1fr;
   }
@@ -1398,10 +1380,13 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+
+  /* Contact : 1 colonne */
   .contact-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Filtres : colonne + plein largeur */
   .filters-bar {
     flex-direction: column;
     align-items: stretch;
@@ -1425,15 +1410,47 @@ textarea.form-control {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Spécifications : padding réduit */
   .specs-table td {
     padding: var(--space-sm);
     font-size: 0.85rem;
   }
 
+  /* Formulaire : 1 colonne */
   .form-row {
     grid-template-columns: 1fr;
   }
 
+  /* CTA */
+  .cta-section {
+    padding: 3rem 0;
+  }
+
+  .cta-card {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .cta-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-stats {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  /* Boutons flottants */
   .whatsapp-float {
     width: 54px;
     height: 54px;
@@ -1449,6 +1466,7 @@ textarea.form-control {
     height: 46px;
   }
 
+  /* Produit */
   .product-info h1 {
     font-size: 1.8rem;
   }
@@ -1457,12 +1475,22 @@ textarea.form-control {
     font-size: 2rem;
   }
 
+  .product-actions {
+    flex-direction: column;
+  }
+
+  .product-actions .btn {
+    width: 100%;
+  }
+
+  /* Flèches galerie */
   .gallery-main .nav-arrow {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
 
+  /* Lightbox */
   .lightbox-nav {
     width: 44px;
     height: 44px;
@@ -1475,14 +1503,6 @@ textarea.form-control {
 
   .lightbox-nav.next {
     right: var(--space-sm);
-  }
-
-  .product-actions {
-    flex-direction: column;
-  }
-
-  .product-actions .btn {
-    width: 100%;
   }
 }
 

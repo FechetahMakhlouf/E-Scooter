@@ -1,18 +1,36 @@
 /* =============================================
-   E-SCOOT v2.0 — Filtering & Product Grid
+   E-SCOOT v2.0 — Filtres & Grille Produits
+   =============================================
+   Utilisé uniquement sur : modeles.html
+   Dépendances : products-data.js, main.js
+
+   Fonctionnement :
+   1. initFilters()   — attache les écouteurs d'événements
+   2. applyFilters()  — filtre + trie le tableau PRODUCTS
+   3. renderProductGrid(products) — génère le HTML des cartes
+   4. updateResultsCount(count)   — met à jour le compteur
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.models-page')) {
     initFilters();
-    applyFilters();  // ← au lieu de renderProductGrid(PRODUCTS)
+    applyFilters(); // Affiche tous les produits au chargement
   }
 });
 
-/* ---- Initialize filters ---- */
+
+/* ===========================================
+   INITIALISATION DES FILTRES
+   =========================================== */
+
+/**
+ * Attache les écouteurs aux boutons catégorie, selects prix/tri,
+ * et lit le paramètre URL ?category= pour pré-sélectionner un filtre.
+ */
 function initFilters() {
-  // Category filter tags
   const categoryTags = document.querySelectorAll('.filter-tag[data-category]');
+
+  // Boutons de catégorie (Tous / Motos / Trottinettes)
   categoryTags.forEach(tag => {
     tag.addEventListener('click', () => {
       categoryTags.forEach(t => t.classList.remove('active'));
@@ -21,36 +39,40 @@ function initFilters() {
     });
   });
 
-  // Sort select
+  // Select tri (prix croissant/décroissant, A-Z)
   const sortSelect = document.getElementById('sortSelect');
-  if (sortSelect) {
-    sortSelect.addEventListener('change', applyFilters);
-  }
+  if (sortSelect) sortSelect.addEventListener('change', applyFilters);
 
-  // Price range
+  // Select filtre de prix
   const priceSelect = document.getElementById('priceSelect');
-  if (priceSelect) {
-    priceSelect.addEventListener('change', applyFilters);
-  }
+  if (priceSelect) priceSelect.addEventListener('change', applyFilters);
 
-  // Check URL params for category
+  // Pré-sélection depuis l'URL (ex: modeles.html?category=electric-motorcycle)
   const urlCategory = getUrlParam('category');
   if (urlCategory) {
     categoryTags.forEach(tag => {
       if (tag.dataset.category === urlCategory) {
         categoryTags.forEach(t => t.classList.remove('active'));
         tag.classList.add('active');
-        // Ne plus appeler applyFilters() ici, l'appel global le fera
+        // applyFilters() sera appelé automatiquement juste après initFilters()
       }
     });
   }
 }
 
-/* ---- Apply all filters ---- */
+
+/* ===========================================
+   APPLICATION DES FILTRES
+   =========================================== */
+
+/**
+ * Lit l'état courant de tous les filtres, filtre le tableau
+ * PRODUCTS, le trie, puis déclenche le rendu.
+ */
 function applyFilters() {
   let filtered = [...PRODUCTS];
 
-  // Category filter
+  // 1. Filtre par catégorie
   const activeCategory = document.querySelector('.filter-tag[data-category].active');
   if (activeCategory) {
     const category = activeCategory.dataset.category;
@@ -59,33 +81,22 @@ function applyFilters() {
     }
   }
 
-  // Price filter
+  // 2. Filtre par tranche de prix
   const priceSelect = document.getElementById('priceSelect');
-  if (priceSelect) {
-    const priceRange = priceSelect.value;
-    if (priceRange) {
-      const [min, max] = priceRange.split('-').map(Number);
-      filtered = filtered.filter(p => {
-        if (max) return p.price >= min && p.price <= max;
-        return p.price >= min;
-      });
-    }
+  if (priceSelect && priceSelect.value) {
+    const [min, max] = priceSelect.value.split('-').map(Number);
+    filtered = filtered.filter(p =>
+      max ? (p.price >= min && p.price <= max) : p.price >= min
+    );
   }
 
-  // Sort
+  // 3. Tri
   const sortSelect = document.getElementById('sortSelect');
   if (sortSelect) {
-    const sort = sortSelect.value;
-    switch (sort) {
-      case 'price-asc':
-        filtered.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-desc':
-        filtered.sort((a, b) => b.price - a.price);
-        break;
-      case 'name':
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
-        break;
+    switch (sortSelect.value) {
+      case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
+      case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
+      case 'name': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
     }
   }
 
@@ -93,11 +104,21 @@ function applyFilters() {
   updateResultsCount(filtered.length);
 }
 
-/* ---- Render product grid ---- */
+
+/* ===========================================
+   RENDU DE LA GRILLE PRODUITS
+   =========================================== */
+
+/**
+ * Génère et injecte les cartes produit dans #productsGrid.
+ * Chaque carte est un lien vers produit.html?id={product.id}.
+ * @param {object[]} products - Tableau de produits filtrés/triés
+ */
 function renderProductGrid(products) {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
 
+  // État vide
   if (products.length === 0) {
     grid.innerHTML = `
       <div class="text-center" style="grid-column: 1/-1; padding: 4rem 0;">
@@ -113,20 +134,24 @@ function renderProductGrid(products) {
     <div class="card product-card reveal" style="animation-delay: ${index * 0.05}s">
       <a href="produit.html?id=${product.id}">
         <div class="card-image">
-          ${product.badge ? `<span class="badge badge-${product.badgeColor}">${product.badge}</span>` : ''}
+          ${product.badge
+      ? `<span class="badge badge-${product.badgeColor}">${product.badge}</span>`
+      : ''}
           <img src="${product.mainImage}" alt="${product.name}" loading="lazy">
-          ${product.colors && product.colors.length > 1 ? `
-            <div style="position: absolute; bottom: var(--space-sm); right: var(--space-sm); display: flex; gap: 4px;">
-              ${product.colors.slice(0, 3).map(c => `
-                <div style="width: 16px; height: 16px; border-radius: 50%; background: ${c.hex}; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
-              `).join('')}
-            </div>
-          ` : ''}
+          ${product.colors && product.colors.length > 1
+      ? `<div style="position: absolute; bottom: var(--space-sm); right: var(--space-sm); display: flex; gap: 4px;">
+                ${product.colors.slice(0, 3).map(c => `
+                  <div style="width:16px;height:16px;border-radius:50%;background:${c.hex};border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>
+                `).join('')}
+               </div>`
+      : ''}
         </div>
         <div class="card-content">
-          <span class="badge badge-ghost" style="margin-bottom: 0.5rem; font-size: 0.7rem;">${product.categoryLabel}</span>
+          <span class="badge badge-ghost" style="margin-bottom:0.5rem;font-size:0.7rem;">${product.categoryLabel}</span>
           <h3 class="card-title">${product.name}</h3>
           <p class="card-subtitle">${product.subtitle}</p>
+
+          <!-- Aperçu des 3 specs principales -->
           <div class="specs-preview">
             <div class="spec-item">
               <span class="spec-label">Vitesse</span>
@@ -141,33 +166,41 @@ function renderProductGrid(products) {
               <span class="spec-value">${product.specs.Moteur.split(' ')[0]}</span>
             </div>
           </div>
-          <div class="flex items-center justify-between" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+
+          <!-- Prix + lien "Voir" -->
+          <div class="flex items-center justify-between"
+               style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
             <div>
-              <span style="font-size: 1.25rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${formatPrice(product.price)}</span>
-              ${product.oldPrice ? `<span style="text-decoration: line-through; color: var(--text-muted); margin-left: 0.5rem; font-size: 0.9rem;">${formatPrice(product.oldPrice)}</span>` : ''}
+              <span style="font-size:1.25rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                ${formatPrice(product.price)}
+              </span>
+              ${product.oldPrice
+      ? `<span style="text-decoration:line-through;color:var(--text-muted);margin-left:0.5rem;font-size:0.9rem;">${formatPrice(product.oldPrice)}</span>`
+      : ''}
             </div>
-            <span class="btn btn-sm btn-primary" style="pointer-events: none;">Voir →</span>
+            <span class="btn btn-sm btn-primary" style="pointer-events:none;">Voir →</span>
           </div>
         </div>
       </a>
     </div>
   `).join('');
 
-  // Re-init scroll reveal for new elements
+  // Ré-initialise le scroll reveal sur les nouvelles cartes injectées
   if (typeof initScrollReveal === 'function') {
     setTimeout(initScrollReveal, 100);
   }
 }
 
-/* ---- Update results count ---- */
+
+/* ===========================================
+   COMPTEUR DE RÉSULTATS
+   =========================================== */
+
+/**
+ * Met à jour le texte "N modèle(s)" affiché dans la barre de filtres.
+ * @param {number} count
+ */
 function updateResultsCount(count) {
   const el = document.getElementById('resultsCount');
-  if (el) {
-    el.textContent = `${count} modèle${count > 1 ? 's' : ''}`;
-  }
-}
-
-/* ---- Format price ---- */
-function formatPrice(price) {
-  return price.toLocaleString('fr-FR') + ' DA';
+  if (el) el.textContent = `${count} modèle${count > 1 ? 's' : ''}`;
 }
