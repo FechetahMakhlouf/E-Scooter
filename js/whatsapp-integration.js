@@ -10,7 +10,7 @@
 
    Configuration :
    Mettre à jour WHATSAPP_NUMBER avec le vrai numéro
-   au format international sans "+" (ex: "213540000000").
+   au format international sans "+".
    ============================================= */
 
 
@@ -20,9 +20,8 @@
 
 /**
  * Numéro WhatsApp au format international (sans le "+").
- * Ex : Algérie 213 + 9 chiffres = "213540000000"
  */
-const WHATSAPP_NUMBER = '0'; // ← Mettre à jour avec le vrai numéro
+const WHATSAPP_NUMBER = '213770286269';
 
 
 /* ===========================================

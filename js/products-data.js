@@ -437,31 +437,31 @@ const PRODUCTS = [
       "assets/images/models/m8-scooter/main.jpg"
     ],
     colors: [
-      { name: "Noir", hex: "#1a1a1a", images: ["assets/images/models/m8-scooter/main.jpg"] },
-      { name: "Gris", hex: "#666666", images: ["assets/images/models/m8-scooter/main.jpg"] }
+      { name: "Noir", hex: "#000000", images: ["assets/images/models/m8-scooter/main.jpg"] },
+      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/m8-scooter/main.jpg"] }
     ],
     specs: {
-      "Vitesse Max": "35 km/h",
-      "Autonomie": "40-50 km",
-      "Moteur": "500W Brushless",
-      "Batterie": "48V 13Ah Lithium",
+      "Vitesse Max": "25 km/h",
+      "Autonomie": "30-35 km",
+      "Moteur": "350W",
+      "Batterie": "36V 10.4Ah Lithium-ion",
       "Pneus": "10 pouces tubeless",
-      "Freins": "Disque AR + frein électrique",
+      "Freins": "À Disque",
       "Suspension": "Suspension avant",
       "Charge Max": "100 kg",
       "Poids": "18 kg",
       "Temps de charge": "4-5 heures"
     },
     features: [
-      { icon: "arrow-left-right", title: "Clignotants intégrés", desc: "Sécurité optimale en ville" },
-      { icon: "zap", title: "Moteur 500W", desc: "Puissance suffisante pour la ville" },
-      { icon: "battery-charging", title: "Autonomie 50km", desc: "Idéal pour les trajets quotidiens" },
-      { icon: "sun", title: "LED intégrale", desc: "Éclairage avant/arrière + clignotants" },
-      { icon: "smartphone", title: "App connectée", desc: "Suivi et paramètres via smartphone" },
-      { icon: "scale", title: "Légère", desc: "Seulement 18 kg, facile à transporter" }
+      { icon: "arrow-left-right", title: "Clignotants de guidon", desc: "Clignotants intégrés pour une sécurité optimale en ville" },
+      { icon: "zap", title: "Moteur 350W", desc: "Puissance idéale pour vos déplacements urbains" },
+      { icon: "battery-charging", title: "Autonomie 30-35 km", desc: "Parfait pour les trajets quotidiens" },
+      { icon: "fold", title: "Pliage en 3 étapes", desc: "Système de pliage simple, rapide et pratique" },
+      { icon: "sun", title: "Éclairage complet", desc: "Éclairage avant/arrière et clignotants" },
+      { icon: "shield", title: "Garantie & SAV", desc: "Service Après-Vente et garantie disponibles" }
     ],
-    description: "La M8 SCOOTER est une trottinette électrique urbaine conçue avec un accent particulier sur la sécurité. Ses clignotants intégrés au guidon et son éclairage complet en font la trottinette la plus sûre pour circuler en ville, de jour comme de nuit.",
-    shortDesc: "Trottinette électrique avec clignotants intégrés, autonomie 50 km."
+    description: "La E-SCOOTER M8 est une trottinette électrique urbaine pensée pour vous faciliter la vie ('Make your life easier'). Équipée d'un moteur de 350W et d'une batterie de 36V 10.4Ah, elle offre une autonomie fiable de 30 à 35 km pour une vitesse de pointe de 25 km/h. Particulièrement sécurisante grâce à ses freins à disque et ses clignotants directement intégrés au guidon, elle se distingue également par sa praticité avec un système de pliage rapide en 3 étapes.",
+    shortDesc: "Trottinette électrique M8 : Moteur 350W, autonomie de 30-35 km, freins à disque et clignotants au guidon intégrés."
   },
 
   {
@@ -478,31 +478,31 @@ const PRODUCTS = [
       "assets/images/models/t7/main.jpg"
     ],
     colors: [
-      { name: "Noir", hex: "#1a1a1a", images: ["assets/images/models/t7/main.jpg"] },
-      { name: "Blanc", hex: "#f5f5f5", images: ["assets/images/models/t7/main.jpg"] }
+      { name: "Gris", hex: "#808080", images: ["assets/images/models/t7/main.jpg"] },
+      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/t7/main.jpg"] }
     ],
     specs: {
-      "Vitesse Max": "30 km/h",
-      "Autonomie": "35-45 km",
-      "Moteur": "350W Brushless",
-      "Batterie": "36V 10.4Ah Lithium",
+      "Vitesse Max": "25-30 km/h",
+      "Autonomie": "25-35 km",
+      "Moteur": "350W",
+      "Batterie": "36V 7.8Ah Lithium-ion",
       "Pneus": "8.5 pouces",
-      "Freins": "Frein électrique + disque",
+      "Freins": "À Disque",
       "Suspension": "Non",
       "Charge Max": "100 kg",
       "Poids": "12.5 kg",
       "Temps de charge": "4-5 heures"
     },
     features: [
-      { icon: "scale", title: "Ultra légère", desc: "Seulement 12.5 kg" },
-      { icon: "fold-horizontal", title: "Pliable", desc: "Se plie en 3 secondes" },
-      { icon: "zap", title: "Moteur 350W", desc: "Idéal pour la ville" },
-      { icon: "battery-charging", title: "Autonomie 45km", desc: "Batterie amovible" },
-      { icon: "smartphone", title: "App connectée", desc: "Contrôle via smartphone" },
-      { icon: "sun", title: "LED", desc: "Éclairage avant et arrière" }
+      { icon: "scale", title: "Légère et pratique", desc: "Poids de 12.5 kg facilitant le transport urbain" },
+      { icon: "fold-horizontal", title: "Pliage en 3 étapes", desc: "Système de pliage simple, rapide et efficace" },
+      { icon: "zap", title: "Moteur 350W", desc: "Puissance idéale pour les trajets en ville" },
+      { icon: "battery-charging", title: "Autonomie 25-35 km", desc: "Parfait pour les déplacements du quotidien" },
+      { icon: "sun", title: "Éclairage LED", desc: "Visibilité assurée avec éclairage avant et arrière" },
+      { icon: "shield", title: "Garantie & SAV", desc: "Service Après-Vente et garantie disponibles" }
     ],
-    description: "La T7 est la trottinette urbaine par excellence. Légère, pliable et élégante, elle est parfaite pour les derniers kilomètres et les déplacements en ville. Sa batterie amovible permet de la recharger facilement au bureau ou à la maison.",
-    shortDesc: "Trottinette urbaine pliable 350W, 12.5 kg, autonomie 45 km."
+    description: "La E-SCOOTER T7 est la trottinette urbaine par excellence pour faciliter votre quotidien ('Make your life easier'). Équipée d'un moteur de 350W et d'une batterie de 36V 7.8Ah, elle offre une autonomie pratique de 25 à 35 km et peut atteindre une vitesse de 25 à 30 km/h. Légère et dotée d'un système de pliage rapide en 3 étapes, elle est idéale pour les derniers kilomètres et les déplacements en ville. Elle assure également votre sécurité grâce à son freinage à disque.",
+    shortDesc: "Trottinette urbaine T7 : Moteur 350W, pliage en 3 étapes, autonomie de 25-35 km et freins à disque."
   },
 
   {
@@ -519,33 +519,33 @@ const PRODUCTS = [
       "assets/images/models/t5/main.jpg"
     ],
     colors: [
-      { name: "Blanc/Mint", hex: "#98d8c8", images: ["assets/images/models/t5/main.jpg"] },
-      { name: "Rose", hex: "#ffb6c1", images: ["assets/images/models/t5/main.jpg"] }
+      { name: "Noir", hex: "#000000", images: ["assets/images/models/t5/main.jpg"] },
+      { name: "Bleu", hex: "#0000FF", images: ["assets/images/models/t5/main.jpg"] },
+      { name: "Rose", hex: "#FFC0CB", images: ["assets/images/models/t5/main.jpg"] }
     ],
     specs: {
-      "Vitesse Max": "16 km/h (limitée)",
-      "Autonomie": "15-20 km",
-      "Moteur": "150W Brushless",
-      "Batterie": "24V 4Ah Lithium",
+      "Vitesse Max": "8-10 km/h",
+      "Autonomie": "10 km",
+      "Moteur": "150W",
+      "Batterie": "Lithium-ion",
       "Pneus": "6.5 pouces",
-      "Freins": "Frein à pied",
+      "Freins": "Électronique",
       "Suspension": "Non",
       "Charge Max": "50 kg",
       "Poids": "6.5 kg",
       "Temps de charge": "3-4 heures"
     },
     features: [
-      { icon: "baby", title: "Sécurisée", desc: "Vitesse limitée à 16 km/h" },
-      { icon: "palette", title: "Design coloré", desc: "LED multicolores sur le deck" },
-      { icon: "scale", title: "Ultra légère", desc: "Seulement 6.5 kg" },
-      { icon: "battery-charging", title: "Autonomie 20km", desc: "Parfaite pour les enfants" },
-      { icon: "sun", title: "LED fun", desc: "Lumières colorées pour plus de visibilité" },
-      { icon: "check-circle", title: "Conforme normes", desc: "Conforme aux normes de sécurité" }
+      { icon: "palette", title: "Pédale lumineuse", desc: "Deck équipé de LED multicolores pour un look fun" },
+      { icon: "baby", title: "Vitesse adaptée", desc: "Limitée à 8-10 km/h pour une sécurité maximale" },
+      { icon: "scale", title: "Ultra légère", desc: "Seulement 6.5 kg, facile à manipuler pour un enfant" },
+      { icon: "fold", title: "Pliage en 3 étapes", desc: "Se plie facilement pour le rangement ou le transport" },
+      { icon: "zap", title: "Moteur 150W", desc: "Puissance douce et sécurisante pour l'apprentissage" },
+      { icon: "shield-check", title: "SAV & Garantie", desc: "Service après-vente et garantie inclus" }
     ],
-    description: "La T5 est la trottinette électrique parfaite pour les enfants. Avec sa vitesse limitée à 16 km/h, ses lumières LED colorées et son poids plume de 6.5 kg, elle offre une expérience de conduite sûre et amusante pour les plus jeunes.",
-    shortDesc: "Trottinette électrique pour enfant, vitesse limitée 16 km/h, sécurisée."
+    description: "La T5 est la trottinette électrique idéale pour l'initiation des plus jeunes. Conçue pour être 'votre vie plus facile', elle mise sur une sécurité totale avec une vitesse bridée entre 8 et 10 km/h et un freinage électronique. Son design ludique avec sa pédale lumineuse (LED multicolores sur les côtés) et sa légèreté record de 6.5 kg en font le cadeau parfait pour circuler en toute confiance.",
+    shortDesc: "Trottinette électrique enfant : Vitesse 8-10 km/h, deck LED multicolore, ultra légère (6.5 kg)."
   }
-
 ];
 
 
