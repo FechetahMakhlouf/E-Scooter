@@ -518,6 +518,111 @@
 
 
 /* ===========================================
+   6b. SECTION PARTENARIAT STRATÉGIQUE
+   =========================================== */
+
+.partenariat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.partenariat-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.partenariat-desc {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 1.5rem 0;
+}
+
+.partenariat-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.partenariat-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.partenariat-check {
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Carte fondateur */
+.partenariat-card {
+  background: var(--gradient-card);
+  border-radius: var(--radius-2xl);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.partenariat-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.partenariat-card-title {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+.partenariat-card-sub {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.partenariat-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1rem 0;
+}
+
+.partenariat-founder {
+  margin-top: 1rem;
+}
+
+.partenariat-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  object-position: center top;
+  margin: 0 auto 1rem auto;
+  display: block;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.partenariat-founder-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.partenariat-quote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+
+/* ===========================================
    6. SECTION CTA (page d'accueil)
    =========================================== */
 
@@ -1427,17 +1532,26 @@ textarea.form-control {
   }
 
   .cta-card {
-    padding: 1.5rem;
+    padding: 1.75rem;
     margin: 0 1rem;
+    border-radius: var(--radius-xl);
   }
 
   .cta-card h2 {
     font-size: 1.8rem;
   }
 
+  .cta-card p {
+    font-size: 1rem;
+  }
+
   .cta-buttons {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .cta-buttons .btn {
+    justify-content: center;
   }
 
   .cta-stats {
@@ -1448,6 +1562,20 @@ textarea.form-control {
   .stat {
     flex: 1;
     min-width: 80px;
+  }
+
+  /* Partenariat */
+  .partenariat-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .partenariat-card {
+    padding: 1.5rem;
+  }
+
+  .partenariat-emoji {
+    font-size: 2.8rem;
   }
 
   /* Boutons flottants */
@@ -1518,5 +1646,48 @@ textarea.form-control {
 
   .product-meta-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* CTA — très petit écran */
+  .cta-card {
+    padding: 1.25rem;
+    margin: 0 0.5rem;
+  }
+
+  .cta-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-card p {
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-stats {
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  /* Partenariat — très petit écran */
+  .partenariat-card {
+    padding: 1.25rem;
+    border-radius: var(--radius-xl);
+  }
+
+  .partenariat-emoji {
+    font-size: 2.2rem;
+  }
+
+  .partenariat-avatar {
+    width: 70px;
+    height: 70px;
   }
 }
