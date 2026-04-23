@@ -24,6 +24,9 @@
    1. INITIALISATION
    =========================================== */
 
+const HERO_DARK_IMG = 'assets/images/hero-main-1.jpg';   // mode sombre
+const HERO_LIGHT_IMG = 'assets/images/hero-main-2.jpg';  // mode clair
+
 document.addEventListener('DOMContentLoaded', function () {
   initNavbar();
   initMobileMenu();
@@ -56,6 +59,13 @@ function initNavbar() {
   onScroll(); // État initial si la page est déjà scrollée
 }
 
+function updateHeroImage() {
+  const heroImg = document.querySelector('.hero-bg img');
+  if (!heroImg) return;
+
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  heroImg.src = currentTheme === 'light' ? HERO_LIGHT_IMG : HERO_DARK_IMG;
+}
 
 /* ===========================================
    3. MENU MOBILE
@@ -176,6 +186,7 @@ function initThemeToggle() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
+  updateHeroImage();
 
   themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
@@ -183,6 +194,7 @@ function initThemeToggle() {
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeIcon(newTheme);
+    updateHeroImage();
   });
 }
 

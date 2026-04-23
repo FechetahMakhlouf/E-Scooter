@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * @param {object} product - Objet produit depuis PRODUCTS
  */
 function loadProduct(product) {
-  document.title = `${product.name} — ${product.subtitle} | E-Scoot`;
+  document.title = `${product.name} - E-Scoot`;
 
   updateBreadcrumb(product);
 
