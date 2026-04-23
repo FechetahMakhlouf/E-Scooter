@@ -141,8 +141,7 @@ function loadProductInfo(product) {
   info.innerHTML = `
     <!-- Badges catégorie -->
     <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
-      <span class="badge badge-${product.badgeColor}">${product.badge}</span>
-      <span class="badge badge-ghost">${product.categoryLabel}</span>
+      <span class="badge badge-${product.badgeColor}">${product.categoryLabel}</span>
     </div>
 
     <h1>${product.name}</h1>
@@ -153,7 +152,7 @@ function loadProductInfo(product) {
       <span class="product-price">${formatPrice(product.price)}</span>
       ${product.oldPrice ? `<span class="product-price-old">${formatPrice(product.oldPrice)}</span>` : ''}
       ${discount > 0 ? `<span class="badge badge-danger" style="font-size:0.75rem;">-${discount}%</span>` : ''}
-      <span class="product-price-note">Prix TTC, livraison incluse</span>
+      <span class="product-price-note">Prix</span>
     </div>
 
     <p class="product-short-desc">${product.description}</p>
@@ -168,7 +167,7 @@ function loadProductInfo(product) {
 
     <!-- Boutons d'action -->
     <div class="product-actions">
-      <a href="https://wa.me/213540000000?text=${encodeURIComponent(`Bonjour, je suis intéressé par la ${product.name} en couleur ${product.colors[0]?.name || ''}. Pouvez-vous me donner plus d'informations ?`)}"
+      <a href="https://wa.me/213770286269?text=${encodeURIComponent(`Bonjour, je suis intéressé par la ${product.name} en couleur ${product.colors[0]?.name || ''}. Pouvez-vous me donner plus d'informations ?`)}"
          class="btn btn-primary btn-lg"
          target="_blank" rel="noopener"
          id="whatsappOrderBtn">
@@ -253,7 +252,7 @@ function initColorSelector(product) {
       // Mise à jour du lien WhatsApp
       const whatsappBtn = document.getElementById('whatsappOrderBtn');
       if (whatsappBtn) {
-        whatsappBtn.href = `https://wa.me/213540000000?text=${encodeURIComponent(
+        whatsappBtn.href = `https://wa.me/213770286269?text=${encodeURIComponent(
           `Bonjour, je suis intéressé par la ${product.name} en couleur ${colorName}. Pouvez-vous me donner plus d'informations ?`
         )}`;
       }
