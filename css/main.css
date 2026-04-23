@@ -1,28 +1,28 @@
 /* =============================================
-   E-SCOOT v2.0 — Styles Principaux
-   Glassmorphism · Animations · Responsive
+   E-SCOOT v2.1 — Styles Principaux
    =============================================
-   TABLE DES MATIÈRES
+   TABLE DES MATIERES
    ------------------
-   1.  Variables CSS (thème sombre + clair)
-   2.  Import de police
-   3.  Reset & Base
-   4.  Typographie
-   5.  Mise en page (container, section)
-   6.  Navigation & Logo
-   7.  Boutons
-   8.  Cartes génériques
-   9.  Carte Produit
+   1. Variables CSS (theme sombre + clair)
+   2. Import de police
+   3. Reset & Base
+   4. Typographie
+   5. Mise en page (container, section)
+   6. Navigation & Logo
+   7. Boutons
+   8. Cartes generiques
+   9. Carte Produit
    10. Badge
    11. Grille
    12. Section Hero (page d'accueil)
-   13. Cartes Catégorie
+   13. Cartes Categorie
    14. Cartes Feature
    15. Footer
    16. Animations & Scroll Reveal
    17. Utilitaires
-   18. Scrollbar & Sélection
+   18. Scrollbar & Selection
    19. Responsive
+   20. Theme Clair — Overrides specifiques
    ============================================= */
 
 
@@ -31,7 +31,7 @@
    =========================================== */
 
 :root {
-  /* Palette principale */
+  /* --- Palette principale --- */
   --primary: #00d4aa;
   --primary-dark: #00b894;
   --primary-light: #00f5c4;
@@ -41,7 +41,7 @@
   --danger: #ef4444;
   --success: #10b981;
 
-  /* Thème sombre (défaut) */
+  /* --- Theme sombre (defaut) --- */
   --bg-primary: #0a0e1a;
   --bg-secondary: #0f1425;
   --bg-card: rgba(255, 255, 255, 0.03);
@@ -55,19 +55,19 @@
   --border-light: rgba(255, 255, 255, 0.12);
   --border-glow: rgba(0, 212, 170, 0.2);
 
-  /* Dégradés */
+  /* --- Degrades --- */
   --gradient-primary: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
   --gradient-accent: linear-gradient(135deg, #6366f1 0%, #00d4aa 100%);
   --gradient-dark: linear-gradient(180deg, #0a0e1a 0%, #0f1425 100%);
   --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
   --gradient-glow: radial-gradient(ellipse at top, rgba(0, 212, 170, 0.15) 0%, transparent 50%);
 
-  /* Glassmorphism */
+  /* --- Glassmorphism --- */
   --glass-bg: rgba(15, 20, 37, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-blur: blur(20px);
 
-  /* Ombres */
+  /* --- Ombres --- */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
@@ -75,10 +75,10 @@
   --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.25);
   --shadow-accent: 0 0 30px rgba(99, 102, 241, 0.15);
 
-  /* Typographie */
+  /* --- Typographie --- */
   --font-main: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 
-  /* Espacements */
+  /* --- Espacements --- */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -88,7 +88,7 @@
   --space-3xl: 4rem;
   --space-4xl: 6rem;
 
-  /* Rayons */
+  /* --- Rayons --- */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -96,14 +96,14 @@
   --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  /* Transitions */
+  /* --- Transitions --- */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Thème clair */
+/* --- Theme clair : variables redefinies --- */
 [data-theme="light"] {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
@@ -120,8 +120,12 @@
   --gradient-card: linear-gradient(145deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 30px rgba(0, 212, 170, 0.1);
-  --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.2);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px rgba(0, 212, 170, 0.08);
+  --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.15);
+  --shadow-accent: 0 0 30px rgba(99, 102, 241, 0.08);
 }
 
 
@@ -195,34 +199,18 @@ select {
    4. TYPOGRAPHIE
    =========================================== */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-}
+h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); }
+h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+h4 { font-size: clamp(1.05rem, 2vw, 1.25rem); }
 
-h2 {
-  font-size: clamp(1.6rem, 4vw, 2.8rem);
-}
-
-h3 {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-}
-
-h4 {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-}
-
-/* Texte dégradé animé — utilisé partout (.text-gradient) */
+/* Texte degrade anime — utilise par .text-gradient dans le HTML */
 .text-gradient {
   background: linear-gradient(135deg, #00d4aa 0%, #6366f1 50%, #00d4aa 100%);
   background-size: 200% auto;
@@ -233,17 +221,9 @@ h4 {
 }
 
 @keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 
@@ -295,7 +275,7 @@ h4 {
   background: transparent;
 }
 
-/* Effet glassmorphique au défilement (ajouté via JS) */
+/* Effet glassmorphique au defilement (ajoute via JS : .scrolled) */
 .navbar.scrolled {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -313,7 +293,7 @@ h4 {
   justify-content: space-between;
 }
 
-/* Logo — texte dégradé + icône glassmorphique */
+/* --- Logo --- */
 .logo {
   display: flex;
   align-items: center;
@@ -342,7 +322,7 @@ h4 {
   text-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
 }
 
-/* Icône du logo */
+/* Icone du logo */
 .logo-icon {
   width: 44px;
   height: 44px;
@@ -362,7 +342,7 @@ h4 {
   z-index: 1;
 }
 
-/* Reflet lumineux à l'intérieur de l'icône */
+/* Reflet lumineux a l'interieur de l'icone */
 .logo-icon::before {
   content: '';
   position: absolute;
@@ -407,20 +387,6 @@ h4 {
   opacity: 0.6;
 }
 
-/* Adaptations thème clair */
-[data-theme="light"] .logo-icon {
-  background: rgba(0, 212, 170, 0.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="light"] .logo:hover .logo-icon {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 0 0 4px rgba(0, 212, 170, 0.2);
-}
-
-[data-theme="light"] .logo::after {
-  background: radial-gradient(circle, rgba(0, 212, 170, 0.25), transparent 70%);
-}
-
 /* Liens de navigation */
 .nav-links {
   display: flex;
@@ -442,7 +408,7 @@ h4 {
   color: var(--primary);
 }
 
-/* Soulignement animé */
+/* Soulignement anime */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -467,7 +433,7 @@ h4 {
   gap: var(--space-md);
 }
 
-/* Bouton bascule du thème */
+/* Bouton bascule du theme */
 #themeToggle {
   width: 42px;
   height: 42px;
@@ -610,7 +576,7 @@ h4 {
 
 
 /* ===========================================
-   8. CARTES GÉNÉRIQUES
+   8. CARTES GENERIQUES
    =========================================== */
 
 .card {
@@ -686,7 +652,7 @@ h4 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Bordure lumineuse animée au survol */
+/* Bordure lumineuse animee au survol */
 .product-card::after {
   content: '';
   position: absolute;
@@ -713,7 +679,7 @@ h4 {
   opacity: 1;
 }
 
-/* Badge positionné en absolu sur l'image */
+/* Badge positionne en absolu sur l'image */
 .product-card .badge {
   position: absolute;
   top: var(--space-md);
@@ -732,7 +698,7 @@ h4 {
 .product-card .card-image {
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: #0a0a0a;
+  background: var(--bg-card-solid);
 }
 
 .product-card .card-image img {
@@ -753,13 +719,13 @@ h4 {
   position: relative;
 }
 
-/* Titre avec dégradé */
+/* Titre avec degrade */
 .product-card .card-title {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.3px;
   margin: 0.25rem 0;
-  background: linear-gradient(135deg, var(--text-primary), #fff);
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -775,7 +741,7 @@ h4 {
   padding-left: 0.6rem;
 }
 
-/* Aperçu des spécifications */
+/* Apercu des specifications */
 .product-card .specs-preview {
   display: flex;
   gap: var(--space-md);
@@ -806,7 +772,7 @@ h4 {
   color: var(--primary-light, var(--primary));
 }
 
-/* Animation du bouton "Voir →" */
+/* Animation du bouton "Voir" */
 .product-card .flex.justify-between span:last-child {
   transition: transform 0.2s ease;
   display: inline-flex;
@@ -861,18 +827,11 @@ h4 {
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-.badge-ghost {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 
 /* ===========================================
    11. GRILLE
    =========================================== */
 
-/* Note : .grid-2 supprimé — non utilisé dans aucune page */
 .grid {
   display: grid;
   gap: var(--space-lg);
@@ -920,7 +879,7 @@ h4 {
   will-change: transform;
 }
 
-/* Overlay dégradé radial */
+/* Overlay degrade radial */
 .hero-bg::after {
   content: '';
   position: absolute;
@@ -932,7 +891,7 @@ h4 {
   z-index: 1;
 }
 
-/* Glow animé en arrière-plan */
+/* Glow anime en arriere-plan */
 .hero-bg::before {
   content: '';
   position: absolute;
@@ -944,15 +903,8 @@ h4 {
 }
 
 @keyframes heroGlow {
-  0% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-
-  100% {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.2); }
 }
 
 /* Motif de particules flottantes */
@@ -968,13 +920,8 @@ h4 {
 }
 
 @keyframes particleFloat {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 100px 100px;
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
 }
 
 .hero-content {
@@ -1016,10 +963,9 @@ h4 {
   transform: translateY(-2px);
 }
 
-/* Titre Hero avec entrée animée */
+/* Titre Hero herite de h1 (clamp responsive) — pas de font-size fixe ici */
 .hero h1 {
   margin-bottom: var(--space-lg);
-  font-size: 4rem;
   line-height: 1.2;
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.1s forwards;
   opacity: 0;
@@ -1033,6 +979,16 @@ h4 {
   max-width: 520px;
   line-height: 1.7;
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.2s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Actions du hero (boutons) — heritee de .btn */
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) 0.25s forwards;
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1061,7 +1017,7 @@ h4 {
   transform: translateY(-5px);
 }
 
-/* Séparateur vertical entre stats */
+/* Separateur vertical entre stats */
 .hero-stat:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -1103,15 +1059,8 @@ h4 {
 }
 
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1122,7 +1071,7 @@ h4 {
 
 
 /* ===========================================
-   13. CARTES CATÉGORIE
+   13. CARTES CATEGORIE
    =========================================== */
 
 .category-card {
@@ -1176,25 +1125,6 @@ h4 {
   color: var(--text-secondary);
 }
 
-/* Animation pour la carte partenaire */
-[style*="border-radius: var(--radius-2xl)"] {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-[style*="border-radius: var(--radius-2xl)"]:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-glow);
-  border-color: var(--border-glow);
-}
-
-/* Amélioration des listes à puces */
-ul li {
-  transition: transform 0.2s;
-}
-
-ul li:hover {
-  transform: translateX(5px);
-}
 
 /* ===========================================
    14. CARTES FEATURE
@@ -1208,8 +1138,8 @@ ul li:hover {
   transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Reflet lumineux traversant au survol */
@@ -1232,7 +1162,7 @@ ul li:hover {
   transform: translateY(-8px);
   background: var(--bg-card-hover, var(--bg-card));
   border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-md), var(--shadow-accent);
 }
 
 .feature-icon {
@@ -1252,7 +1182,7 @@ ul li:hover {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: var(--space-sm);
-  background: linear-gradient(135deg, var(--text-primary), #fff);
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1270,18 +1200,10 @@ ul li:hover {
   color: var(--text-primary);
 }
 
-/* Délais pour animation séquentielle reveal */
-.feature-card.reveal-delay-1 {
-  transition-delay: 0.05s;
-}
-
-.feature-card.reveal-delay-2 {
-  transition-delay: 0.1s;
-}
-
-.feature-card.reveal-delay-3 {
-  transition-delay: 0.15s;
-}
+/* Delais pour animation sequentielle reveal */
+.feature-card.reveal-delay-1 { transition-delay: 0.05s; }
+.feature-card.reveal-delay-2 { transition-delay: 0.1s; }
+.feature-card.reveal-delay-3 { transition-delay: 0.15s; }
 
 
 /* ===========================================
@@ -1301,7 +1223,8 @@ ul li:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 30%),
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 30%),
     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.01) 0px, rgba(255, 255, 255, 0.01) 2px, transparent 2px, transparent 6px);
   pointer-events: none;
   z-index: 0;
@@ -1426,10 +1349,6 @@ ul li:hover {
   border-radius: var(--radius-full);
 }
 
-.footer-links-col ul {
-  list-style: none;
-}
-
 .footer-links-col li {
   margin-bottom: var(--space-sm);
 }
@@ -1462,7 +1381,7 @@ ul li:hover {
   color: var(--primary);
 }
 
-/* ---- Footer Middle (Partenaire + Newsletter) ---- */
+/* ---- Footer Middle (Partenaire) ---- */
 .footer-middle {
   display: flex;
   align-items: center;
@@ -1511,58 +1430,6 @@ ul li:hover {
   line-height: 1;
 }
 
-.footer-newsletter {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  flex-wrap: wrap;
-}
-
-.footer-newsletter p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.newsletter-form {
-  display: flex;
-  gap: var(--space-xs);
-}
-
-.newsletter-form input {
-  padding: 0.7rem 1.2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: 60px;
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  min-width: 240px;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-.newsletter-form input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
-}
-
-.newsletter-form button {
-  padding: 0.7rem 1.8rem;
-  background: var(--gradient-primary);
-  border: none;
-  border-radius: 60px;
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
-}
-
-.newsletter-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0, 212, 170, 0.4);
-}
-
 /* ---- Footer Bottom (Copyright & Legal) ---- */
 .footer-bottom {
   display: flex;
@@ -1597,73 +1464,17 @@ ul li:hover {
   color: var(--border);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-  }
-
-  .footer-brand {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-links-group {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-middle {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-newsletter {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .newsletter-form {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .newsletter-form input {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-links-group {
-    grid-template-columns: 1fr;
-  }
-}
-
 
 /* ===========================================
    16. ANIMATIONS & SCROLL REVEAL
    =========================================== */
 
-/* Animation principale d'entrée vers le haut */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Révélation au scroll — classe ajoutée par JS via IntersectionObserver */
+/* Revelation au scroll —classe ajoutee par JS via IntersectionObserver */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -1676,30 +1487,15 @@ ul li:hover {
   transform: translateY(0);
 }
 
-/* Délais d'apparition séquentielle */
-.reveal-delay-1 {
-  transition-delay: 0.1s;
-}
+/* Delais d'apparition sequentielle */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
 
-.reveal-delay-2 {
-  transition-delay: 0.2s;
-}
-
-.reveal-delay-3 {
-  transition-delay: 0.3s;
-}
-
-/* Animation d'entrée whatsapp-float (.float keyframe) */
+/* Animation d'entree whatsapp-float */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 
@@ -1707,29 +1503,18 @@ ul li:hover {
    17. UTILITAIRES
    =========================================== */
 
-/* Note: les classes spacing (mt-*, mb-*, gap-*) et text-right/text-left
-   ont été supprimées car elles n'apparaissent dans aucune page HTML.
-   Seul text-center est conservé (utilisé via JS dans filtering.js). */
+/* Seuls les utilitaires reellement utilises sont conserves.
+   Les classes spacing (mt-*, mb-*, gap-*) ont ete supprimees
+   car non referencees dans le HTML. */
 
-.text-center {
-  text-align: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
+.text-center { text-align: center; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
 
 
 /* ===========================================
-   18. SCROLLBAR & SÉLECTION
+   18. SCROLLBAR & SELECTION
    =========================================== */
 
 ::-webkit-scrollbar {
@@ -1764,8 +1549,13 @@ ul li:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .footer-brand {
+    max-width: 100%;
   }
 
   .hero-stats {
@@ -1778,13 +1568,12 @@ ul li:hover {
 }
 
 @media (max-width: 768px) {
-
   .grid-3,
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Menu mobile en plein écran */
+  /* Menu mobile en plein ecran */
   .nav-links {
     display: none;
     position: fixed;
@@ -1821,10 +1610,6 @@ ul li:hover {
     padding: 120px 0 var(--space-4xl);
   }
 
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
   .hero-stats {
     gap: var(--space-xl);
     flex-wrap: wrap;
@@ -1838,9 +1623,8 @@ ul li:hover {
     display: none;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+  .footer-links-group {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-bottom {
@@ -1849,8 +1633,18 @@ ul li:hover {
     text-align: center;
   }
 
+  .footer-middle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .section {
     padding: var(--space-3xl) 0;
+  }
+
+  .partenariat-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
@@ -1873,7 +1667,6 @@ ul li:hover {
 }
 
 @media (max-width: 480px) {
-
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
@@ -1894,11 +1687,128 @@ ul li:hover {
     min-width: 45%;
   }
 
-  .grid.grid-4 {
-    grid-template-columns: 1fr;
-  }
-
   .feature-card {
     padding: var(--space-lg);
   }
+
+  .footer-links-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===========================================
+   20. THEME CLAIR — OVERRIDES SPECIFIQUES
+   ===========================================
+   Les variables CSS sont redefinies dans la
+   section 1. Les regles ci-dessous ciblent
+   les composants avec des valeurs en dur qui
+   necessitent une adaptation explicite.
+   =========================================== */
+
+/* --- Navigation --- */
+[data-theme="light"] .logo-icon {
+  background: rgba(0, 212, 170, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .logo:hover .logo-icon {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 0 0 4px rgba(0, 212, 170, 0.2);
+}
+
+[data-theme="light"] .logo::after {
+  background: radial-gradient(circle, rgba(0, 212, 170, 0.25), transparent 70%);
+}
+
+[data-theme="light"] .nav-links a:hover,
+[data-theme="light"] .nav-links a.active {
+  color: var(--primary-dark);
+}
+
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* --- Hero : overlay plus leger en clair --- */
+[data-theme="light"] .hero-bg::after {
+  background: radial-gradient(ellipse at 30% 50%,
+      rgba(248, 250, 252, 0.3) 0%,
+      rgba(248, 250, 252, 0.75) 70%,
+      rgba(248, 250, 252, 0.95) 100%);
+}
+
+[data-theme="light"] .hero-bg::before {
+  background: radial-gradient(circle at 70% 30%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
+}
+
+[data-theme="light"] .hero-badge {
+  background: rgba(0, 212, 170, 0.06);
+  border-color: rgba(0, 212, 170, 0.2);
+}
+
+[data-theme="light"] .hero::before {
+  background-image: radial-gradient(circle at 20% 40%, rgba(0, 212, 170, 0.04) 1px, transparent 1px);
+}
+
+/* --- Feature Cards : ombre adaptee --- */
+[data-theme="light"] .feature-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .feature-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .feature-icon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* --- Product Card : fond image et ombre --- */
+[data-theme="light"] .product-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .product-card:hover {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .product-card .badge {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- Footer : couleur adaptee --- */
+[data-theme="light"] .footer {
+  background: #f1f5f9;
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .footer::before {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.01) 0px, rgba(0, 0, 0, 0.01) 2px, transparent 2px, transparent 6px);
+}
+
+[data-theme="light"] .footer-social a {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .footer-partner {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* --- Scrollbar claire --- */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] ::selection {
+  background: rgba(0, 212, 170, 0.2);
 }

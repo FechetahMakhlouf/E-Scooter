@@ -1,21 +1,25 @@
 /* =============================================
-   E-SCOOT v2.0 — Styles des Composants
+   E-SCOOT v2.1 — Styles des Composants
    =============================================
-   TABLE DES MATIÈRES
+   TABLE DES MATIERES
    ------------------
    1.  Page Produit (hero, galerie, infos)
-   2.  Sélecteur de couleur
+   2.  Selecteur de couleur
    3.  Onglets (Tabs)
-   4.  Tableau de spécifications
-   5.  Liste des caractéristiques
+   4.  Tableau de specifications
+   5.  Liste des caracteristiques
    6.  Section CTA (page d'accueil)
-   7.  Filtres (page Modèles)
-   8.  Page Galerie & Lightbox
-   9.  Page Contact (grille, formulaire, carte)
-   10. Éléments flottants (WhatsApp, back-to-top)
-   11. Fil d'Ariane (Breadcrumb)
-   12. Toast Notifications
-   13. Responsive Composants
+   7.  Section Partenariat Strategique
+   8.  Filtres (page Modeles)
+   9.  Lightbox
+   10. Page Contact (grille, formulaire, carte)
+   11. Selecteur de sujet (boutons radio)
+   12. Elements flottants (WhatsApp, back-to-top)
+   13. Fil d'Ariane (Breadcrumb)
+   14. Toast Notifications
+   15. Product Hero V2 & Gallery V2
+   16. Responsive Composants
+   17. Theme Clair — Overrides specifiques
    ============================================= */
 
 
@@ -23,7 +27,7 @@
    1. PAGE PRODUIT
    =========================================== */
 
-/* Hero du produit — fond secondaire avec halo vert */
+/* Hero du produit */
 .product-hero {
   padding-top: 100px;
   padding-bottom: var(--space-4xl);
@@ -52,7 +56,7 @@
   z-index: 1;
 }
 
-/* --- Galerie principale --- */
+/* --- Galerie principale (legacy, conservee pour compatibilite) --- */
 .gallery-main {
   position: relative;
   border-radius: var(--radius-xl);
@@ -75,7 +79,7 @@
   transform: scale(1.02);
 }
 
-/* Flèches de navigation de la galerie */
+/* Fleches de navigation de la galerie (legacy) */
 .gallery-main .nav-arrow {
   position: absolute;
   top: 50%;
@@ -102,15 +106,10 @@
   transform: translateY(-50%) scale(1.1);
 }
 
-.gallery-main .nav-arrow.prev {
-  left: var(--space-md);
-}
+.gallery-main .nav-arrow.prev { left: var(--space-md); }
+.gallery-main .nav-arrow.next { right: var(--space-md); }
 
-.gallery-main .nav-arrow.next {
-  right: var(--space-md);
-}
-
-/* Miniatures de la galerie */
+/* Miniatures de la galerie (legacy) */
 .gallery-thumbs {
   display: flex;
   gap: var(--space-sm);
@@ -226,7 +225,7 @@
   flex-wrap: wrap;
 }
 
-/* Grille de métadonnées (moteur, batterie, vitesse, autonomie) */
+/* Grille de metadonnees */
 .product-meta-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -257,7 +256,7 @@
 
 
 /* ===========================================
-   2. SÉLECTEUR DE COULEUR
+   2. SELECTEUR DE COULEUR
    =========================================== */
 
 .color-selector {
@@ -287,7 +286,6 @@
   flex-wrap: wrap;
 }
 
-/* Conteneur d'une option couleur */
 .color-option {
   display: flex;
   flex-direction: column;
@@ -300,7 +298,6 @@
   border: 2px solid transparent;
 }
 
-/* Pastille couleur */
 .color-option-swatch {
   width: 44px;
   height: 44px;
@@ -311,7 +308,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Halo de sélection visible au survol */
 .color-option-swatch::after {
   content: '';
   position: absolute;
@@ -330,7 +326,6 @@
   border-color: var(--border-light);
 }
 
-/* État actif — cercle vert autour de la pastille */
 .color-option.active .color-option-swatch {
   border-color: white;
   box-shadow: 0 0 0 3px var(--primary), 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -399,7 +394,7 @@
 
 
 /* ===========================================
-   4. TABLEAU DE SPÉCIFICATIONS
+   4. TABLEAU DE SPECIFICATIONS
    =========================================== */
 
 .specs-table-wrapper {
@@ -432,7 +427,6 @@
   font-size: 0.95rem;
 }
 
-/* Colonne gauche : nom de la spec */
 .specs-table td:first-child {
   color: var(--text-secondary);
   width: 40%;
@@ -442,13 +436,11 @@
   gap: var(--space-sm);
 }
 
-/* Colonne droite : valeur */
 .specs-table td:last-child {
   color: var(--text-primary);
   font-weight: 600;
 }
 
-/* Icône ronde à gauche du nom de spec */
 .spec-icon {
   width: 32px;
   height: 32px;
@@ -463,10 +455,9 @@
 
 
 /* ===========================================
-   5. LISTE DES CARACTÉRISTIQUES
+   5. LISTE DES CARACTERISTIQUES
    =========================================== */
 
-/* Grille 2 colonnes d'éléments features */
 .features-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -490,7 +481,6 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Icône carrée dégradée */
 .feature-item .icon {
   width: 44px;
   height: 44px;
@@ -518,7 +508,157 @@
 
 
 /* ===========================================
-   6b. SECTION PARTENARIAT STRATÉGIQUE
+   6. SECTION CTA (page d'accueil)
+   =========================================== */
+
+.cta-section {
+  position: relative;
+  padding: 5rem 0;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+/* Halo anime en arriere-plan */
+.cta-glow {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15), transparent 70%);
+  pointer-events: none;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Carte principale de la CTA */
+.cta-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), var(--shadow-accent);
+  border-color: var(--accent);
+}
+
+/* Badge "Offre limitee" */
+.cta-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
+  padding: 0.25rem 1rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.cta-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-card p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Boutons d'action */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s;
+}
+
+.cta-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-buttons .btn svg {
+  transition: transform 0.2s;
+}
+
+.cta-buttons .btn:hover svg {
+  transform: scale(1.05);
+}
+
+/* Statistiques sous les boutons */
+.cta-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animation reveal sur la carte CTA */
+.cta-card.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+    transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.cta-card.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===========================================
+   7. SECTION PARTENARIAT STRATEGIQUE
    =========================================== */
 
 .partenariat-grid {
@@ -623,174 +763,14 @@
 
 
 /* ===========================================
-   6. SECTION CTA (page d'accueil)
+   8. FILTRES (page Modeles)
    =========================================== */
 
-.cta-section {
-  position: relative;
-  padding: 5rem 0;
-  background: var(--bg-secondary);
-  overflow: hidden;
-}
-
-/* Halo animé en arrière-plan */
-.cta-glow {
-  position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 140%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.15), transparent 70%);
-  pointer-events: none;
-  animation: glowPulse 8s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-/* Carte principale de la CTA */
-.cta-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: rgba(18, 18, 24, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 2rem;
-  padding: 2.5rem;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cta-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.4);
-  border-color: rgba(99, 102, 241, 0.3);
-}
-
-/* Badge "Offre limitée" */
-.cta-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
-  padding: 0.25rem 1rem;
-  border-radius: 40px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  backdrop-filter: blur(4px);
-}
-
-.cta-card h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.cta-card p {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-/* Boutons d'action */
-.cta-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.cta-buttons .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s;
-}
-
-.cta-buttons .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.cta-buttons .btn svg {
-  transition: transform 0.2s;
-}
-
-.cta-buttons .btn:hover svg {
-  transform: scale(1.05);
-}
-
-/* Statistiques sous les boutons */
-.cta-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--text-primary), var(--primary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.2;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Animation reveal sur la carte CTA */
-.cta-card.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1),
-    transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-}
-
-.cta-card.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* ===========================================
-   7. FILTRES (page Modèles)
-   =========================================== */
-
-/* Corps de page avec padding pour la navbar fixe */
 .models-page {
   padding-top: 100px;
 }
 
-/* En-tête de page commun (Modèles, Galerie, Contact) */
+/* En-tete de page commun (Modeles, Galerie, Contact) */
 .page-header {
   padding: var(--space-4xl) 0 var(--space-2xl);
   text-align: center;
@@ -848,7 +828,6 @@
   letter-spacing: 0.3px;
 }
 
-/* --- Wrapper pour positionner la flèche personnalisée --- */
 .filter-select-wrapper {
   position: relative;
   min-width: 180px;
@@ -871,7 +850,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Flèche personnalisée */
+/* Fleche personnalisee */
 .filter-select-wrapper::after {
   content: '▼';
   position: absolute;
@@ -900,21 +879,13 @@
   box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.15);
 }
 
-/* Couleur de fond des options (limité mais améliore le rendu) */
 .filter-select option {
   background: var(--bg-card-solid);
   color: var(--text-primary);
   padding: 0.5rem;
 }
 
-/* Adaptation thème clair */
-[data-theme="light"] .filter-select {
-  background: white;
-  border-color: var(--border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-}
-
-/* Tags de filtre améliorés */
+/* Tags de filtre */
 .filter-tags {
   display: flex;
   gap: var(--space-sm);
@@ -951,7 +922,7 @@
   box-shadow: 0 6px 16px rgba(0, 212, 170, 0.3);
 }
 
-/* Compteur de résultats */
+/* Compteur de resultats */
 .results-count {
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -963,28 +934,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .filter-select-wrapper {
-    min-width: 100%;
-  }
-
-  .filters-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-group {
-    justify-content: space-between;
-  }
-
-  .filter-tags {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: var(--space-sm);
-  }
-}
-
 /* Grille produits auto-fill */
 .products-grid {
   display: grid;
@@ -994,10 +943,9 @@
 
 
 /* ===========================================
-   8. LIGHTBOX
+   9. LIGHTBOX
    =========================================== */
 
-/* --- Lightbox --- */
 .lightbox {
   display: none;
   position: fixed;
@@ -1070,13 +1018,8 @@
   transform: translateY(-50%) scale(1.1);
 }
 
-.lightbox-nav.prev {
-  left: var(--space-lg);
-}
-
-.lightbox-nav.next {
-  right: var(--space-lg);
-}
+.lightbox-nav.prev { left: var(--space-lg); }
+.lightbox-nav.next { right: var(--space-lg); }
 
 /* Compteur "1 / 12" */
 .lightbox-counter {
@@ -1096,7 +1039,7 @@
 
 
 /* ===========================================
-   9. PAGE CONTACT
+   10. PAGE CONTACT
    =========================================== */
 
 .contact-page {
@@ -1115,13 +1058,13 @@
   margin-bottom: var(--space-md);
 }
 
-.contact-info>p {
+.contact-info > p {
   color: var(--text-secondary);
   margin-bottom: var(--space-xl);
   line-height: 1.7;
 }
 
-/* Bloc de méthode de contact (WhatsApp, tél, email, adresse) */
+/* Bloc de methode de contact (WhatsApp, tel, email, adresse) */
 .contact-method {
   display: flex;
   align-items: flex-start;
@@ -1135,9 +1078,9 @@
 }
 
 .contact-method:hover {
-  border-color: var(--border-glow);
-  transform: translateX(5px);
-  box-shadow: var(--shadow-sm);
+  transform: translateX(8px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
 }
 
 .contact-method .icon {
@@ -1152,6 +1095,12 @@
   color: white;
   flex-shrink: 0;
   box-shadow: var(--shadow-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method:hover .icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 212, 170, 0.4);
 }
 
 .contact-method h4 {
@@ -1166,7 +1115,8 @@
 
 /* Formulaire de contact */
 .contact-form {
-  background: var(--gradient-card);
+  background: radial-gradient(circle at 10% 30%, rgba(0, 212, 170, 0.05), transparent 40%),
+    var(--gradient-card);
   backdrop-filter: blur(10px);
   padding: var(--space-2xl);
   border-radius: var(--radius-xl);
@@ -1175,7 +1125,7 @@
   overflow: hidden;
 }
 
-/* Ligne dégradée en haut du formulaire */
+/* Ligne degradee en haut du formulaire */
 .contact-form::before {
   content: '';
   position: absolute;
@@ -1210,7 +1160,7 @@
   padding: 0.8rem 1rem;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 14px;
   font-size: 0.95rem;
   transition: all var(--transition-normal);
 }
@@ -1218,7 +1168,8 @@
 .form-control:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+  background: rgba(0, 212, 170, 0.03);
+  box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.12);
 }
 
 .form-control::placeholder {
@@ -1230,7 +1181,7 @@ textarea.form-control {
   min-height: 120px;
 }
 
-/* 2 colonnes pour prénom/nom */
+/* 2 colonnes pour prenom/nom */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1243,7 +1194,7 @@ textarea.form-control {
   margin-top: var(--space-xs);
 }
 
-/* Liens sociaux (Facebook, Instagram, WhatsApp) */
+/* Liens sociaux */
 .social-links-large {
   display: flex;
   gap: var(--space-md);
@@ -1258,28 +1209,37 @@ textarea.form-control {
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 600;
   transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
 }
 
 .social-links-large a:hover {
-  border-color: var(--primary);
-  background: rgba(0, 212, 170, 0.05);
-  color: var(--primary);
-  transform: translateY(-2px);
+  transform: scale(1.05);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  color: #3b82f6;
 }
 
-/* Placeholder carte Google Maps */
+/* Carte Google Maps */
 .map-container {
-  width: 100%;
-  height: 400px;
-  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
-  overflow: hidden;
-  position: relative;
+  height: 400px;
+  margin-bottom: var(--space-lg);
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .map-placeholder {
@@ -1292,65 +1252,55 @@ textarea.form-control {
   gap: var(--space-md);
   color: var(--text-muted);
   background: var(--gradient-card);
+  animation: mapGlow 4s ease-in-out infinite;
 }
+
+@keyframes mapGlow {
+  0%, 100% { background: var(--gradient-card); }
+  50% { background: radial-gradient(circle at center, rgba(0, 212, 170, 0.08), transparent 60%), var(--gradient-card); }
+}
+
+/* Bloc d'info sous la carte */
+.map-info {
+  background: var(--gradient-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.map-info:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.map-info-icon {
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+}
+
+.map-info-address {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.map-info-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
 
 /* ===========================================
-   AMÉLIORATIONS MODERNES – PAGE CONTACT
+   11. SELECTEUR DE SUJET PAR BOUTONS
    =========================================== */
 
-/* Icône des méthodes de contact – pulse au survol */
-.contact-method .icon {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-method:hover .icon {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 212, 170, 0.4);
-}
-
-/* Bloc méthode – glissade + ombre */
-.contact-method {
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-method:hover {
-  transform: translateX(8px);
-  border-color: var(--primary);
-  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
-}
-
-/* Lien Facebook en chip flottante */
-.social-links-large a {
-  border-radius: 50px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s;
-}
-
-.social-links-large a:hover {
-  transform: scale(1.05);
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3b82f6;
-  color: #3b82f6;
-}
-
-/* Formulaire – arrière‑plan plus doux */
-.contact-form {
-  background: radial-gradient(circle at 10% 30%, rgba(0, 212, 170, 0.05), transparent 40%),
-    var(--gradient-card);
-}
-
-/* Champs – coins plus arrondis, focus lumineux */
-.form-control {
-  border-radius: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-}
-
-.form-control:focus {
-  background: rgba(0, 212, 170, 0.03);
-  box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.12);
-}
-
-/* ---- SÉLECTEUR DE SUJET PAR BOUTONS ---- */
 .subject-selector {
   display: flex;
   flex-wrap: wrap;
@@ -1388,7 +1338,7 @@ textarea.form-control {
   box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1);
 }
 
-.subject-selector input:checked+label {
+.subject-selector input:checked + label {
   background: var(--gradient-primary);
   border-color: transparent;
   color: white;
@@ -1396,59 +1346,9 @@ textarea.form-control {
   transform: translateY(-2px) scale(1.02);
 }
 
-/* Thème clair */
-[data-theme="light"] .subject-selector label {
-  background: white;
-  border-color: var(--border);
-  color: var(--text-secondary);
-}
-
-[data-theme="light"] .subject-selector input:checked+label {
-  color: white;
-}
-
-/* Anim bouton d'envoi pendant le chargement */
-.btn-primary:disabled {
-  opacity: 0.8;
-  cursor: wait;
-  background: linear-gradient(135deg, #555, #444);
-  box-shadow: none;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.4);
-  }
-
-  70% {
-    box-shadow: 0 0 0 10px rgba(0, 212, 170, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 212, 170, 0);
-  }
-}
-
-/* Animation discrète sur la carte */
-.map-placeholder {
-  animation: mapGlow 4s ease-in-out infinite;
-}
-
-@keyframes mapGlow {
-
-  0%,
-  100% {
-    background: var(--gradient-card);
-  }
-
-  50% {
-    background: radial-gradient(circle at center, rgba(0, 212, 170, 0.08), transparent 60%), var(--gradient-card);
-  }
-}
 
 /* ===========================================
-   10. ÉLÉMENTS FLOTTANTS
+   12. ELEMENTS FLOTTANTS
    =========================================== */
 
 /* Bouton WhatsApp flottant */
@@ -1469,7 +1369,6 @@ textarea.form-control {
   box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
   transition: all var(--transition-normal);
   animation: float 3s ease-in-out infinite;
-  /* @keyframes float défini dans main.css */
 }
 
 .whatsapp-float:hover {
@@ -1515,7 +1414,7 @@ textarea.form-control {
 
 
 /* ===========================================
-   11. FIL D'ARIANE (BREADCRUMB)
+   13. FIL D'ARIANE (BREADCRUMB)
    =========================================== */
 
 .breadcrumb {
@@ -1549,10 +1448,9 @@ textarea.form-control {
 
 
 /* ===========================================
-   12. TOAST NOTIFICATIONS
+   14. TOAST NOTIFICATIONS
    =========================================== */
 
-/* Conteneur positionné en haut à droite */
 .toast-container {
   position: fixed;
   top: var(--space-xl);
@@ -1579,15 +1477,8 @@ textarea.form-control {
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .toast.success {
@@ -1603,240 +1494,15 @@ textarea.form-control {
   flex-shrink: 0;
 }
 
-.toast.success .toast-icon {
-  color: var(--primary);
-}
-
-.toast.error .toast-icon {
-  color: var(--danger);
-}
+.toast.success .toast-icon { color: var(--primary); }
+.toast.error .toast-icon { color: var(--danger); }
 
 
 /* ===========================================
-   13. RESPONSIVE COMPOSANTS
+   15. PRODUCT HERO V2 & GALLERY V2
    =========================================== */
 
-@media (max-width: 1024px) {
-
-  /* Galerie produit passe en 1 colonne */
-  .product-hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-grid {
-    gap: var(--space-2xl);
-  }
-
-  .features-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* Contact : 1 colonne */
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Filtres : colonne + plein largeur */
-  .filters-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-group {
-    justify-content: space-between;
-  }
-
-  .filter-tags {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: var(--space-sm);
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Spécifications : padding réduit */
-  .specs-table td {
-    padding: var(--space-sm);
-    font-size: 0.85rem;
-  }
-
-  /* Formulaire : 1 colonne */
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: 3rem 0;
-  }
-
-  .cta-card {
-    padding: 1.75rem;
-    margin: 0 1rem;
-    border-radius: var(--radius-xl);
-  }
-
-  .cta-card h2 {
-    font-size: 1.8rem;
-  }
-
-  .cta-card p {
-    font-size: 1rem;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .cta-buttons .btn {
-    justify-content: center;
-  }
-
-  .cta-stats {
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    flex: 1;
-    min-width: 80px;
-  }
-
-  /* Partenariat */
-  .partenariat-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .partenariat-card {
-    padding: 1.5rem;
-  }
-
-  .partenariat-emoji {
-    font-size: 2.8rem;
-  }
-
-  /* Boutons flottants */
-  .whatsapp-float {
-    width: 54px;
-    height: 54px;
-    font-size: 1.6rem;
-    bottom: var(--space-md);
-    right: var(--space-md);
-  }
-
-  .back-to-top {
-    right: calc(var(--space-md) + 66px);
-    bottom: var(--space-md);
-    width: 46px;
-    height: 46px;
-  }
-
-  /* Produit */
-  .product-info h1 {
-    font-size: 1.8rem;
-  }
-
-  .product-price {
-    font-size: 2rem;
-  }
-
-  .product-actions {
-    flex-direction: column;
-  }
-
-  .product-actions .btn {
-    width: 100%;
-  }
-
-  /* Flèches galerie */
-  .gallery-main .nav-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  /* Lightbox */
-  .lightbox-nav {
-    width: 44px;
-    height: 44px;
-    font-size: 1.1rem;
-  }
-
-  .lightbox-nav.prev {
-    left: var(--space-sm);
-  }
-
-  .lightbox-nav.next {
-    right: var(--space-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-thumb {
-    width: 72px;
-    height: 54px;
-  }
-
-  .product-meta-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* CTA — très petit écran */
-  .cta-card {
-    padding: 1.25rem;
-    margin: 0 0.5rem;
-  }
-
-  .cta-card h2 {
-    font-size: 1.5rem;
-  }
-
-  .cta-card p {
-    font-size: 0.92rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-stats {
-    gap: 0.5rem;
-    padding-top: 1rem;
-  }
-
-  .stat-number {
-    font-size: 1.2rem;
-  }
-
-  .stat-label {
-    font-size: 0.7rem;
-  }
-
-  /* Partenariat — très petit écran */
-  .partenariat-card {
-    padding: 1.25rem;
-    border-radius: var(--radius-xl);
-  }
-
-  .partenariat-emoji {
-    font-size: 2.2rem;
-  }
-
-  .partenariat-avatar {
-    width: 70px;
-    height: 70px;
-  }
-}
-
-/* ===========================================
-   PRODUCT HERO V2 — Modern & Mobile-First
-   =========================================== */
-
-/* Skeleton Loading */
+/* --- Skeleton Loading --- */
 .product-skeleton {
   display: flex;
   flex-direction: column;
@@ -1847,7 +1513,7 @@ textarea.form-control {
 .sk-badge {
   width: 90px;
   height: 28px;
-  background: linear-gradient(90deg, var(--bg-card) 40%, rgba(255, 255, 255, 0.05) 60%);
+  background: linear-gradient(90deg, var(--bg-card) 40%, rgba(0, 0, 0, 0.05) 60%);
   border-radius: 40px;
   animation: shimmer 1.5s infinite;
 }
@@ -1855,39 +1521,21 @@ textarea.form-control {
 .sk-line {
   height: 18px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(90deg, var(--bg-card) 40%, rgba(255, 255, 255, 0.05) 60%);
+  background: linear-gradient(90deg, var(--bg-card) 40%, rgba(0, 0, 0, 0.05) 60%);
   animation: shimmer 1.5s infinite;
 }
 
-.sk-line.large {
-  width: 80%;
-  height: 32px;
-}
-
-.sk-line.medium {
-  width: 60%;
-}
-
-.sk-line.small {
-  width: 40%;
-}
-
-.sk-line.xlarge {
-  width: 90%;
-  height: 24px;
-}
+.sk-line.large { width: 80%; height: 32px; }
+.sk-line.medium { width: 60%; }
+.sk-line.small { width: 40%; }
+.sk-line.xlarge { width: 90%; height: 24px; }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-/* Gallery V2 */
+/* --- Gallery V2 --- */
 .product-gallery-v2 {
   position: relative;
   border-radius: var(--radius-xl);
@@ -1986,7 +1634,7 @@ textarea.form-control {
   background: var(--primary);
 }
 
-/* Product Info V2 */
+/* --- Product Info V2 --- */
 .product-info-v2 {
   padding: 0.5rem 0;
 }
@@ -2048,23 +1696,7 @@ textarea.form-control {
   flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
-  .product-actions-sticky {
-    /* Suppression de position:sticky et des styles liés */
-    display: flex;
-    justify-content: center;
-  }
-
-  .product-actions-sticky .btn {
-    flex: 1;
-    justify-content: center;
-    max-width: 100%;
-    white-space: nowrap;
-    text-align: center;
-  }
-}
-
-/* Tabs V2 */
+/* --- Tabs V2 --- */
 .tabs-nav-v2 {
   display: flex;
   gap: 0.5rem;
@@ -2129,29 +1761,11 @@ textarea.form-control {
 }
 
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Gallery V2 */
-@media (max-width: 768px) {
-  .gallery-swipe-container {
-    aspect-ratio: 1/1;
-  }
-}
-
-/* ===========================================
-   FLÈCHES DE NAVIGATION GALERIE V2
-   =========================================== */
-
-/* Flèches de navigation dans la galerie V2 */
+/* --- Fleches de navigation galerie V2 --- */
 .gallery-nav-arrow {
   position: absolute;
   top: 50%;
@@ -2179,15 +1793,10 @@ textarea.form-control {
   transform: translateY(-50%) scale(1.1);
 }
 
-.gallery-nav-arrow.prev {
-  left: var(--space-md);
-}
+.gallery-nav-arrow.prev { left: var(--space-md); }
+.gallery-nav-arrow.next { right: var(--space-md); }
 
-.gallery-nav-arrow.next {
-  right: var(--space-md);
-}
-
-/* Miniatures synchronisées avec la galerie V2 */
+/* Miniatures synchronisees avec la galerie V2 */
 .product-gallery-v2 .gallery-thumbs {
   margin-top: var(--space-md);
   padding: 0 var(--space-xs);
@@ -2222,85 +1831,401 @@ textarea.form-control {
   object-fit: cover;
 }
 
-/* Cacher les flèches sur mobile (le swipe suffit) */
+/* Animation bouton d'envoi pendant le chargement */
+.btn-primary:disabled {
+  opacity: 0.8;
+  cursor: wait;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  box-shadow: none;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 212, 170, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 212, 170, 0); }
+}
+
+
+/* ===========================================
+   16. RESPONSIVE COMPOSANTS
+   =========================================== */
+
+@media (max-width: 1024px) {
+  .product-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    gap: var(--space-2xl);
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+
+  .filter-tags {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: var(--space-sm);
+  }
+
+  .filter-select-wrapper {
+    min-width: 100%;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .specs-table td {
+    padding: var(--space-sm);
+    font-size: 0.85rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-section {
+    padding: 3rem 0;
+  }
+
+  .cta-card {
+    padding: 1.75rem;
+    margin: 0 1rem;
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-card p {
+    font-size: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-buttons .btn {
+    justify-content: center;
+  }
+
+  .cta-stats {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .partenariat-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .partenariat-card {
+    padding: 1.5rem;
+  }
+
+  .partenariat-emoji {
+    font-size: 2.8rem;
+  }
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    font-size: 1.6rem;
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+
+  .back-to-top {
+    right: calc(var(--space-md) + 66px);
+    bottom: var(--space-md);
+    width: 46px;
+    height: 46px;
+  }
+
+  .product-info h1 {
+    font-size: 1.8rem;
+  }
+
+  .product-price {
+    font-size: 2rem;
+  }
+
+  .product-actions {
+    flex-direction: column;
+  }
+
+  .product-actions .btn {
+    width: 100%;
+  }
+
+  .product-actions-sticky {
+    display: flex;
+    justify-content: center;
+  }
+
+  .product-actions-sticky .btn {
+    flex: 1;
+    justify-content: center;
+    max-width: 100%;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .gallery-main .nav-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .lightbox-nav.prev { left: var(--space-sm); }
+  .lightbox-nav.next { right: var(--space-sm); }
+
+  .gallery-swipe-container {
+    aspect-ratio: 1/1;
+  }
+
   .gallery-nav-arrow {
     width: 38px;
     height: 38px;
   }
 
-  .gallery-nav-arrow.prev {
-    left: var(--space-sm);
-  }
-
-  .gallery-nav-arrow.next {
-    right: var(--space-sm);
-  }
+  .gallery-nav-arrow.prev { left: var(--space-sm); }
+  .gallery-nav-arrow.next { right: var(--space-sm); }
 
   .product-gallery-v2 .gallery-thumb {
     width: 64px;
     height: 48px;
   }
-}
 
-/* ---- Section Map moderne (carte + infos en dessous) ---- */
-.map-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border);
-  height: 400px;
-  /* hauteur de la carte, ajustable */
-  margin-bottom: var(--space-lg);
-}
-
-.map-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Bloc d’info sous la carte */
-.map-info {
-  background: var(--gradient-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-xl);
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.map-info:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary);
-  box-shadow: var(--shadow-glow);
-}
-
-.map-info-icon {
-  color: var(--primary);
-  margin-bottom: var(--space-sm);
-}
-
-.map-info-address {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-}
-
-.map-info-sub {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-md);
-}
-
-@media (max-width: 768px) {
   .map-container {
     height: 300px;
   }
+}
+
+@media (max-width: 480px) {
+  .gallery-thumb {
+    width: 72px;
+    height: 54px;
+  }
+
+  .product-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-card {
+    padding: 1.25rem;
+    margin: 0 0.5rem;
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-card p {
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-stats {
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .stat-number { font-size: 1.2rem; }
+  .stat-label { font-size: 0.7rem; }
+
+  .partenariat-card {
+    padding: 1.25rem;
+    border-radius: var(--radius-xl);
+  }
+
+  .partenariat-emoji {
+    font-size: 2.2rem;
+  }
+
+  .partenariat-avatar {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+
+/* ===========================================
+   17. THEME CLAIR — OVERRIDES SPECIFIQUES
+   ===========================================
+   Les variables CSS sont redefinies dans
+   main.css section 1. Les regles ci-dessous
+   ciblent les composants avec des valeurs
+   en dur necessitant une adaptation explicite.
+   =========================================== */
+
+/* --- Filtres --- */
+[data-theme="light"] .filter-select {
+  background: white;
+  border-color: var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* --- Selecteur de sujet --- */
+[data-theme="light"] .subject-selector label {
+  background: white;
+  border-color: var(--border);
+}
+
+[data-theme="light"] .subject-selector input:checked + label {
+  color: white;
+}
+
+/* --- Specs : icone avec fond adapte --- */
+[data-theme="light"] .spec-icon {
+  background: rgba(0, 212, 170, 0.06);
+}
+
+/* --- Feature items : icone et ombre --- */
+[data-theme="light"] .feature-item .icon {
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.15);
+}
+
+[data-theme="light"] .feature-item:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* --- CTA : fond et ombre adaptes --- */
+[data-theme="light"] .cta-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .cta-badge {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(99, 102, 241, 0.04));
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+[data-theme="light"] .cta-buttons .btn:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Partenariat --- */
+[data-theme="light"] .partenariat-card {
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Skeleton : shimmer adapte --- */
+[data-theme="light"] .sk-badge,
+[data-theme="light"] .sk-line {
+  background: linear-gradient(90deg, var(--bg-card) 40%, rgba(0, 0, 0, 0.04) 60%);
+}
+
+/* --- Gallery V2 : dots et compteur --- */
+[data-theme="light"] .gallery-dot {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .gallery-dot.active {
+  background: var(--primary);
+}
+
+[data-theme="light"] .gallery-counter {
+  color: var(--text-primary);
+  background: var(--glass-bg);
+}
+
+[data-theme="light"] .gallery-zoom-btn {
+  color: var(--text-primary);
+  background: var(--glass-bg);
+}
+
+[data-theme="light"] .gallery-zoom-btn:hover {
+  color: white;
+}
+
+[data-theme="light"] .gallery-nav-arrow {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .gallery-nav-arrow:hover {
+  color: white;
+}
+
+/* --- Lightbox : fond plus leger --- */
+[data-theme="light"] .lightbox {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* --- Toast : lisibilite amelioree --- */
+[data-theme="light"] .toast {
+  background: var(--bg-card-solid);
+}
+
+/* --- Newsletter (si utilisee dans le futur) --- */
+[data-theme="light"] .newsletter-form input {
+  background: white;
+  border-color: var(--border);
+}
+
+/* --- Contact : carte et methodes --- */
+[data-theme="light"] .map-info {
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .contact-method {
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .contact-method:hover {
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.08);
+}
+
+/* --- bouton disabled --- */
+[data-theme="light"] .btn-primary:disabled {
+  background: var(--bg-card);
+  color: var(--text-muted);
+}
+
+/* --- Transitions de theme pour tous les composants --- */
+[data-theme="light"] .product-card,
+[data-theme="light"] .feature-card,
+[data-theme="light"] .contact-method,
+[data-theme="light"] .cta-card,
+[data-theme="light"] .map-info,
+[data-theme="light"] .partenariat-card,
+[data-theme="light"] .specs-table-wrapper,
+[data-theme="light"] .color-selector {
+  transition: background var(--transition-normal),
+              border-color var(--transition-normal),
+              box-shadow var(--transition-normal);
 }
