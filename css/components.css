@@ -845,28 +845,76 @@
   font-size: 0.85rem;
   color: var(--text-secondary);
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
-/* Select de filtre */
+/* --- Wrapper pour positionner la flèche personnalisée --- */
+.filter-select-wrapper {
+  position: relative;
+  min-width: 180px;
+}
+
+/* Select moderne */
 .filter-select {
-  padding: 0.55rem 1rem;
+  width: 100%;
+  padding: 0.7rem 2.5rem 0.7rem 1.2rem;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 60px;
   font-size: 0.9rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  min-width: 150px;
+  font-weight: 500;
   color: var(--text-primary);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Flèche personnalisée */
+.filter-select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 0.75rem;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.filter-select-wrapper:hover::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.filter-select:hover {
+  border-color: var(--primary);
+  background: rgba(0, 212, 170, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1);
 }
 
 .filter-select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.15);
 }
 
-/* Tags de filtre (catégories) */
+/* Couleur de fond des options (limité mais améliore le rendu) */
+.filter-select option {
+  background: var(--bg-card-solid);
+  color: var(--text-primary);
+  padding: 0.5rem;
+}
+
+/* Adaptation thème clair */
+[data-theme="light"] .filter-select {
+  background: white;
+  border-color: var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* Tags de filtre améliorés */
 .filter-tags {
   display: flex;
   gap: var(--space-sm);
@@ -874,35 +922,67 @@
 }
 
 .filter-tag {
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1.2rem;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: var(--radius-full);
+  border-radius: 60px;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all var(--transition-normal);
   white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.2px;
 }
 
 .filter-tag:hover {
   background: rgba(0, 212, 170, 0.1);
-  border-color: var(--border-glow);
-  color: var(--text-primary);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 212, 170, 0.1);
 }
 
 .filter-tag.active {
   background: var(--gradient-primary);
   border-color: transparent;
   color: white;
-  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3);
+  box-shadow: 0 6px 16px rgba(0, 212, 170, 0.3);
 }
 
+/* Compteur de résultats */
 .results-count {
   font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 500;
+  background: var(--bg-card);
+  padding: 0.4rem 1rem;
+  border-radius: 60px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filter-select-wrapper {
+    min-width: 100%;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+
+  .filter-tags {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: var(--space-sm);
+  }
 }
 
 /* Grille produits auto-fill */

@@ -134,11 +134,11 @@ function renderProductGrid(products) {
     <div class="card product-card reveal" style="animation-delay: ${index * 0.05}s">
       <a href="produit.html?id=${product.id}">
         <div class="card-image">
-          ${product.badge
-      ? `<span class="badge badge-${product.badgeColor}">${product.badge}</span>`
+          ${product.categoryLabel
+      ? `<span class="badge badge-${product.badgeColor}">${product.categoryLabel}</span>`
       : ''}
           <img src="${product.mainImage}" alt="${product.name}" loading="lazy">
-          ${product.colors && product.colors.length > 1
+          ${product.colors && product.colors.length >= 1
       ? `<div style="position: absolute; bottom: var(--space-sm); right: var(--space-sm); display: flex; gap: 4px;">
                 ${product.colors.slice(0, 3).map(c => `
                   <div style="width:16px;height:16px;border-radius:50%;background:${c.hex};border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>
@@ -147,7 +147,6 @@ function renderProductGrid(products) {
       : ''}
         </div>
         <div class="card-content">
-          <span class="badge badge-ghost" style="margin-bottom:0.5rem;font-size:0.7rem;">${product.categoryLabel}</span>
           <h3 class="card-title">${product.name}</h3>
           <p class="card-subtitle">${product.subtitle}</p>
 

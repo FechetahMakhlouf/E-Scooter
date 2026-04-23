@@ -12,8 +12,6 @@
    - categoryLabel : label lisible pour l'affichage
    - price         : prix en DA (Dinars Algériens)
    - oldPrice      : ancien prix barré (null si pas de promo)
-   - badge         : texte du badge (ex: "Populaire")
-   - badgeColor    : couleur du badge (primary|accent|warning|danger)
    - mainImage     : image principale (chemin relatif)
    - images        : tableau de toutes les images du produit
    - colors        : tableau de variantes couleur { name, hex, images[] }
@@ -38,12 +36,11 @@ const PRODUCTS = [
   {
     id: "q11-max",
     name: "Q11 MAX",
-    subtitle: "Moto Électrique Puissante",
+    subtitle: "Moto Puissance 2000W",
     category: "electric-motorcycle",
     categoryLabel: "Moto Électrique",
-    price: 219000,
-    oldPrice: 255000,
-    badge: "Populaire",
+    price: 0,
+    oldPrice: 10,
     badgeColor: "primary",
     mainImage: "assets/images/models/q11-max/main.jpg",
     images: [
@@ -52,71 +49,97 @@ const PRODUCTS = [
       "assets/images/models/q11-max/Q11_2.jpeg",
       "assets/images/models/q11-max/Q11_3.jpeg",
       "assets/images/models/q11-max/Q11_4.jpeg",
-      "assets/images/models/q11-max/Q11_5.jpeg",
-      "assets/images/models/q11-max/Q11_6.jpeg"
     ],
     colors: [
       {
         name: "Noir",
-        hex: "#1a1a1a",
+        hex: "#000000",
         images: [
           "assets/images/models/q11-max/main.jpg",
           "assets/images/models/q11-max/Q11_1.jpeg",
           "assets/images/models/q11-max/Q11_2.jpeg",
           "assets/images/models/q11-max/Q11_3.jpeg",
           "assets/images/models/q11-max/Q11_4.jpeg",
-          "assets/images/models/q11-max/Q11_5.jpeg",
-          "assets/images/models/q11-max/Q11_6.jpeg"
         ]
       },
       {
-        name: "Rouge",
-        hex: "#cc0000",
+        name: "Blanc",
+        hex: "#ffffff",
         images: [
-          "assets/images/models/q11-max/Q11_3.jpeg",
-          "assets/images/models/q11-max/Q11_4.jpeg",
-          "assets/images/models/q11-max/main.jpg",
-          "assets/images/models/q11-max/Q11_1.jpeg",
-          "assets/images/models/q11-max/Q11_2.jpeg",
+          "assets/images/models/q11-max/Q11_9.jpeg",
+          "assets/images/models/q11-max/Q11_10.jpeg",
+          "assets/images/models/q11-max/Q11_11.jpeg",
+          "assets/images/models/q11-max/Q11_12.jpeg"
+        ]
+      },
+      {
+        name: "Argent",
+        hex: "#C0C0C0",
+        images: [
           "assets/images/models/q11-max/Q11_5.jpeg",
-          "assets/images/models/q11-max/Q11_6.jpeg"
+          "assets/images/models/q11-max/Q11_6.jpeg",
+          "assets/images/models/q11-max/Q11_7.jpeg",
+          "assets/images/models/q11-max/Q11_8.jpeg"
         ]
       }
     ],
     specs: {
-      "Vitesse Max": "90 km/h",
-      "Autonomie": "120-140 km",
-      "Moteur": "3000W Brushless",
-      "Batterie": "72V 40Ah Lithium",
-      "Pneus": "120/70-12 Tubeless",
-      "Freins": "Disque AV/AR (ABS)",
-      "Suspension": "Fourche hydraulique + amortisseur AR",
+      "Vitesse Max": "60 km/h",
+      "Autonomie": "120 km",
+      "Moteur": "2000W Brushless",
+      "Batterie": "Lithium 64V 50Ah",
+      "Pneus": "16 pouces Tubeless",
+      "Freins": "Disques hydrauliques AV/AR",
+      "Suspension": "Fourche hydraulique AV + double amortisseur AR",
       "Charge Max": "160 kg",
       "Poids": "78 kg",
       "Temps de charge": "6-8 heures"
     },
     features: [
-      { icon: "zap", title: "Moteur 3000W", desc: "Puissance exceptionnelle pour toutes les routes" },
-      { icon: "battery-charging", title: "Batterie 72V 40Ah", desc: "Autonomie record de 140 km en mode éco" },
-      { icon: "shield", title: "Freins à disque", desc: "Double disque avec système ABS" },
-      { icon: "smartphone", title: "Connectivité", desc: "Application smartphone avec GPS" },
-      { icon: "key", title: "Démarrage sans clé", desc: "Démarrage électronique avec alarme" },
-      { icon: "sun", title: "LED Full", desc: "Éclairage LED avant/arrière complet" }
+      {
+        "icon": "zap",
+        "title": "Moteur 2000W",
+        "desc": "Puissance optimale pour les trajets urbains et périurbains."
+      },
+      {
+        "icon": "battery-charging",
+        "title": "Batterie 64V 50Ah",
+        "desc": "Grande autonomie de 120 km, idéale pour les longs déplacements."
+      },
+      {
+        "icon": "shield",
+        "title": "Freins hydrauliques",
+        "desc": "Disques avant et arrière pour un freinage puissant et sécurisé."
+      },
+      {
+        "icon": "bluetooth",
+        "title": "Enceinte Bluetooth",
+        "desc": "Profitez de votre musique directement depuis le scooter."
+      },
+      {
+        "icon": "sun",
+        "title": "Éclairage LED",
+        "desc": "Phares et feux LED pour une visibilité et un style modernes."
+      },
+      {
+        "icon": "tool",
+        "title": "Service Après-Vente",
+        "desc": "Garantie et SAV disponibles en Algérie."
+      }
     ],
-    description: "La Q11 MAX est notre moto électrique phare, alliant puissance et autonomie exceptionnelles. Avec son moteur de 3000W et sa batterie lithium-ion 72V 40Ah, elle offre des performances équivalentes aux scooters thermiques 125cc, sans émissions et avec des coûts de fonctionnement réduits. Parfaite pour les déplacements urbains et périurbains en Algérie.",
-    shortDesc: "Moto électrique puissante 3000W, autonomie 120-140 km, vitesse max 90 km/h."
+    "description": "Ce scooter électrique combine puissance, confort et autonomie grâce à son moteur brushless de 2000W et sa batterie Lithium 64V 50Ah. Avec une vitesse maximale de 60 km/h et une autonomie de 120 km, il est parfait pour les trajets quotidiens en ville ou en périphérie. Équipé de freins à disque hydrauliques, d'une double suspension, de pneus tubeless 16 pouces et d'accessoires modernes (éclairage LED, enceinte Bluetooth), il offre une expérience de conduite agréable et sécurisée. Livré avec service après-vente et garantie.",
+    "shortDesc": "Scooter électrique 2000W, autonomie 120 km, vitesse 60 km/h, batterie Lithium 64V/50Ah."
   },
 
   {
     id: "q11-pro",
     name: "Q11 PRO",
-    subtitle: "Moto Électrique Performance",
+    subtitle: "Moto Puissance 2000W",
     category: "electric-motorcycle",
     categoryLabel: "Moto Électrique",
-    price: 189000,
-    oldPrice: 215000,
-    badge: "Nouveau",
-    badgeColor: "accent",
+    price: 0,
+    oldPrice: 10,
+    badgeColor: "primary",
     mainImage: "assets/images/models/q11-pro/main.jpg",
     images: [
       "assets/images/models/q11-pro/main.jpg",
@@ -129,12 +152,20 @@ const PRODUCTS = [
     ],
     colors: [
       {
-        name: "Rouge",
-        hex: "#cc0000",
+        name: "Noir",
+        hex: "#000000",
         images: [
           "assets/images/models/q11-pro/main.jpg",
-          "assets/images/models/q11-pro/Q11_7.jpeg",
-          "assets/images/models/q11-pro/Q11_8.jpeg",
+          "assets/images/models/q11-pro/Q11_1.jpeg",
+          "assets/images/models/q11-pro/Q11_2.jpeg",
+          "assets/images/models/q11-pro/Q11_3.jpeg",
+          "assets/images/models/q11-pro/Q11_4.jpeg",
+        ]
+      },
+      {
+        name: "Blanc",
+        hex: "#ffffff",
+        images: [
           "assets/images/models/q11-pro/Q11_9.jpeg",
           "assets/images/models/q11-pro/Q11_10.jpeg",
           "assets/images/models/q11-pro/Q11_11.jpeg",
@@ -142,91 +173,74 @@ const PRODUCTS = [
         ]
       },
       {
-        name: "Noir",
-        hex: "#1a1a1a",
+        name: "Argent",
+        hex: "#C0C0C0",
         images: [
-          "assets/images/models/q11-pro/Q11_9.jpeg",
-          "assets/images/models/q11-pro/Q11_10.jpeg",
-          "assets/images/models/q11-pro/Q11_11.jpeg",
-          "assets/images/models/q11-pro/main.jpg",
+          "assets/images/models/q11-pro/Q11_5.jpeg",
+          "assets/images/models/q11-pro/Q11_6.jpeg",
           "assets/images/models/q11-pro/Q11_7.jpeg",
-          "assets/images/models/q11-pro/Q11_8.jpeg",
-          "assets/images/models/q11-pro/Q11_12.jpeg"
+          "assets/images/models/q11-pro/Q11_8.jpeg"
         ]
       }
     ],
     specs: {
-      "Vitesse Max": "80 km/h",
-      "Autonomie": "100-120 km",
-      "Moteur": "2000W Brushless",
-      "Batterie": "72V 32Ah Lithium",
+      "Vitesse Max": "60 km/h",
+      "Autonomie": "60 km",
+      "Moteur": "2000W",
+      "Batterie": "64V 30Ah Lithium",
       "Pneus": "120/70-12 Tubeless",
-      "Freins": "Disque AV/AR",
-      "Suspension": "Fourche hydraulique + amortisseur AR",
+      "Freins": "Hydrauliques",
+      "Suspension": "Double suspensions",
       "Charge Max": "150 kg",
       "Poids": "72 kg",
       "Temps de charge": "5-7 heures"
     },
     features: [
-      { icon: "zap", title: "Moteur 2000W", desc: "Puissance optimale pour la ville" },
-      { icon: "battery-charging", title: "Batterie 72V 32Ah", desc: "Autonomie de 100-120 km" },
-      { icon: "shield", title: "Freins à disque", desc: "Double disque avant et arrière" },
-      { icon: "smartphone", title: "Connectivité", desc: "Application smartphone" },
-      { icon: "lock", title: "Démarrage électronique", desc: "Système antivol intégré" },
-      { icon: "sun", title: "LED Full", desc: "Éclairage LED complet" }
+      { icon: "zap", title: "Moteur 2000W", desc: "Puissance optimale pour vos trajets urbains" },
+      { icon: "battery-charging", title: "Batterie 64V 30Ah", desc: "Autonomie certifiée jusqu'à 60 km" },
+      { icon: "shield", title: "Freins Hydrauliques", desc: "Système de freinage hydraulique haute sécurité" },
+      { icon: "speaker", title: "Enceinte Bluetooth", desc: "Haut-parleur intégré pour écouter votre musique" },
+      { icon: "sun", title: "Éclairage LED", desc: "Phares LED complets pour une visibilité maximale" },
+      { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
     ],
-    description: "La Q11 PRO offre un excellent rapport puissance/prix. Avec son moteur 2000W, elle atteint 80 km/h et offre une autonomie de 100-120 km. Le design élégant et les finitions soignées en font une moto électrique idéale pour les déplacements quotidiens.",
-    shortDesc: "Moto électrique 2000W, autonomie 100-120 km, vitesse max 80 km/h."
+    description: "La moto électrique Q11 PRO offre un excellent rapport puissance/prix pour la ville. Avec son moteur de 2000W, elle atteint 60 km/h et offre une autonomie de 60 km. Équipée de freins hydrauliques, de doubles suspensions, d'une batterie Lithium 64V 30Ah et même d'un haut-parleur Bluetooth, c'est la solution idéale pour des déplacements quotidiens confortables et pratiques.",
+    shortDesc: "Moto électrique 2000W, batterie Lithium 64V 30Ah, autonomie 60 km, vitesse max 60 km/h."
   },
 
   {
     id: "m8-moto",
     name: "M8 MOTO",
-    subtitle: "Moto Vintage Électrique",
+    subtitle: "Moto Puissance 500W",
     category: "electric-motorcycle",
     categoryLabel: "Moto Électrique",
-    price: 145000,
-    oldPrice: null,
-    badge: "Style",
-    badgeColor: "warning",
+    price: 0,
+    oldPrice: 10,
+    badgeColor: "primary",
     mainImage: "assets/images/models/m8-moto/main.jpg",
     images: [
       "assets/images/models/m8-moto/main.jpg",
       "assets/images/models/m8-moto/M8_1.jpeg",
       "assets/images/models/m8-moto/M8_2.jpeg",
       "assets/images/models/m8-moto/M8_3.jpeg",
-      "assets/images/models/m8-moto/M8_4.jpeg",
-      "assets/images/models/m8-moto/M8_5.jpeg",
-      "assets/images/models/m8-moto/M8_6.jpeg",
-      "assets/images/models/m8-moto/M8_7.jpeg",
-      "assets/images/models/m8-moto/M8_8.jpeg"
+      "assets/images/models/m8-moto/M8_4.jpeg"
     ],
     colors: [
       {
-        name: "Vert Mint",
-        hex: "#98d8c8",
+        name: "Vert",
+        hex: "#008000",
         images: [
           "assets/images/models/m8-moto/main.jpg",
           "assets/images/models/m8-moto/M8_1.jpeg",
           "assets/images/models/m8-moto/M8_2.jpeg",
           "assets/images/models/m8-moto/M8_3.jpeg",
-          "assets/images/models/m8-moto/M8_4.jpeg",
-          "assets/images/models/m8-moto/M8_5.jpeg",
-          "assets/images/models/m8-moto/M8_6.jpeg",
-          "assets/images/models/m8-moto/M8_7.jpeg",
-          "assets/images/models/m8-moto/M8_8.jpeg"
+          "assets/images/models/m8-moto/M8_4.jpeg"
         ]
       },
       {
-        name: "Crème",
-        hex: "#f5f5dc",
+        name: "Rose",
+        hex: "#FFC0CB",
         images: [
-          "assets/images/models/m8-moto/M8_3.jpeg",
-          "assets/images/models/m8-moto/M8_4.jpeg",
           "assets/images/models/m8-moto/M8_5.jpeg",
-          "assets/images/models/m8-moto/main.jpg",
-          "assets/images/models/m8-moto/M8_1.jpeg",
-          "assets/images/models/m8-moto/M8_2.jpeg",
           "assets/images/models/m8-moto/M8_6.jpeg",
           "assets/images/models/m8-moto/M8_7.jpeg",
           "assets/images/models/m8-moto/M8_8.jpeg"
@@ -234,39 +248,38 @@ const PRODUCTS = [
       }
     ],
     specs: {
-      "Vitesse Max": "55 km/h",
-      "Autonomie": "80-100 km",
-      "Moteur": "1500W Brushless",
-      "Batterie": "60V 26Ah Lithium",
+      "Vitesse Max": "45 km/h",
+      "Autonomie": "50 km",
+      "Moteur": "500W",
+      "Batterie": "48V 24Ah Acide",
       "Pneus": "3.00-10 Tubeless",
-      "Freins": "Disque AV, tambour AR",
+      "Freins": "À disque",
       "Suspension": "Fourche télescopique + amortisseur AR",
       "Charge Max": "130 kg",
       "Poids": "65 kg",
-      "Temps de charge": "5-6 heures"
+      "Temps de charge": "6-8 heures"
     },
     features: [
-      { icon: "palette", title: "Design Vintage", desc: "Style rétro avec technologie moderne" },
-      { icon: "zap", title: "Moteur 1500W", desc: "Idéal pour la ville" },
-      { icon: "briefcase", title: "Top Case", desc: "Porte-bagages avec top case inclus" },
-      { icon: "battery-charging", title: "Autonomie 100km", desc: "Parfait pour les trajets quotidiens" },
-      { icon: "sun", title: "Phare rond LED", desc: "Style classique avec technologie LED" },
-      { icon: "shield", title: "Garde-boue chromé", desc: "Finitions premium" }
+      { icon: "palette", title: "Design Vintage", desc: "Style rétro élégant avec phare rond" },
+      { icon: "zap", title: "Moteur 500W", desc: "Idéal pour les petits trajets urbains" },
+      { icon: "battery-charging", title: "Batterie Acide 48V 24Ah", desc: "Autonomie certifiée jusqu'à 50 km" },
+      { icon: "shield", title: "Freins à disque", desc: "Freinage sécurisé et réactif" },
+      { icon: "sun", title: "Phare LED", desc: "Visibilité optimale avec un style classique" },
+      { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
     ],
-    description: "La M8 MOTO allie le charme vintage des années 60 à la technologie électrique moderne. Son design rétro avec phare rond, garde-boue chromé et couleur mint unique en font une moto qui attire tous les regards. Parfaite pour les amateurs de style et l'urbanisme quotidien.",
-    shortDesc: "Moto électrique vintage 1500W, style rétro unique, autonomie 80-100 km."
+    description: "La moto électrique M8 allie un charme vintage à la mobilité électrique. Son design rétro avec son phare rond caractéristique et sa couleur mint en font un modèle urbain très attrayant. Dotée d'un moteur de 500W, elle atteint une vitesse de 45 km/h. Sa batterie Acide 48V 24Ah offre une autonomie de 50 km, parfaite pour vos trajets quotidiens en ville en toute tranquillité grâce au SAV et à la garantie inclus.",
+    shortDesc: "Moto électrique vintage M8 500W, batterie Acide 48V 24Ah, autonomie 50 km, vitesse max 45 km/h."
   },
 
   {
     id: "n7-super",
-    name: "N7 SUPER",
-    subtitle: "Moto Racing Électrique",
+    name: "N7 MOTO",
+    subtitle: "Moto Puissance 1500W",
     category: "electric-motorcycle",
     categoryLabel: "Moto Électrique",
-    price: 165000,
-    oldPrice: 185000,
-    badge: "Racing",
-    badgeColor: "danger",
+    price: 0,
+    oldPrice: 10,
+    badgeColor: "primary",
     mainImage: "assets/images/models/n7/main.jpg",
     images: [
       "assets/images/models/n7/main.jpg",
@@ -274,44 +287,53 @@ const PRODUCTS = [
     ],
     colors: [
       {
-        name: "Racing Blanc",
-        hex: "#ffffff",
+        name: "Noir",
+        hex: "#000000",
         images: [
           "assets/images/models/n7/main.jpg",
-          "assets/images/models/n7/N7_5.jpeg"
+          "assets/images/models/n7/N7_3.jpeg",
+          "assets/images/models/n7/N7_4.jpeg"
         ]
       },
       {
-        name: "Racing Noir",
-        hex: "#1a1a1a",
+        name: "Blanc",
+        hex: "#ffffff",
+        images: [
+          "assets/images/models/n7/N7_1.jpeg",
+          "assets/images/models/n7/N7_2.jpeg"
+        ]
+      },
+      {
+        name: "Argent",
+        hex: "#C0C0C0",
         images: [
           "assets/images/models/n7/N7_5.jpeg",
-          "assets/images/models/n7/main.jpg"
+          "assets/images/models/n7/N7_6.jpeg",
         ]
       }
     ],
     specs: {
-      "Vitesse Max": "90 km/h",
-      "Autonomie": "100-120 km",
-      "Moteur": "3000W Brushless",
-      "Batterie": "72V 35Ah Lithium",
-      "Pneus": "120/70-12 Racing",
-      "Freins": "Double disque sport",
-      "Suspension": "Fourche inversée + mono-amortisseur",
+      "Vitesse Max": "50 km/h",
+      "Autonomie": "60 km",
+      "Moteur": "1500W",
+      "Batterie": "48V 30Ah Lithium",
+      "Pneus": "120/70-12 (Taille standard visible)",
+      "Freins": "Hydrauliques (avant/arrière)",
+      "Suspension": "Double suspensions",
       "Charge Max": "140 kg",
       "Poids": "75 kg",
-      "Temps de charge": "6-7 heures"
+      "Temps de charge": "6-8 heures"
     },
     features: [
-      { icon: "flag", title: "Look Racing", desc: "Décoration sportive type MotoGP" },
-      { icon: "zap", title: "Moteur 3000W", desc: "Accélération fulgurante" },
-      { icon: "shield", title: "Freins Sport", desc: "Double disque avec étriers radiaux" },
-      { icon: "battery-charging", title: "Autonomie 120km", desc: "Batterie haute capacité" },
-      { icon: "gauge", title: "Tableau digital", desc: "Compteur TFT couleur" },
-      { icon: "wind", title: "Aérodynamique", desc: "Carénage sport optimisé" }
+      { icon: "star", title: "Style Sport Urbain", desc: "Design moderne avec décoration sportive" },
+      { icon: "zap", title: "Moteur 1500W", desc: "Puissance idéale pour la ville" },
+      { icon: "shield", title: "Freins Hydrauliques", desc: "Système de freinage haute sécurité" },
+      { icon: "battery-charging", title: "Autonomie 60km", desc: "Batterie Lithium 48V" },
+      { icon: "gauge", title: "Compteur Digital", desc: "Affichage complet (standard pour ce type)" },
+      { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
     ],
-    description: "La N7 SUPER est la moto électrique racing de notre gamme. Avec son look inspiré de la MotoGP, son moteur 3000W et ses freins sport, elle offre des sensations de conduite uniques. La version TC (Total Control) ajoute un mode de conduite avancé pour les passionnés.",
-    shortDesc: "Moto racing électrique 3000W, look MotoGP, vitesse 90 km/h."
+    description: "La moto électrique N7 allie style et praticité urbaine. Son design moderne arbore une décoration sportive épurée. Avec son moteur de 1500W, elle atteint une vitesse de 50 km/h, ce qui la rend parfaite pour les déplacements quotidiens en ville. Elle est équipée de freins hydrauliques, de doubles suspensions, d'une batterie Lithium 48V 30Ah offrant une autonomie de 60 km, ainsi que d'un service après-vente et d'une garantie inclus.",
+    shortDesc: "Moto électrique N7, moteur 1500W, batterie Lithium 48V 30Ah, autonomie 60 km."
   },
 
   /* ------------------------------------------
@@ -321,12 +343,11 @@ const PRODUCTS = [
   {
     id: "g63",
     name: "G-63",
-    subtitle: "Trottinette Tout-Terrain 4x4",
+    subtitle: "Trottinette Puissance 1500W",
     category: "electric-scooter",
     categoryLabel: "Trottinette",
-    price: 95000,
-    oldPrice: 110000,
-    badge: "Tout-terrain",
+    price: 0,
+    oldPrice: 10,
     badgeColor: "primary",
     mainImage: "assets/images/models/g63/main.jpg",
     images: [
@@ -341,7 +362,7 @@ const PRODUCTS = [
     colors: [
       {
         name: "Noir",
-        hex: "#1a1a1a",
+        hex: "#000000",
         images: [
           "assets/images/models/g63/main.jpg",
           "assets/images/models/g63/G63_1.jpeg",
@@ -349,57 +370,68 @@ const PRODUCTS = [
           "assets/images/models/g63/G63_3.jpeg",
           "assets/images/models/g63/G63_4.jpeg",
           "assets/images/models/g63/G63_5.jpeg",
-          "assets/images/models/g63/G63_6.jpeg"
-        ]
-      },
-      {
-        name: "Vert Militaire",
-        hex: "#4b5320",
-        images: [
-          "assets/images/models/g63/G63_3.jpeg",
-          "assets/images/models/g63/G63_4.jpeg",
-          "assets/images/models/g63/G63_5.jpeg",
-          "assets/images/models/g63/main.jpg",
-          "assets/images/models/g63/G63_1.jpeg",
-          "assets/images/models/g63/G63_2.jpeg",
           "assets/images/models/g63/G63_6.jpeg"
         ]
       }
     ],
-    specs: {
-      "Vitesse Max": "55 km/h",
-      "Autonomie": "50-60 km",
-      "Moteur": "2x 1200W Brushless",
-      "Batterie": "48V 20Ah Lithium",
-      "Pneus": "11 pouces tout-terrain",
-      "Freins": "Disque hydraulique AV/AR",
-      "Suspension": "Double suspension AV/AR",
+    "specs": {
+      "Vitesse Max": "50-60 km/h",
+      "Autonomie": "60-80 km",
+      "Moteur": "1500W",
+      "Batterie": "48V 20Ah Lithium-Ion (BMS intelligent)",
+      "Pneus": "11 pouces tubeless à crampons",
+      "Freins": "Hydrauliques",
+      "Suspension": "Avant et Arrière",
+      "Capacité de franchissement": "30°",
       "Charge Max": "120 kg",
       "Poids": "35 kg",
       "Temps de charge": "5-6 heures"
     },
-    features: [
-      { icon: "mountain", title: "4x4 Électrique", desc: "Double moteur pour terrains difficiles" },
-      { icon: "link", title: "Système de chenille", desc: "Option chenille pour neige/sable" },
-      { icon: "zap", title: "2x 1200W", desc: "Double moteur brushless" },
-      { icon: "shield", title: "Freins hydrauliques", desc: "Freinage puissant en tout terrain" },
-      { icon: "battery-charging", title: "Autonomie 60km", desc: "Batterie haute capacité" },
-      { icon: "droplets", title: "IP54", desc: "Résistance eau et poussière" }
+    "features": [
+      {
+        "icon": "mountain",
+        "title": "Tout-terrain",
+        "desc": "Pneus 11\" à crampons et capacité de franchissement de 30°"
+      },
+      {
+        "icon": "zap",
+        "title": "Moteur 1500W",
+        "desc": "Puissance élevée pour des trajets dynamiques"
+      },
+      {
+        "icon": "shield",
+        "title": "Freins hydrauliques",
+        "desc": "Freinage puissant et sécurisé en toutes circonstances"
+      },
+      {
+        "icon": "battery-charging",
+        "title": "Autonomie 80km",
+        "desc": "Batterie haute capacité avec gestion BMS intelligente"
+      },
+      {
+        "icon": "droplets",
+        "title": "Étanchéité IP65",
+        "desc": "Haute résistance à l'eau et à la poussière (Waterproof)"
+      },
+      {
+        "icon": "tool",
+        "title": "SAV & Garantie",
+        "desc": "Service Après-Vente disponible et service de garantie inclus"
+      }
     ],
-    description: "La G-63 est une trottinette tout-terrain unique en son genre. Avec ses deux moteurs de 1200W et son système de chenille amovible, elle peut affronter n'importe quel terrain : sable, neige, boue, gravier. La double suspension et les freins hydrauliques assurent sécurité et confort.",
-    shortDesc: "Trottinette tout-terrain 4x4 électrique, double moteur 2x1200W."
+    "description": "La G-63 est une trottinette électrique tout-terrain robuste. Avec son moteur puissant de 1500W et sa batterie Lithium-Ion 48V 20Ah gérée par un BMS intelligent, elle offre une vitesse allant jusqu'à 60 km/h et une excellente autonomie de 60 à 80 km. Conçue pour tous les environnements, elle est équipée de pneus 11 pouces tubeless à crampons, de suspensions avant/arrière, de freins hydrauliques, et bénéficie d'une certification d'étanchéité IP65.",
+    "shortDesc": "Trottinette électrique tout-terrain G-63 : Moteur 1500W, batterie 48V 20Ah, étanchéité IP65 et jusqu'à 80km d'autonomie."
   },
 
   {
     id: "m8-scooter",
     name: "M8 SCOOTER",
-    subtitle: "Trottinette Urbaine avec Clignotants",
+    subtitle: "Trottinette Puissance 350W",
     category: "electric-scooter",
     categoryLabel: "Trottinette",
-    price: 65000,
-    oldPrice: null,
-    badge: "Sécurité",
-    badgeColor: "accent",
+    price: 0,
+    oldPrice: 10,
+    badgeColor: "primary",
     mainImage: "assets/images/models/m8-scooter/main.jpg",
     images: [
       "assets/images/models/m8-scooter/main.jpg"
@@ -435,12 +467,11 @@ const PRODUCTS = [
   {
     id: "t7",
     name: "T7",
-    subtitle: "Trottinette Urbaine Pliable",
+    subtitle: "Trottinette Puissance 350W",
     category: "electric-scooter",
     categoryLabel: "Trottinette",
-    price: 45000,
-    oldPrice: 52000,
-    badge: "Best-seller",
+    price: 0,
+    oldPrice: 10,
     badgeColor: "primary",
     mainImage: "assets/images/models/t7/main.jpg",
     images: [
@@ -477,13 +508,12 @@ const PRODUCTS = [
   {
     id: "t5",
     name: "T5",
-    subtitle: "Trottinette Enfant",
+    subtitle: "Trottinette Puissance 150W",
     category: "electric-scooter",
     categoryLabel: "Trottinette",
-    price: 25000,
-    oldPrice: null,
-    badge: "Enfant",
-    badgeColor: "warning",
+    price: 0,
+    oldPrice: 10,
+    badgeColor: "primary",
     mainImage: "assets/images/models/t5/main.jpg",
     images: [
       "assets/images/models/t5/main.jpg"
