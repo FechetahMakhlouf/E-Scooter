@@ -1,15 +1,15 @@
 /* =============================================
-   E-SCOOT v2.0 — Page Produit Dynamique
+   E-SCOOT v2.0 — Page Produit Dynamique (Refonte Moderne)
    =============================================
-   Utilisé uniquement sur : produit.html
+   Utilisé uniquement sur : produit.html (version modernisée)
    Dépendances : products-data.js, main.js, gallery.js
 
    Fonctionnement :
    1. Lit le paramètre ?id= depuis l'URL
    2. Charge le produit correspondant depuis PRODUCTS
    3. Injecte les données dans tous les blocs de la page :
-      - Fil d'ariane, galerie, infos, onglets, produits similaires
-   4. Initialise le sélecteur de couleur et les onglets
+      - Fil d'ariane, galerie swipeable, infos, onglets, produits similaires
+   4. Initialise le sélecteur de couleur et les onglets animés
    ============================================= */
 
 
@@ -23,8 +23,8 @@ let currentProduct = null;
 /** Index de la couleur sélectionnée dans product.colors */
 let currentColorIndex = 0;
 
-/** Index de l'image principale affichée dans la galerie produit */
-let currentGalleryIndex = 0;
+/** Tableau d'images actuellement affichées dans la galerie */
+let currentGalleryImages = [];
 
 
 /* ===========================================
@@ -32,14 +32,14 @@ let currentGalleryIndex = 0;
    =========================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
-  const productId = getUrlParam('id'); // Lit ?id= depuis l'URL (main.js)
+  const productId = getUrlParam('id');
 
   if (!productId) {
     showProductError();
     return;
   }
 
-  const product = getProductById(productId); // products-data.js
+  const product = getProductById(productId);
   if (!product) {
     showProductError();
     return;
@@ -68,15 +68,18 @@ function loadProduct(product) {
     ? product.colors[0].images
     : product.images;
 
-  initProductGallery(colorImages, product.name);
+  currentGalleryImages = [...colorImages];
+
+  initGalleryV2(colorImages, product.name);
   loadProductInfo(product);
   loadSpecsTab(product);
   loadFeaturesTab(product);
   loadDescriptionTab(product);
   loadRelatedProducts(product);
-  initTabs();
+  initTabsV2();
   initColorSelector(product);
 }
+
 
 /**
  * Affiche un message d'erreur si le produit n'est pas trouvé.
@@ -102,62 +105,285 @@ function showProductError() {
    FIL D'ARIANE
    =========================================== */
 
-/**
- * Met à jour le breadcrumb avec le nom du produit courant.
- * @param {object} product
- */
 function updateBreadcrumb(product) {
   const breadcrumb = document.getElementById('productBreadcrumb');
-  if (breadcrumb) {
-    breadcrumb.innerHTML = `
-      <a href="index.html">Accueil</a>
-      <span class="separator">/</span>
-      <a href="modeles.html">Modèles</a>
-      <span class="separator">/</span>
-      <span class="current">${product.name}</span>
-    `;
-  }
+  if (!breadcrumb) return;
+
+  breadcrumb.innerHTML = `
+    <a href="index.html">Accueil</a>
+    <span class="separator">/</span>
+    <a href="modeles.html">Modèles</a>
+    <span class="separator">/</span>
+    <span class="current">${product.name}</span>
+  `;
+  breadcrumb.classList.remove('skeleton-loading');
 }
 
 
 /* ===========================================
-   INFORMATIONS PRODUIT
+   GALERIE V2 — Swipe, Dots, Zoom
    =========================================== */
 
 /**
- * Injecte le bloc d'informations complet :
- * badges, titre, prix, description, actions, méta-données.
- * @param {object} product
+ * Initialise la galerie moderne avec swipe mobile, dots, compteur et zoom.
+ * Remplace les anciennes fonctions initProductGallery / updateMainImage.
+ * @param {string[]} images      - Tableau de chemins d'images
+ * @param {string}   productName - Nom du produit (pour alt)
  */
+function initGalleryV2(images, productName) {
+  const slidesContainer = document.getElementById('gallerySlides');
+  const dotsContainer = document.getElementById('galleryDots');
+  const counter = document.getElementById('galleryCounter');
+  const zoomBtn = document.getElementById('galleryZoomBtn');
+  const prevBtn = document.getElementById('galleryPrev');
+  const nextBtn = document.getElementById('galleryNext');
+  const thumbsContainer = document.getElementById('galleryThumbs');
+
+  if (!slidesContainer) return;
+
+  let currentIndex = 0;
+  let startX = 0;
+  let isDragging = false;
+  let translateX = 0;
+  let animationFrame = null;
+
+  // Nettoyage
+  slidesContainer.innerHTML = '';
+  dotsContainer.innerHTML = '';
+  if (thumbsContainer) thumbsContainer.innerHTML = '';
+
+  // Rendu des slides
+  images.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `${productName} - Vue ${i + 1}`;
+    img.loading = i === 0 ? 'eager' : 'lazy';
+    slidesContainer.appendChild(img);
+  });
+
+  // Rendu des dots
+  images.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
+    dot.dataset.index = i;
+    dotsContainer.appendChild(dot);
+  });
+
+  // Rendu des miniatures
+  if (thumbsContainer) {
+    images.forEach((src, i) => {
+      const thumb = document.createElement('div');
+      thumb.className = `gallery-thumb ${i === 0 ? 'active' : ''}`;
+      thumb.dataset.index = i;
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `${productName} - Miniature ${i + 1}`;
+      img.loading = 'lazy';
+      thumb.appendChild(img);
+
+      // Clic sur une miniature → aller à cette image
+      thumb.addEventListener('click', () => {
+        updateGalleryPosition(parseInt(thumb.dataset.index));
+      });
+
+      thumbsContainer.appendChild(thumb);
+    });
+  }
+
+  // Mise à jour du compteur
+  const updateCounter = () => {
+    if (counter) {
+      counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+  };
+  updateCounter();
+
+  // Masquer/afficher les flèches selon la position
+  const updateArrows = () => {
+    // On garde les flèches toujours visibles (boucle infinie via le swipe)
+    // mais on peut choisir de les désactiver visuellement aux extrémités
+    if (prevBtn) {
+      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+    }
+    if (nextBtn) {
+      nextBtn.style.opacity = currentIndex === images.length - 1 ? '0.4' : '1';
+      nextBtn.style.pointerEvents = currentIndex === images.length - 1 ? 'none' : 'auto';
+    }
+  };
+
+  // Synchroniser les miniatures
+  const updateThumbnails = () => {
+    if (!thumbsContainer) return;
+    const thumbs = thumbsContainer.querySelectorAll('.gallery-thumb');
+    thumbs.forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === currentIndex);
+    });
+
+    // Faire défiler le conteneur de miniatures pour rendre la miniature active visible
+    const activeThumb = thumbs[currentIndex];
+    if (activeThumb) {
+      activeThumb.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  };
+
+  // Fonction de mise à jour de la position
+  const updateGalleryPosition = (index) => {
+    if (index < 0 || index >= images.length) return;
+    currentIndex = index;
+    translateX = -index * 100;
+    slidesContainer.style.transform = `translateX(${translateX}%)`;
+
+    // Mise à jour des dots
+    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+
+    // Mise à jour des miniatures et flèches
+    updateThumbnails();
+    updateArrows();
+    updateCounter();
+  };
+
+  // --- Gestion des flèches de navigation ---
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentIndex > 0) {
+        updateGalleryPosition(currentIndex - 1);
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentIndex < images.length - 1) {
+        updateGalleryPosition(currentIndex + 1);
+      }
+    });
+  }
+
+  // --- Gestion des événements tactiles / souris ---
+  const onStart = (clientX) => {
+    isDragging = true;
+    startX = clientX - translateX * (slidesContainer.offsetWidth / 100);
+    slidesContainer.style.transition = 'none';
+    cancelAnimationFrame(animationFrame);
+  };
+
+  const onMove = (clientX) => {
+    if (!isDragging) return;
+    const diffX = clientX - startX;
+    const percent = (diffX / slidesContainer.offsetWidth) * 100;
+    const bounded = Math.max(-currentIndex * 100 - 20, Math.min(-currentIndex * 100 + 20, percent));
+    animationFrame = requestAnimationFrame(() => {
+      slidesContainer.style.transform = `translateX(${bounded}%)`;
+    });
+  };
+
+  const onEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    slidesContainer.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
+
+    const currentPercent = parseFloat(slidesContainer.style.transform.replace('translateX(', '').replace('%)', '')) || 0;
+    const diffFromCurrent = currentPercent - (-currentIndex * 100);
+
+    if (diffFromCurrent > 15 && currentIndex > 0) {
+      updateGalleryPosition(currentIndex - 1);
+    } else if (diffFromCurrent < -15 && currentIndex < images.length - 1) {
+      updateGalleryPosition(currentIndex + 1);
+    } else {
+      updateGalleryPosition(currentIndex);
+    }
+  };
+
+  // Touch events
+  slidesContainer.addEventListener('touchstart', (e) => {
+    onStart(e.touches[0].clientX);
+  }, { passive: true });
+
+  slidesContainer.addEventListener('touchmove', (e) => {
+    onMove(e.touches[0].clientX);
+  }, { passive: true });
+
+  slidesContainer.addEventListener('touchend', onEnd);
+
+  // Mouse events (pour desktop)
+  slidesContainer.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    onStart(e.clientX);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  });
+
+  const onMouseMove = (e) => onMove(e.clientX);
+  const onMouseUp = () => {
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+    onEnd();
+  };
+
+  // Clic sur les dots
+  dotsContainer.addEventListener('click', (e) => {
+    const dot = e.target.closest('.gallery-dot');
+    if (dot) {
+      const index = parseInt(dot.dataset.index);
+      updateGalleryPosition(index);
+    }
+  });
+
+  // Bouton zoom
+  if (zoomBtn) {
+    zoomBtn.addEventListener('click', () => {
+      if (typeof openLightbox === 'function') {
+        galleryImages = images.map(src => ({ src, alt: productName }));
+        currentImageIndex = currentIndex;
+        openLightbox(currentIndex);
+      }
+    });
+  }
+
+  // Initialisation de l'état des flèches
+  updateArrows();
+
+  // Stocke l'index courant pour synchronisation externe
+  window.getCurrentGalleryIndex = () => currentIndex;
+}
+
+
+/* ===========================================
+   INFORMATIONS PRODUIT (V2)
+   =========================================== */
+
 function loadProductInfo(product) {
-  const info = document.getElementById('productInfo');
+  const info = document.getElementById('productInfoV2');
   if (!info) return;
 
-  // Calcul du pourcentage de réduction
   const discount = product.oldPrice
     ? Math.round((1 - product.price / product.oldPrice) * 100)
     : 0;
 
   info.innerHTML = `
-    <!-- Badges catégorie -->
-    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
-      <span class="badge badge-${product.badgeColor}">${product.categoryLabel}</span>
+    <span class="badge badge-${product.badgeColor}">${product.categoryLabel}</span>
+    <h1 class="product-name-v2">${product.name}</h1>
+    <p class="product-subtitle-v2">${product.subtitle}</p>
+
+    <div class="price-block">
+      <span class="price-current">${formatPrice(product.price)}</span>
+      ${product.oldPrice ? `<span class="price-old">${formatPrice(product.oldPrice)}</span>` : ''}
+      ${discount > 0 ? `<span class="price-discount">-${discount}%</span>` : ''}
+      <span style="font-size:0.8rem;color:var(--text-muted);">Prix</span>
     </div>
 
-    <h1>${product.name}</h1>
-    <p class="product-subtitle">${product.subtitle}</p>
+    <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">
+      ${product.shortDesc || product.description}
+    </p>
 
-    <!-- Prix -->
-    <div class="product-price-row">
-      <span class="product-price">${formatPrice(product.price)}</span>
-      ${product.oldPrice ? `<span class="product-price-old">${formatPrice(product.oldPrice)}</span>` : ''}
-      ${discount > 0 ? `<span class="badge badge-danger" style="font-size:0.75rem;">-${discount}%</span>` : ''}
-      <span class="product-price-note">Prix</span>
-    </div>
-
-    <p class="product-short-desc">${product.description}</p>
-
-    <!-- Sélecteur de couleur (si plusieurs couleurs) -->
     ${product.colors.length > 0 ? `
       <div class="color-selector">
         <label>Couleur : <span id="selectedColor">${product.colors[0].name}</span></label>
@@ -165,59 +391,30 @@ function loadProductInfo(product) {
       </div>
     ` : ''}
 
-    <!-- Boutons d'action -->
-    <div class="product-actions">
-      <a href="https://wa.me/213770286269?text=${encodeURIComponent(`Bonjour, je suis intéressé par la ${product.name} en couleur ${product.colors[0]?.name || ''}. Pouvez-vous me donner plus d'informations ?`)}"
+    <div class="product-actions-sticky">
+      <a href="https://wa.me/213770286269?text=${encodeURIComponent(`Bonjour, je suis intéressé par la ${product.name} en couleur ${product.colors[0]?.name || ''}.`)}"
          class="btn btn-primary btn-lg"
          target="_blank" rel="noopener"
          id="whatsappOrderBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         Commander sur WhatsApp
-      </a>
-      <a href="contact.html" class="btn btn-secondary btn-lg">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-        Nous appeler
       </a>
     </div>
 
-    <!-- Méta-données rapides (moteur, batterie, vitesse, autonomie) -->
     <div class="product-meta-grid">
-      <div class="product-meta-item">
-        <span class="icon">⚡</span>
-        <span>${product.specs.Moteur || product.specs["Moteur"]}</span>
-      </div>
-      <div class="product-meta-item">
-        <span class="icon">🔋</span>
-        <span>${product.specs.Batterie || product.specs["Batterie"]}</span>
-      </div>
-      <div class="product-meta-item">
-        <span class="icon">🚀</span>
-        <span>${product.specs["Vitesse Max"] || product.specs.Vitesse}</span>
-      </div>
-      <div class="product-meta-item">
-        <span class="icon">📏</span>
-        <span>${product.specs.Autonomie}</span>
-      </div>
+      <div class="product-meta-item"><span class="icon">⚡</span>${product.specs['Moteur'] || product.specs['Moteur'] || '-'}</div>
+      <div class="product-meta-item"><span class="icon">🔋</span>${product.specs['Batterie'] || product.specs['Batterie'] || '-'}</div>
+      <div class="product-meta-item"><span class="icon">🚀</span>${product.specs['Vitesse Max'] || product.specs['Vitesse'] || '-'}</div>
+      <div class="product-meta-item"><span class="icon">📏</span>${product.specs['Autonomie'] || '-'}</div>
     </div>
   `;
 }
 
 
 /* ===========================================
-   SÉLECTEUR DE COULEUR
+   SÉLECTEUR DE COULEUR (conservé avec adaptation)
    =========================================== */
 
-/**
- * Rend les pastilles de couleur et gère la sélection :
- * - Met à jour le label de couleur affiché
- * - Recharge la galerie avec les images de la couleur choisie
- * - Met à jour le lien WhatsApp avec la couleur sélectionnée
- * @param {object} product
- */
 function initColorSelector(product) {
   const container = document.getElementById('colorOptions');
   const label = document.getElementById('selectedColor');
@@ -226,8 +423,7 @@ function initColorSelector(product) {
   container.innerHTML = product.colors.map((color, index) => `
     <div class="color-option ${index === 0 ? 'active' : ''}"
          data-color-index="${index}"
-         data-color-name="${color.name}"
-         title="${color.name}">
+         data-color-name="${color.name}">
       <div class="color-option-swatch" style="background:${color.hex}"></div>
       <span class="color-option-name">${color.name}</span>
     </div>
@@ -238,22 +434,20 @@ function initColorSelector(product) {
       const colorIndex = parseInt(opt.dataset.colorIndex);
       const colorName = opt.dataset.colorName;
 
-      // Mise à jour de l'état actif
       container.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
       opt.classList.add('active');
       if (label) label.textContent = colorName;
 
-      // Rechargement de la galerie avec les images de la couleur
       const color = product.colors[colorIndex];
       if (color && color.images) {
-        initProductGallery(color.images, product.name);
+        currentGalleryImages = [...color.images];
+        initGalleryV2(color.images, product.name);
       }
 
-      // Mise à jour du lien WhatsApp
       const whatsappBtn = document.getElementById('whatsappOrderBtn');
       if (whatsappBtn) {
         whatsappBtn.href = `https://wa.me/213770286269?text=${encodeURIComponent(
-          `Bonjour, je suis intéressé par la ${product.name} en couleur ${colorName}. Pouvez-vous me donner plus d'informations ?`
+          `Bonjour, je suis intéressé par la ${product.name} en couleur ${colorName}.`
         )}`;
       }
 
@@ -264,133 +458,40 @@ function initColorSelector(product) {
 
 
 /* ===========================================
-   GALERIE PRODUIT
+   ONGLETS V2 — avec transition fluide et compteurs
    =========================================== */
 
-/**
- * Initialise ou réinitialise la galerie produit avec un tableau d'images.
- * Gère les miniatures et les flèches de navigation.
- * @param {string[]} images      - Tableau de chemins d'images
- * @param {string}   productName - Nom du produit (pour l'attribut alt)
- */
-function initProductGallery(images, productName) {
-  const mainImg = document.getElementById('galleryMainImg');
-  const thumbsContainer = document.getElementById('galleryThumbs');
-  if (!mainImg || !thumbsContainer || !images || images.length === 0) return;
-
-  currentGalleryIndex = 0;
-  mainImg.src = images[0];
-  mainImg.alt = productName;
-
-  // Rendu des miniatures
-  thumbsContainer.innerHTML = images.map((img, index) => `
-    <div class="gallery-thumb ${index === 0 ? 'active' : ''}" data-index="${index}">
-      <img src="${img}" alt="${productName} - Vue ${index + 1}" loading="lazy">
-    </div>
-  `).join('');
-
-  // Clic sur une miniature
-  thumbsContainer.querySelectorAll('.gallery-thumb').forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      currentGalleryIndex = parseInt(thumb.dataset.index);
-      updateMainImage(currentGalleryIndex, images);
-    });
-  });
-
-  // Flèches de navigation — on clone pour supprimer les anciens écouteurs
-  const prevBtn = document.querySelector('.gallery-main .nav-arrow.prev');
-  const nextBtn = document.querySelector('.gallery-main .nav-arrow.next');
-
-  if (prevBtn) {
-    const newPrev = prevBtn.cloneNode(true);
-    prevBtn.parentNode.replaceChild(newPrev, prevBtn);
-    newPrev.addEventListener('click', () => {
-      currentGalleryIndex = (currentGalleryIndex - 1 + images.length) % images.length;
-      updateMainImage(currentGalleryIndex, images);
-    });
-  }
-
-  if (nextBtn) {
-    const newNext = nextBtn.cloneNode(true);
-    nextBtn.parentNode.replaceChild(newNext, nextBtn);
-    newNext.addEventListener('click', () => {
-      currentGalleryIndex = (currentGalleryIndex + 1) % images.length;
-      updateMainImage(currentGalleryIndex, images);
-    });
-  }
-}
-
-/**
- * Met à jour l'image principale avec un fondu et synchronise la miniature active.
- * @param {number}   index  - Index de l'image à afficher
- * @param {string[]} images - Tableau d'images courant
- */
-function updateMainImage(index, images) {
-  const mainImg = document.getElementById('galleryMainImg');
-  const thumbsContainer = document.getElementById('galleryThumbs');
-
-  if (mainImg && images && images[index]) {
-    mainImg.style.opacity = '0';
-    setTimeout(() => {
-      mainImg.src = images[index];
-      mainImg.style.opacity = '1';
-      mainImg.style.transition = 'opacity 0.15s ease';
-    }, 150);
-  }
-
-  if (thumbsContainer) {
-    thumbsContainer.querySelectorAll('.gallery-thumb').forEach((t, i) => {
-      t.classList.toggle('active', i === index);
-    });
-  }
-}
-
-
-/* ===========================================
-   ONGLETS
-   =========================================== */
-
-/**
- * Attache les écouteurs sur les boutons d'onglets (.tab-btn)
- * et gère l'affichage du panel correspondant (.tab-panel).
- */
-function initTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabPanels = document.querySelectorAll('.tab-panel');
+function initTabsV2() {
+  const tabBtns = document.querySelectorAll('.tab-btn-v2');
+  const tabPanels = document.querySelectorAll('.tab-panel-v2');
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
-
       tabBtns.forEach(b => b.classList.remove('active'));
       tabPanels.forEach(p => p.classList.remove('active'));
-
       btn.classList.add('active');
-      document.getElementById(target)?.classList.add('active');
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
     });
   });
 }
 
 
 /* ===========================================
-   ONGLET : FICHE TECHNIQUE
+   ONGLET : FICHE TECHNIQUE (avec compteur)
    =========================================== */
 
-/**
- * Génère le tableau HTML des spécifications dans #tabSpecs.
- * @param {object} product
- */
 function loadSpecsTab(product) {
   const container = document.getElementById('tabSpecs');
   if (!container) return;
 
-  const specsHtml = Object.entries(product.specs).map(([key, value]) => `
+  const specsEntries = Object.entries(product.specs);
+  const specsHtml = specsEntries.map(([key, value]) => `
     <tr>
       <td>
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div class="spec-icon">${getSpecIcon(key)}</div>
-          ${key}
-        </div>
+        <div class="spec-icon">${getSpecIcon(key)}</div>
+        ${key}
       </td>
       <td>${value}</td>
     </tr>
@@ -403,13 +504,12 @@ function loadSpecsTab(product) {
       </table>
     </div>
   `;
+
+  // Mise à jour du compteur dans l'onglet
+  const countEl = document.getElementById('specsCount');
+  if (countEl) countEl.textContent = specsEntries.length;
 }
 
-/**
- * Retourne l'émoji correspondant à une clé de spécification.
- * @param {string} key - Clé de spécification (ex: "Vitesse Max")
- * @returns {string} Émoji
- */
 function getSpecIcon(key) {
   const icons = {
     'Vitesse Max': '⚡',
@@ -429,13 +529,9 @@ function getSpecIcon(key) {
 
 
 /* ===========================================
-   ONGLET : CARACTÉRISTIQUES
+   ONGLET : CARACTÉRISTIQUES (avec compteur)
    =========================================== */
 
-/**
- * Génère la liste des features (points forts) dans #tabFeatures.
- * @param {object} product
- */
 function loadFeaturesTab(product) {
   const container = document.getElementById('tabFeatures');
   if (!container) return;
@@ -453,6 +549,9 @@ function loadFeaturesTab(product) {
       `).join('')}
     </div>
   `;
+
+  const countEl = document.getElementById('featuresCount');
+  if (countEl) countEl.textContent = product.features.length;
 }
 
 
@@ -460,10 +559,6 @@ function loadFeaturesTab(product) {
    ONGLET : DESCRIPTION
    =========================================== */
 
-/**
- * Génère le texte de description et le bloc garantie dans #tabDescription.
- * @param {object} product
- */
 function loadDescriptionTab(product) {
   const container = document.getElementById('tabDescription');
   if (!container) return;
@@ -476,11 +571,11 @@ function loadDescriptionTab(product) {
       <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:var(--space-lg);border:1px solid var(--border);margin-top:var(--space-xl);">
         <h4 style="margin-bottom:var(--space-md);color:var(--primary);">✓ Garantie & Service</h4>
         <p style="line-height:1.8;color:var(--text-secondary);">
-          Tous nos véhicules électriques sont livrés avec une garantie constructeur de
-          <strong style="color:var(--text-primary);">2 ans sur le cadre</strong> et
-          <strong style="color:var(--text-primary);">1 an sur la batterie et le moteur</strong>.
+          Tous nos véhicules électriques sont livrés avec une garantie constructeur
+          <strong style="color:var(--text-primary);">sur le cadre</strong> et
+          <strong style="color:var(--text-primary);">sur la batterie et le moteur</strong>.
           Nous assurons le service après-vente et proposons des forfaits de maintenance adaptés.
-          Livraison gratuite partout en Algérie.
+          Livraison partout en Algérie.
         </p>
       </div>
     </div>
@@ -492,17 +587,11 @@ function loadDescriptionTab(product) {
    PRODUITS SIMILAIRES
    =========================================== */
 
-/**
- * Charge et affiche jusqu'à 3 produits de la même catégorie
- * dans la section #relatedProducts.
- * @param {object} product - Produit courant (à exclure des suggestions)
- */
 function loadRelatedProducts(product) {
   const container = document.getElementById('relatedProducts');
   if (!container) return;
 
-  const related = getRelatedProducts(product.id, 3); // products-data.js
-
+  const related = getRelatedProducts(product.id, 3);
   if (related.length === 0) {
     container.style.display = 'none';
     return;
@@ -532,7 +621,6 @@ function loadRelatedProducts(product) {
     </div>
   `;
 
-  // Ré-initialise le scroll reveal sur les cartes injectées
   if (typeof initScrollReveal === 'function') {
     setTimeout(initScrollReveal, 100);
   }

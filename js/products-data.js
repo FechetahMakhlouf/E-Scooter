@@ -102,7 +102,7 @@ const PRODUCTS = [
         "desc": "Puissance optimale pour les trajets urbains et périurbains."
       },
       {
-        "icon": "battery-charging",
+        "icon": "batr",
         "title": "Batterie 64V 50Ah",
         "desc": "Grande autonomie de 120 km, idéale pour les longs déplacements."
       },
@@ -112,7 +112,7 @@ const PRODUCTS = [
         "desc": "Disques avant et arrière pour un freinage puissant et sécurisé."
       },
       {
-        "icon": "bluetooth",
+        "icon": "blth",
         "title": "Enceinte Bluetooth",
         "desc": "Profitez de votre musique directement depuis le scooter."
       },
@@ -197,9 +197,9 @@ const PRODUCTS = [
     },
     features: [
       { icon: "zap", title: "Moteur 2000W", desc: "Puissance optimale pour vos trajets urbains" },
-      { icon: "battery-charging", title: "Batterie 64V 30Ah", desc: "Autonomie certifiée jusqu'à 60 km" },
+      { icon: "batr", title: "Batterie 64V 30Ah", desc: "Autonomie certifiée jusqu'à 60 km" },
       { icon: "shield", title: "Freins Hydrauliques", desc: "Système de freinage hydraulique haute sécurité" },
-      { icon: "speaker", title: "Enceinte Bluetooth", desc: "Haut-parleur intégré pour écouter votre musique" },
+      { icon: "blth", title: "Enceinte Bluetooth", desc: "Haut-parleur intégré pour écouter votre musique" },
       { icon: "sun", title: "Éclairage LED", desc: "Phares LED complets pour une visibilité maximale" },
       { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
     ],
@@ -260,9 +260,9 @@ const PRODUCTS = [
       "Temps de charge": "6-8 heures"
     },
     features: [
-      { icon: "palette", title: "Design Vintage", desc: "Style rétro élégant avec phare rond" },
+      { icon: "plt", title: "Design Vintage", desc: "Style rétro élégant avec phare rond" },
       { icon: "zap", title: "Moteur 500W", desc: "Idéal pour les petits trajets urbains" },
-      { icon: "battery-charging", title: "Batterie Acide 48V 24Ah", desc: "Autonomie certifiée jusqu'à 50 km" },
+      { icon: "batr", title: "Batterie Acide 48V 24Ah", desc: "Autonomie certifiée jusqu'à 50 km" },
       { icon: "shield", title: "Freins à disque", desc: "Freinage sécurisé et réactif" },
       { icon: "sun", title: "Phare LED", desc: "Visibilité optimale avec un style classique" },
       { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
@@ -328,7 +328,7 @@ const PRODUCTS = [
       { icon: "star", title: "Style Sport Urbain", desc: "Design moderne avec décoration sportive" },
       { icon: "zap", title: "Moteur 1500W", desc: "Puissance idéale pour la ville" },
       { icon: "shield", title: "Freins Hydrauliques", desc: "Système de freinage haute sécurité" },
-      { icon: "battery-charging", title: "Autonomie 60km", desc: "Batterie Lithium 48V" },
+      { icon: "batr", title: "Autonomie 60km", desc: "Batterie Lithium 48V" },
       { icon: "gauge", title: "Compteur Digital", desc: "Affichage complet (standard pour ce type)" },
       { icon: "tool", title: "SAV & Garantie", desc: "Service après-vente et garantie disponibles" }
     ],
@@ -404,7 +404,7 @@ const PRODUCTS = [
         "desc": "Freinage puissant et sécurisé en toutes circonstances"
       },
       {
-        "icon": "battery-charging",
+        "icon": "batr",
         "title": "Autonomie 80km",
         "desc": "Batterie haute capacité avec gestion BMS intelligente"
       },
@@ -455,7 +455,7 @@ const PRODUCTS = [
     features: [
       { icon: "arrow-left-right", title: "Clignotants de guidon", desc: "Clignotants intégrés pour une sécurité optimale en ville" },
       { icon: "zap", title: "Moteur 350W", desc: "Puissance idéale pour vos déplacements urbains" },
-      { icon: "battery-charging", title: "Autonomie 30-35 km", desc: "Parfait pour les trajets quotidiens" },
+      { icon: "batr", title: "Autonomie 30-35 km", desc: "Parfait pour les trajets quotidiens" },
       { icon: "fold", title: "Pliage en 3 étapes", desc: "Système de pliage simple, rapide et pratique" },
       { icon: "sun", title: "Éclairage complet", desc: "Éclairage avant/arrière et clignotants" },
       { icon: "shield", title: "Garantie & SAV", desc: "Service Après-Vente et garantie disponibles" }
@@ -497,7 +497,7 @@ const PRODUCTS = [
       { icon: "scale", title: "Légère et pratique", desc: "Poids de 12.5 kg facilitant le transport urbain" },
       { icon: "fold-horizontal", title: "Pliage en 3 étapes", desc: "Système de pliage simple, rapide et efficace" },
       { icon: "zap", title: "Moteur 350W", desc: "Puissance idéale pour les trajets en ville" },
-      { icon: "battery-charging", title: "Autonomie 25-35 km", desc: "Parfait pour les déplacements du quotidien" },
+      { icon: "batr", title: "Autonomie 25-35 km", desc: "Parfait pour les déplacements du quotidien" },
       { icon: "sun", title: "Éclairage LED", desc: "Visibilité assurée avec éclairage avant et arrière" },
       { icon: "shield", title: "Garantie & SAV", desc: "Service Après-Vente et garantie disponibles" }
     ],
@@ -536,7 +536,7 @@ const PRODUCTS = [
       "Temps de charge": "3-4 heures"
     },
     features: [
-      { icon: "palette", title: "Pédale lumineuse", desc: "Deck équipé de LED multicolores pour un look fun" },
+      { icon: "plt", title: "Pédale lumineuse", desc: "Deck équipé de LED multicolores pour un look fun" },
       { icon: "baby", title: "Vitesse adaptée", desc: "Limitée à 8-10 km/h pour une sécurité maximale" },
       { icon: "scale", title: "Ultra légère", desc: "Seulement 6.5 kg, facile à manipuler pour un enfant" },
       { icon: "fold", title: "Pliage en 3 étapes", desc: "Se plie facilement pour le rangement ou le transport" },

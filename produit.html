@@ -39,8 +39,8 @@
   <!-- Product Hero -->
   <section class="product-hero">
     <div class="container">
-      <!-- Breadcrumb -->
-      <div class="breadcrumb" id="productBreadcrumb">
+      <!-- Breadcrumb (inchangé structurellement, juste la classe "skeleton" ajoutée) -->
+      <div class="breadcrumb skeleton-loading" id="productBreadcrumb">
         <a href="index.html">Accueil</a>
         <span class="separator">›</span>
         <a href="modeles.html">Modèles</a>
@@ -49,61 +49,84 @@
       </div>
 
       <div class="product-hero-grid">
-        <!-- Gallery -->
-        <div class="product-gallery">
-          <div class="gallery-main">
-            <img id="galleryMainImg" src="" alt="" style="transition: opacity 0.15s ease;">
-            <button class="nav-arrow prev">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        <!-- Gallery V2 -->
+        <div class="product-gallery-v2">
+          <div class="gallery-swipe-container" id="gallerySwipe">
+            <div class="gallery-slides" id="gallerySlides"></div>
+            <div class="gallery-dots" id="galleryDots"></div>
+            <div class="gallery-counter" id="galleryCounter">1 / 1</div>
+
+            <!-- Flèche gauche -->
+            <button class="gallery-nav-arrow prev" id="galleryPrev" aria-label="Image précédente">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
-            <button class="nav-arrow next">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+
+            <!-- Flèche droite -->
+            <button class="gallery-nav-arrow next" id="galleryNext" aria-label="Image suivante">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </button>
+
+            <button class="gallery-zoom-btn" id="galleryZoomBtn" aria-label="Zoom">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+                <path d="M11 8v6M8 11h6" />
+              </svg>
+            </button>
           </div>
+          <!-- Bandeau de miniatures -->
           <div class="gallery-thumbs" id="galleryThumbs"></div>
         </div>
 
-        <!-- Product Info -->
-        <div class="product-info" id="productInfo">
-          <h1>Chargement...</h1>
+        <!-- Product Info V2 -->
+        <div class="product-info-v2" id="productInfoV2">
+          <!-- Skeleton -->
+          <div class="product-skeleton">
+            <div class="sk-badge"></div>
+            <div class="sk-line large"></div>
+            <div class="sk-line medium"></div>
+            <div class="sk-line small"></div>
+            <div class="sk-line xlarge"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Product Details Tabs -->
-  <section class="section" style="background: var(--bg-secondary); padding-top: 2rem; position: relative;">
-    <div
-      style="position: absolute; top: 0; left: 0; right: 0; height: 200px; background: var(--gradient-glow); pointer-events: none;">
-    </div>
-    <div class="container" style="position: relative; z-index: 1;">
-      <div class="tabs-nav reveal">
-        <button class="tab-btn active" data-tab="tabSpecs">📋 Fiche Technique</button>
-        <button class="tab-btn" data-tab="tabFeatures">✨ Caractéristiques</button>
-        <button class="tab-btn" data-tab="tabDescription">📝 Description</button>
+  <!-- Product Details Tabs V2 -->
+  <section class="section product-tabs-section">
+    <div class="container">
+      <div class="tabs-nav-v2 reveal">
+        <button class="tab-btn-v2 active" data-tab="tabSpecs">
+          <span class="tab-icon">📋</span>
+          <span class="tab-label">Fiche Technique</span>
+          <span class="tab-count" id="specsCount">0</span>
+        </button>
+        <button class="tab-btn-v2" data-tab="tabFeatures">
+          <span class="tab-icon">✨</span>
+          <span class="tab-label">Caractéristiques</span>
+          <span class="tab-count" id="featuresCount">0</span>
+        </button>
+        <button class="tab-btn-v2" data-tab="tabDescription">
+          <span class="tab-icon">📝</span>
+          <span class="tab-label">Description</span>
+        </button>
       </div>
 
-      <div class="tab-panel active" id="tabSpecs">
-        <p style="text-align: center; color: var(--text-secondary); padding: 3rem;">Chargement des spécifications...</p>
-      </div>
-
-      <div class="tab-panel" id="tabFeatures">
-        <p style="text-align: center; color: var(--text-secondary); padding: 3rem;">Chargement des caractéristiques...
-        </p>
-      </div>
-
-      <div class="tab-panel" id="tabDescription">
-        <p style="text-align: center; color: var(--text-secondary); padding: 3rem;">Chargement de la description...</p>
+      <!-- Panels avec conteneur de transition -->
+      <div class="tab-panels-container">
+        <div class="tab-panel-v2 active" id="tabSpecs"></div>
+        <div class="tab-panel-v2" id="tabFeatures"></div>
+        <div class="tab-panel-v2" id="tabDescription"></div>
       </div>
     </div>
   </section>
-
   <!-- Related Products -->
   <section class="section">
     <div class="container">
