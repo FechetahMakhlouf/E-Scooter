@@ -12,7 +12,7 @@
 </head>
 
 <body class="contact-page">
-  <!-- Navigation -->
+  <!-- Navigation (inchangée) -->
   <nav class="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="logo">
@@ -22,7 +22,6 @@
       <div class="nav-links">
         <a href="index.html">Accueil</a>
         <a href="modeles.html">Modèles</a>
-
         <a href="contact.html" class="active">Contact</a>
       </div>
       <div class="nav-actions">
@@ -48,7 +47,7 @@
   <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="contact-grid reveal">
-        <!-- Contact Info -->
+        <!-- Contact Info (inchangée, sauf ajout d’une classe pour les icônes animées) -->
         <div class="contact-info">
           <h2>Parlons de votre projet</h2>
           <p>Vous avez une question sur nos modèles ? Vous souhaitez passer commande ? Contactez-nous par le moyen qui
@@ -144,16 +143,25 @@
               <input type="tel" id="phone" name="phone" class="form-control" placeholder="+213 XXX XX XX XX">
               <p class="form-hint">Format: +213 suivi de 9 chiffres</p>
             </div>
+            <!-- NOUVEAU : Sélecteur de sujet par boutons -->
             <div class="form-group">
               <label for="subject">Sujet <span class="required">*</span></label>
-              <select id="subject" name="subject" class="form-control" required>
-                <option value="">Choisir un sujet</option>
-                <option value="commande">Passer une commande</option>
-                <option value="renseignement">Demande de renseignements</option>
-                <option value="essai">Demande d'essai</option>
-                <option value="sav">Service après-vente</option>
-                <option value="autre">Autre</option>
-              </select>
+              <div class="subject-selector" role="radiogroup" aria-required="true" id="subject">
+                <input type="radio" name="subject" id="sub-commande" value="commande" required>
+                <label for="sub-commande">🛒 Commande</label>
+
+                <input type="radio" name="subject" id="sub-renseignement" value="renseignement">
+                <label for="sub-renseignement">💬 Renseignement</label>
+
+                <input type="radio" name="subject" id="sub-essai" value="essai">
+                <label for="sub-essai">🏍️ Essai</label>
+
+                <input type="radio" name="subject" id="sub-sav" value="sav">
+                <label for="sub-sav">🛠️ SAV</label>
+
+                <input type="radio" name="subject" id="sub-autre" value="autre">
+                <label for="sub-autre">✨ Autre</label>
+              </div>
             </div>
             <div class="form-group">
               <label for="message">Message <span class="required">*</span></label>
@@ -174,7 +182,7 @@
     </div>
   </section>
 
-  <!-- Map Section -->
+  <!-- Map Section (inchangée) -->
   <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="map-container reveal">
@@ -200,10 +208,9 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer (inchangé) -->
   <footer class="footer">
     <div class="container">
-      <!-- Partie supérieure du footer -->
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
@@ -213,14 +220,12 @@
           <p class="footer-desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de
             qualité avec livraison et garantie.</p>
         </div>
-
         <div class="footer-links-group">
           <div class="footer-links-col">
             <h4>Navigation</h4>
             <ul>
               <li><a href="index.html">Accueil</a></li>
               <li><a href="modeles.html">Modèles</a></li>
-
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
@@ -244,8 +249,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Barre inférieure -->
       <div class="footer-bottom">
         <p class="copyright">© 2026 E-Scoot. Tous droits réservés.</p>
         <div class="footer-middle">
@@ -285,6 +288,7 @@
   <!-- Scripts -->
   <script src="js/products-data.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/whatsapp-integration.js"></script>
 </body>

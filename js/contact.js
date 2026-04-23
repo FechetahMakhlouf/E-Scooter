@@ -1,85 +1,87 @@
 /* =============================================
-   E-SCOOT — Formulaire de Contact
+   E-SCOOT — Formulaire de Contact (v2)
    =============================================
    Utilisé uniquement sur : contact.html
    Dépendances : main.js (showToast)
 
-   Fonctionnement :
-   1. Écoute la soumission du formulaire #contactForm
-   2. Valide les champs requis, l'email et le téléphone
-   3. Simule l'envoi (remplacer simulateSend par un vrai appel API)
-   4. Affiche un toast de succès et réinitialise le formulaire
+   Nouveautés :
+   - Validation des boutons radio pour le sujet
+   - Récupération de la valeur sélectionnée
    ============================================= */
+
+// Initialiser EmailJS avec ta clé publique
+(function () {
+  emailjs.init("7eA7HBNQM_PDzUSrK");
+})();
 
 document.addEventListener('DOMContentLoaded', function () {
   initContactForm();
 });
 
-
-/* ===========================================
-   INITIALISATION
-   =========================================== */
-
-/**
- * Attache l'écouteur de soumission et la validation
- * en temps réel sur tous les champs du formulaire.
- */
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  // Soumission du formulaire
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalHTML = submitBtn.innerHTML;
 
-    // Validation complète avant envoi
+    // Validation des champs
     if (!validateForm(form)) return;
 
-    // État de chargement
     submitBtn.disabled = true;
     submitBtn.innerHTML = '⏳ Envoi en cours...';
 
-    // Collecte des données du formulaire
+    // Récupération des données
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    // Envoi (simulé — remplacer par fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) }))
-    await simulateSend(data);
+    // S'assurer que le sujet est bien pris (devrait l'être via formData)
+    // Pour les radios non cochés, ils n'apparaissent pas dans formData.
+    // Si aucun n'est coché, data.subject sera undefined → déjà bloqué par la validation.
 
-    // Succès
-    showToast('Message envoyé avec succès ! Nous vous répondrons bientôt.', 'success');
-    form.reset();
+    try {
+      // Envoi via EmailJS
+      await emailjs.send("service_czsie9j", "template_qm8j1dm", data);
+      showToast('Message envoyé avec succès !', 'success');
+      form.reset();
+      // Réinitialiser aussi la sélection visuelle des boutons radio
+      clearRadioGroup(form.querySelector('.subject-selector'));
+    } catch (error) {
+      console.error('Erreur EmailJS :', error);
+      showToast('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+    }
 
-    // Restauration du bouton
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalHTML;
   });
 
-  // Validation en temps réel sur chaque champ
+  // Validation en temps réel pour les champs classiques
   form.querySelectorAll('.form-control').forEach(input => {
     input.addEventListener('blur', () => validateField(input));
     input.addEventListener('input', () => clearFieldError(input));
   });
-}
 
+  // Validation visuelle pour les radios (pas de blur, on écoute le change)
+  const radios = form.querySelectorAll('input[type="radio"][name="subject"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      // Efface l'erreur du groupe quand une sélection est faite
+      clearRadioGroupError(form.querySelector('.subject-selector'));
+    });
+  });
+}
 
 /* ===========================================
    VALIDATION
    =========================================== */
 
-/**
- * Valide l'ensemble du formulaire.
- * Vérifie les champs requis, le format email et le téléphone.
- * @param {HTMLFormElement} form
- * @returns {boolean} true si le formulaire est valide
- */
 function validateForm(form) {
   let isValid = true;
 
-  // Champs requis
+  // Champs requis classiques
   form.querySelectorAll('.form-control[required]').forEach(field => {
     if (!validateField(field)) isValid = false;
   });
@@ -94,7 +96,7 @@ function validateForm(form) {
     }
   }
 
-  // Format téléphone (optionnel, validé seulement si rempli)
+  // Format téléphone (optionnel)
   const phoneField = form.querySelector('input[name="phone"]');
   if (phoneField && phoneField.value) {
     const phoneRegex = /^[0-9+\s]{9,15}$/;
@@ -104,70 +106,73 @@ function validateForm(form) {
     }
   }
 
+  // Validation du groupe radio "subject"
+  const subjectContainer = form.querySelector('.subject-selector');
+  const checkedRadio = form.querySelector('input[name="subject"]:checked');
+  if (!checkedRadio) {
+    showRadioGroupError(subjectContainer, 'Veuillez choisir un sujet');
+    isValid = false;
+  }
+
   return isValid;
 }
 
-/**
- * Valide un champ unique : vérifie qu'il n'est pas vide si requis.
- * @param {HTMLElement} field
- * @returns {boolean}
- */
 function validateField(field) {
-  // Champ optionnel vide → valide
   if (!field.required && !field.value) return true;
-
   if (!field.value.trim()) {
     showFieldError(field, 'Ce champ est requis');
     return false;
   }
-
   return true;
 }
 
-
 /* ===========================================
-   GESTION DES ERREURS DE CHAMP
+   GESTION DES ERREURS
    =========================================== */
 
-/**
- * Affiche un message d'erreur sous un champ et le colore en rouge.
- * @param {HTMLElement} field
- * @param {string}      message
- */
 function showFieldError(field, message) {
-  clearFieldError(field); // Évite les doublons
-
+  clearFieldError(field);
   field.style.borderColor = 'var(--danger)';
-
   const error = document.createElement('span');
   error.className = 'field-error';
   error.textContent = message;
   error.style.cssText = 'color: var(--danger); font-size: 0.8rem; margin-top: 0.25rem; display: block;';
-
   field.parentNode.appendChild(error);
 }
 
-/**
- * Supprime l'erreur affichée sur un champ et réinitialise sa bordure.
- * @param {HTMLElement} field
- */
 function clearFieldError(field) {
   field.style.borderColor = '';
   const error = field.parentNode.querySelector('.field-error');
   if (error) error.remove();
 }
 
+/* Gestion d'erreur pour le groupe de radio */
+function showRadioGroupError(container, message) {
+  clearRadioGroupError(container);
+  const error = document.createElement('span');
+  error.className = 'field-error';
+  error.textContent = message;
+  error.style.cssText = 'color: var(--danger); font-size: 0.8rem; margin-top: 0.5rem; display: block;';
+  container.appendChild(error);
+}
+
+function clearRadioGroupError(container) {
+  const error = container.querySelector('.field-error');
+  if (error) error.remove();
+}
+
+/* Réinitialiser l'état visuel des radios après reset du formulaire */
+function clearRadioGroup(container) {
+  if (!container) return;
+  const radios = container.querySelectorAll('input[type="radio"]');
+  radios.forEach(r => r.checked = false);
+  clearRadioGroupError(container);
+}
 
 /* ===========================================
    ENVOI (SIMULÉ)
    =========================================== */
 
-/**
- * Simule un délai d'envoi réseau de 1,5 seconde.
- * Remplacer par un vrai appel fetch en production.
- * @param {object} data - Données du formulaire
- * @returns {Promise<void>}
- */
 function simulateSend(data) {
   return new Promise(resolve => {
     console.log('[Contact] Données à envoyer :', data);
