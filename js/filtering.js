@@ -17,6 +17,11 @@ function initFiltering() {
 
   initFilters();
   applyFilters();
+
+  // Re-render les cartes quand la langue change
+  document.addEventListener('languageChanged', function () {
+    applyFilters();
+  });
 }
 
 if (document.readyState === 'loading') {
