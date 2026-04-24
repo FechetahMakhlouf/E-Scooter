@@ -3271,9 +3271,8 @@ select.error {
   }
 
   .back-to-top {
-    right: var(--space-lg);
-    width: 44px;
-    height: 44px;
+    left: var(--space-lg);
+    right: auto;
   }
 
   [dir="rtl"] .back-to-top {
@@ -3294,6 +3293,10 @@ select.error {
   .tab-btn-v2 {
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
+  }
+
+  .logo span {
+    display: none;
   }
 }
 
@@ -3350,6 +3353,12 @@ select.error {
 
   .subject-selector {
     justify-content: center;
+  }
+
+  .cta-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 }
 

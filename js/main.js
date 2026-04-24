@@ -83,10 +83,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ============================
-     MOBILE MENU
-     ============================ */
+   MOBILE MENU
+   ============================ */
   const mobileToggle = document.getElementById('mobileToggle');
   const navLinks = document.getElementById('navLinks');
+
+  // Fonction pour activer/désactiver le backdrop-filter du navbar selon l'état du menu
+  function handleMenuBackdrop() {
+    if (!navbar) return;
+    if (navLinks.classList.contains('active')) {
+      navbar.style.backdropFilter = 'none';
+      navbar.style.webkitBackdropFilter = 'none';
+    } else {
+      navbar.style.backdropFilter = '';
+      navbar.style.webkitBackdropFilter = '';
+    }
+  }
 
   if (mobileToggle && navLinks) {
     mobileToggle.addEventListener('click', function () {
@@ -94,14 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
       navLinks.classList.toggle('active');
       const isExpanded = this.classList.contains('active');
       this.setAttribute('aria-expanded', isExpanded);
+      handleMenuBackdrop(); // Applique la correction du backdrop-filter
     });
 
-    // Fermer au clic sur un lien
+    // Fermer au clic sur un lien du menu
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileToggle.classList.remove('active');
         navLinks.classList.remove('active');
         mobileToggle.setAttribute('aria-expanded', 'false');
+        handleMenuBackdrop(); // Réactive le filtre après fermeture
       });
     });
   }
