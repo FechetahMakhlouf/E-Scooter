@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="E-Scoot - Véhicules électriques haute performance en Algérie. Motos et trottinettes avec livraison et garantie.">
-  <title data-i18n-title="nav.home">E-Scoot — Véhicules Électriques Algérie</title>
+  <title data-i18n-title="nav.home"></title>
 
   <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
       <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
-        <div class="logo-icon">⚡</div>
+        <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg">
         <span>E-Scoot</span>
       </a>
 
@@ -154,7 +154,8 @@
 
       <div class="grid-4">
         <!-- Q11 MAX -->
-        <div class="card product-card reveal reveal-delay-1" data-product-id="q11-max" onclick="window.location.href='produit.html?id=q11-max'">
+        <div class="card product-card reveal reveal-delay-1" data-product-id="q11-max"
+          onclick="window.location.href='produit.html?id=q11-max'">
           <div class="badge" data-i18n="badge.moto">Moto Électrique</div>
           <div class="card-image">
             <img src="assets/images/models/q11-max/main.jpg" alt="Q11 MAX" loading="lazy">
@@ -180,7 +181,8 @@
         </div>
 
         <!-- G-63 -->
-        <div class="card product-card reveal reveal-delay-2" data-product-id="g63" onclick="window.location.href='produit.html?id=g63'">
+        <div class="card product-card reveal reveal-delay-2" data-product-id="g63"
+          onclick="window.location.href='produit.html?id=g63'">
           <div class="badge" data-i18n="badge.trot">Trottinette</div>
           <div class="card-image">
             <img src="assets/images/models/g63/main.jpg" alt="G-63" loading="lazy">
@@ -206,7 +208,8 @@
         </div>
 
         <!-- M8 MOTO -->
-        <div class="card product-card reveal reveal-delay-3" data-product-id="m8-moto" onclick="window.location.href='produit.html?id=m8-moto'">
+        <div class="card product-card reveal reveal-delay-3" data-product-id="m8-moto"
+          onclick="window.location.href='produit.html?id=m8-moto'">
           <div class="badge" data-i18n="badge.moto">Moto Électrique</div>
           <div class="card-image">
             <img src="assets/images/models/m8-moto/main.jpg" alt="M8 MOTO" loading="lazy">
@@ -232,7 +235,8 @@
         </div>
 
         <!-- N7 MOTO -->
-        <div class="card product-card reveal reveal-delay-4" data-product-id="n7-super" onclick="window.location.href='produit.html?id=n7-super'">
+        <div class="card product-card reveal reveal-delay-4" data-product-id="n7-super"
+          onclick="window.location.href='produit.html?id=n7-super'">
           <div class="badge" data-i18n="badge.moto">Moto Électrique</div>
           <div class="card-image">
             <img src="assets/images/models/n7/main.jpg" alt="N7 MOTO" loading="lazy">
@@ -483,10 +487,10 @@
 
   <!-- Injection dynamique des prix sur les cartes populaires -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       if (typeof PRODUCTS === 'undefined' || typeof getProductById !== 'function') return;
       var popularIds = ['q11-max', 'g63', 'm8-moto', 'n7-super'];
-      popularIds.forEach(function(id) {
+      popularIds.forEach(function (id) {
         var card = document.querySelector('[data-product-id="' + id + '"]');
         if (!card) return;
         var p = getProductById(id);
