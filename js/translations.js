@@ -618,9 +618,18 @@ function getTranslation(key) {
 }
 
 function updateLangSelectorUI() {
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    const lang = btn.getAttribute('data-lang');
-    btn.classList.toggle('active', lang === currentLang);
+  const trigger = document.querySelector('.lang-current');
+  if (trigger) {
+    const labels = { fr: 'FR', en: 'EN', ar: 'AR' };
+    trigger.textContent = labels[currentLang] || currentLang.toUpperCase();
+  }
+
+  const options = document.querySelectorAll('.lang-option');
+  options.forEach(opt => {
+    const lang = opt.getAttribute('data-lang');
+    const isActive = lang === currentLang;
+    opt.classList.toggle('active', isActive);
+    opt.setAttribute('aria-selected', isActive);
   });
 }
 
