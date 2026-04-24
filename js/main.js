@@ -66,16 +66,48 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ============================
-     LANGUAGE SWITCHER
-     ============================ */
+   LANGUAGE SWITCHER (dropdown)
+   ============================ */
   const langSwitcher = document.getElementById('langSwitcher');
+  const langTrigger = document.getElementById('langTrigger');
 
-  if (langSwitcher) {
+  if (langSwitcher && langTrigger) {
+    // Ouvrir / fermer
+    langTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = langSwitcher.classList.toggle('open');
+      langTrigger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Fermer si clic ailleurs
+    document.addEventListener('click', function () {
+      langSwitcher.classList.remove('open');
+      langTrigger.setAttribute('aria-expanded', 'false');
+    });
+
+    // Sélection d'une langue
     langSwitcher.addEventListener('click', function (e) {
-      const btn = e.target.closest('.lang-btn');
+      const btn = e.target.closest('.lang-option');
       if (!btn) return;
 
       const lang = btn.getAttribute('data-lang');
+      const label = btn.getAttribute('data-label');
+
+      // Mettre à jour le trigger
+      langSwitcher.querySelector('.lang-current').textContent = label;
+
+      // Mettre à jour les options actives
+      langSwitcher.querySelectorAll('.lang-option').forEach(function (o) {
+        const isActive = o === btn;
+        o.classList.toggle('active', isActive);
+        o.setAttribute('aria-selected', isActive);
+      });
+
+      // Fermer le dropdown
+      langSwitcher.classList.remove('open');
+      langTrigger.setAttribute('aria-expanded', 'false');
+
+      // Appliquer la langue
       if (lang && typeof setLanguage === 'function') {
         setLanguage(lang);
       }
