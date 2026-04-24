@@ -34,9 +34,39 @@
 
       <div class="nav-actions">
         <div class="lang-switcher" id="langSwitcher">
-          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
-          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
-          <button class="lang-btn" data-lang="ar" aria-label="العربية">AR</button>
+          <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
+            <span class="lang-current">FR</span>
+            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <div class="lang-dropdown" role="listbox" aria-label="Choisir la langue">
+            <button class="lang-option active" data-lang="fr" data-flag="🇫🇷" data-label="FR" role="option"
+              aria-selected="true">
+              <span class="lang-option-name">Français</span>
+              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </button>
+            <button class="lang-option" data-lang="en" data-flag="🇬🇧" data-label="EN" role="option"
+              aria-selected="false">
+              <span class="lang-option-name">English</span>
+              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </button>
+            <button class="lang-option" data-lang="ar" data-flag="🇩🇿" data-label="AR" role="option"
+              aria-selected="false">
+              <span class="lang-option-name">العربية</span>
+              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <button id="themeToggle" aria-label="Basculer le thème">
