@@ -1,102 +1,114 @@
 /* =============================================
-   E-SCOOT v2.0 — Filtres & Grille Produits
+   E-SCOOT v3.0 — Filtres & Grille Produits
    =============================================
    Utilisé uniquement sur : modeles.html
-   Dépendances : products-data.js, main.js
-
-   Fonctionnement :
-   1. initFilters()   — attache les écouteurs d'événements
-   2. applyFilters()  — filtre + trie le tableau PRODUCTS
-   3. renderProductGrid(products) — génère le HTML des cartes
-   4. updateResultsCount(count)   — met à jour le compteur
+   Dependances : products-data.js, main.js
    ============================================= */
 
-document.addEventListener('DOMContentLoaded', function () {
-  if (document.querySelector('.models-page')) {
-    initFilters();
-    applyFilters(); // Affiche tous les produits au chargement
-  }
-});
+function initFiltering() {
+  var grid = document.getElementById('productsGrid');
+  if (!grid) return;
 
+  // Attendre que PRODUCTS soit charge
+  if (typeof PRODUCTS === 'undefined') {
+    setTimeout(initFiltering, 100);
+    return;
+  }
+
+  initFilters();
+  applyFilters();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(initFiltering, 200);
+  });
+} else {
+  setTimeout(initFiltering, 200);
+}
 
 /* ===========================================
    INITIALISATION DES FILTRES
    =========================================== */
 
-/**
- * Attache les écouteurs aux boutons catégorie, selects prix/tri,
- * et lit le paramètre URL ?category= pour pré-sélectionner un filtre.
- */
 function initFilters() {
-  const categoryTags = document.querySelectorAll('.filter-tag[data-category]');
+  var categoryTags = document.querySelectorAll('.filter-tag[data-category]');
 
-  // Boutons de catégorie (Tous / Motos / Trottinettes)
-  categoryTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      categoryTags.forEach(t => t.classList.remove('active'));
+  categoryTags.forEach(function (tag) {
+    tag.addEventListener('click', function () {
+      categoryTags.forEach(function (t) { t.classList.remove('active'); });
       tag.classList.add('active');
       applyFilters();
     });
   });
 
-  // Select tri (prix croissant/décroissant, A-Z)
-  const sortSelect = document.getElementById('sortSelect');
+  var sortSelect = document.getElementById('sortOrder');
   if (sortSelect) sortSelect.addEventListener('change', applyFilters);
 
-  // Select filtre de prix
-  const priceSelect = document.getElementById('priceSelect');
+  var priceSelect = document.getElementById('filterPrice');
   if (priceSelect) priceSelect.addEventListener('change', applyFilters);
 
-  // Pré-sélection depuis l'URL (ex: modeles.html?category=electric-motorcycle)
-  const urlCategory = getUrlParam('category');
+  // Pre-selection depuis l'URL
+  var urlCategory = getUrlParam('category');
   if (urlCategory) {
-    categoryTags.forEach(tag => {
+    categoryTags.forEach(function (tag) {
       if (tag.dataset.category === urlCategory) {
-        categoryTags.forEach(t => t.classList.remove('active'));
+        categoryTags.forEach(function (t) { t.classList.remove('active'); });
         tag.classList.add('active');
-        // applyFilters() sera appelé automatiquement juste après initFilters()
       }
     });
   }
 }
 
-
 /* ===========================================
    APPLICATION DES FILTRES
    =========================================== */
 
-/**
- * Lit l'état courant de tous les filtres, filtre le tableau
- * PRODUCTS, le trie, puis déclenche le rendu.
- */
 function applyFilters() {
-  let filtered = [...PRODUCTS];
+  if (typeof PRODUCTS === 'undefined') {
+    console.error('PRODUCTS not loaded');
+    return;
+  }
 
-  // 1. Filtre par catégorie
-  const activeCategory = document.querySelector('.filter-tag[data-category].active');
+  var filtered = PRODUCTS.slice();
+
+  // 1. Filtre par categorie
+  var activeCategory = document.querySelector('.filter-tag[data-category].active');
   if (activeCategory) {
-    const category = activeCategory.dataset.category;
+    var category = activeCategory.dataset.category;
     if (category !== 'all') {
-      filtered = filtered.filter(p => p.category === category);
+      filtered = filtered.filter(function (p) { return p.category === category; });
     }
   }
 
   // 2. Filtre par tranche de prix
-  const priceSelect = document.getElementById('priceSelect');
-  if (priceSelect && priceSelect.value) {
-    const [min, max] = priceSelect.value.split('-').map(Number);
-    filtered = filtered.filter(p =>
-      max ? (p.price >= min && p.price <= max) : p.price >= min
-    );
+  var priceSelect = document.getElementById('filterPrice');
+  if (priceSelect && priceSelect.value && priceSelect.value !== 'all') {
+    var parts = priceSelect.value.split('-');
+    var min = parseInt(parts[0], 10);
+    var max = parts[1] ? parseInt(parts[1], 10) : null;
+    filtered = filtered.filter(function (p) {
+      if (max !== null && isNaN(max) === false) {
+        return p.price >= min && p.price <= max;
+      } else {
+        return p.price >= min;
+      }
+    });
   }
 
   // 3. Tri
-  const sortSelect = document.getElementById('sortSelect');
+  var sortSelect = document.getElementById('sortOrder');
   if (sortSelect) {
     switch (sortSelect.value) {
-      case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
-      case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
-      case 'name': filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
+      case 'price-asc':
+        filtered.sort(function (a, b) { return a.price - b.price; });
+        break;
+      case 'price-desc':
+        filtered.sort(function (a, b) { return b.price - a.price; });
+        break;
+      case 'name':
+        filtered.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        break;
     }
   }
 
@@ -104,102 +116,105 @@ function applyFilters() {
   updateResultsCount(filtered.length);
 }
 
-
 /* ===========================================
    RENDU DE LA GRILLE PRODUITS
    =========================================== */
 
-/**
- * Génère et injecte les cartes produit dans #productsGrid.
- * Chaque carte est un lien vers produit.html?id={product.id}.
- * @param {object[]} products - Tableau de produits filtrés/triés
- */
 function renderProductGrid(products) {
-  const grid = document.getElementById('productsGrid');
+  var grid = document.getElementById('productsGrid');
   if (!grid) return;
 
-  // État vide
   if (products.length === 0) {
-    grid.innerHTML = `
-      <div class="text-center" style="grid-column: 1/-1; padding: 4rem 0;">
-        <p style="font-size: 3rem; margin-bottom: 1rem;">🔍</p>
-        <h3>Aucun modèle trouvé</h3>
-        <p style="color: var(--text-secondary);">Essayez d'autres critères de recherche</p>
-      </div>
-    `;
+    var emptyTitle = typeof getTranslation === 'function' ? (getTranslation('models.empty.title') || 'Aucun modèle trouvé') : 'Aucun modèle trouvé';
+    var emptyDesc = typeof getTranslation === 'function' ? (getTranslation('models.empty.desc') || 'Essayez d\'autres critères de recherche') : 'Essayez d\'autres critères de recherche';
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem 0;"><p style="font-size:3rem;margin-bottom:1rem;">&#128269;</p><h3>' + emptyTitle + '</h3><p style="color:var(--text-secondary);">' + emptyDesc + '</p></div>';
     return;
   }
 
-  grid.innerHTML = products.map((product, index) => `
-    <div class="card product-card reveal" style="animation-delay: ${index * 0.05}s">
-      <a href="produit.html?id=${product.id}">
-        <div class="card-image">
-          ${product.categoryLabel
-      ? `<span class="badge badge-${product.badgeColor}">${product.categoryLabel}</span>`
-      : ''}
-          <img src="${product.mainImage}" alt="${product.name}" loading="lazy">
-          ${product.colors && product.colors.length >= 1
-      ? `<div style="position: absolute; bottom: var(--space-sm); right: var(--space-sm); display: flex; gap: 4px;">
-                ${product.colors.slice(0, 3).map(c => `
-                  <div style="width:16px;height:16px;border-radius:50%;background:${c.hex};border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>
-                `).join('')}
-               </div>`
-      : ''}
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">${product.name}</h3>
-          <p class="card-subtitle">${product.subtitle}</p>
+  var html = '';
+  for (var i = 0; i < products.length; i++) {
+    var product = products[i];
+    var delay = i * 0.05;
 
-          <!-- Aperçu des 3 specs principales -->
-          <div class="specs-preview">
-            <div class="spec-item">
-              <span class="spec-label">Vitesse</span>
-              <span class="spec-value">${product.specs['Vitesse Max'] || product.specs.Vitesse}</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Autonomie</span>
-              <span class="spec-value">${product.specs.Autonomie}</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Moteur</span>
-              <span class="spec-value">${product.specs.Moteur.split(' ')[0]}</span>
-            </div>
-          </div>
+    // Color dots
+    var colorDots = '';
+    if (product.colors && product.colors.length > 0) {
+      colorDots = '<div class="color-dots">';
+      var maxColors = Math.min(product.colors.length, 3);
+      for (var c = 0; c < maxColors; c++) {
+        colorDots += '<div class="color-dot-card" style="background:' + product.colors[c].hex + ';"></div>';
+      }
+      colorDots += '</div>';
+    }
 
-          <!-- Prix + lien "Voir" -->
-          <div class="flex items-center justify-between"
-               style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
-            <div>
-              <span style="font-size:1.25rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                ${formatPrice(product.price)}
-              </span>
-              ${product.oldPrice
-      ? `<span style="text-decoration:line-through;color:var(--text-muted);margin-left:0.5rem;font-size:0.9rem;">${formatPrice(product.oldPrice)}</span>`
-      : ''}
-            </div>
-            <span class="btn btn-sm btn-primary" style="pointer-events:none;">Voir →</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  `).join('');
+    // Specs
+    var vitesse = product.specs['Vitesse Max'] || product.specs['Vitesse'] || '-';
+    var autonomie = product.specs['Autonomie'] || '-';
+    var moteur = product.specs['Moteur'] ? product.specs['Moteur'].split(' ')[0] : '-';
 
-  // Ré-initialise le scroll reveal sur les nouvelles cartes injectées
-  if (typeof initScrollReveal === 'function') {
-    setTimeout(initScrollReveal, 100);
+    // Old price
+    var oldPriceHtml = '';
+    if (product.oldPrice) {
+      oldPriceHtml = '<span style="text-decoration:line-through;color:var(--text-muted);margin-left:0.5rem;font-size:0.9rem;">' + formatPrice(product.oldPrice) + '</span>';
+    }
+
+    // Badge
+    var badgeHtml = '';
+    if (product.categoryLabel) {
+      badgeHtml = '<span class="badge badge-' + (product.badgeColor || 'primary') + '">' + product.categoryLabel + '</span>';
+    }
+
+    var lang = typeof currentLang !== 'undefined' ? currentLang : 'fr';
+    var subtitleTxt = typeof getProductText === 'function' ? getProductText(product, 'subtitle', lang) : product.subtitle;
+    var badgeKey = product.category === 'electric-motorcycle' ? 'badge.moto' : 'badge.trot';
+    var badgeLabel = typeof getTranslation === 'function' ? getTranslation(badgeKey) : product.categoryLabel;
+    var vitesseLabel = typeof getTranslation === 'function' ? (getTranslation('spec.Vitesse Max') || 'Vitesse') : 'Vitesse';
+    var autonomieLabel = typeof getTranslation === 'function' ? (getTranslation('spec.Autonomie') || 'Autonomie') : 'Autonomie';
+    var moteurLabel = typeof getTranslation === 'function' ? (getTranslation('spec.Moteur') || 'Moteur') : 'Moteur';
+    var btnLabel = typeof getTranslation === 'function' ? getTranslation('btn.view') : 'Voir →';
+
+    html += '<div class="card product-card" style="animation-delay:' + delay + 's">' +
+      '<a href="produit.html?id=' + product.id + '">' +
+      '<div class="card-image">' +
+      '<span class="badge badge-' + (product.badgeColor || 'primary') + '">' + badgeLabel + '</span>' +
+      '<img src="' + product.mainImage + '" alt="' + product.name + '" loading="lazy">' +
+      colorDots +
+      '</div>' +
+      '<div class="card-content">' +
+      '<h3 class="card-title">' + product.name + '</h3>' +
+      '<p class="card-subtitle">' + (subtitleTxt || '') + '</p>' +
+      '<div class="specs-preview">' +
+      '<div class="spec-item"><span class="spec-label">' + vitesseLabel + '</span><span class="spec-value">' + vitesse + '</span></div>' +
+      '<div class="spec-item"><span class="spec-label">' + autonomieLabel + '</span><span class="spec-value">' + autonomie + '</span></div>' +
+      '<div class="spec-item"><span class="spec-label">' + moteurLabel + '</span><span class="spec-value">' + moteur + '</span></div>' +
+      '</div>' +
+      '<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">' +
+      '<span style="font-size:1.25rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;">' + formatPrice(product.price) + '</span>' +
+      oldPriceHtml +
+      '<span style="color:var(--primary);font-size:0.85rem;font-weight:600;">' + btnLabel + '</span>' +
+      '</div>' +
+      '</div>' +
+      '</a>' +
+      '</div>';
   }
+
+  grid.innerHTML = html;
 }
 
-
 /* ===========================================
-   COMPTEUR DE RÉSULTATS
+   COMPTEUR DE RESULTATS
    =========================================== */
 
-/**
- * Met à jour le texte "N modèle(s)" affiché dans la barre de filtres.
- * @param {number} count
- */
 function updateResultsCount(count) {
-  const el = document.getElementById('resultsCount');
-  if (el) el.textContent = `${count} modèle${count > 1 ? 's' : ''}`;
+  var el = document.getElementById('resultCount');
+  if (el) {
+    var tpl = typeof getTranslation === 'function' ? getTranslation('models.count') : '{count} modèle(s)';
+    // Supporte le placeholder {count} dans la traduction
+    if (tpl && tpl.indexOf('{count}') !== -1) {
+      el.textContent = tpl.replace('{count}', count);
+    } else {
+      var suffix = count > 1 ? 's' : '';
+      el.textContent = count + ' modèle' + suffix;
+    }
+  }
 }

@@ -1,227 +1,274 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
-
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiche Produit — E-Scoot Algérie</title>
-  <meta name="description"
-    content="Fiche technique détaillée et photos de nos véhicules électriques. Commandez par WhatsApp.">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-</head>
+  <meta name="description" content="Détails du produit E-Scoot - véhicule électrique haute performance. Algérie.">
+  <title data-i18n-title="nav.models">Produit — E-Scoot</title>
 
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
         <div class="logo-icon">⚡</div>
         <span>E-Scoot</span>
       </a>
-      <div class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="modeles.html">Modèles</a>
 
-        <a href="contact.html">Contact</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="modeles.html" class="active" data-i18n="nav.models">Modèles</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </div>
+
       <div class="nav-actions">
-        <button class="btn-ghost" id="themeToggle" title="Changer le thème"></button>
-        <button class="mobile-toggle" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <button class="lang-btn" data-lang="ar" aria-label="العربية">AR</button>
+        </div>
+
+        <button id="themeToggle" aria-label="Basculer le thème">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Product Hero -->
-  <section class="product-hero">
+  <!-- ============ PRODUCT HERO ============ -->
+  <section class="product-hero" id="productHero">
     <div class="container">
-      <!-- Breadcrumb (inchangé structurellement, juste la classe "skeleton" ajoutée) -->
-      <div class="breadcrumb skeleton-loading" id="productBreadcrumb">
-        <a href="index.html">Accueil</a>
-        <span class="separator">›</span>
-        <a href="modeles.html">Modèles</a>
-        <span class="separator">›</span>
-        <span class="current">Chargement...</span>
-      </div>
+      <nav class="breadcrumb">
+        <a href="index.html" data-i18n="prod.breadcrumb.home">Accueil</a>
+        <span class="sep">/</span>
+        <a href="modeles.html" data-i18n="prod.breadcrumb.models">Modèles</a>
+        <span class="sep">/</span>
+        <span id="breadcrumbProduct">Produit</span>
+      </nav>
 
-      <div class="product-hero-grid">
-        <!-- Gallery V2 -->
-        <div class="product-gallery-v2">
-          <div class="gallery-swipe-container" id="gallerySwipe">
+      <div id="productContent" class="product-hero-grid">
+        <!-- Colonne gauche : galerie -->
+        <div class="gallery-container reveal">
+          <div class="gallery-swipe-wrapper" id="gallerySwipeWrapper">
             <div class="gallery-slides" id="gallerySlides"></div>
-            <div class="gallery-dots" id="galleryDots"></div>
-            <div class="gallery-counter" id="galleryCounter">1 / 1</div>
-
-            <!-- Flèche gauche -->
-            <button class="gallery-nav-arrow prev" id="galleryPrev" aria-label="Image précédente">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-
-            <!-- Flèche droite -->
-            <button class="gallery-nav-arrow next" id="galleryNext" aria-label="Image suivante">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
 
             <button class="gallery-zoom-btn" id="galleryZoomBtn" aria-label="Zoom">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" />
-                <path d="M11 8v6M8 11h6" />
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
             </button>
+
+            <div class="gallery-counter" id="galleryCounter">1 / 1</div>
+
+            <button class="gallery-nav-arrow prev" id="galleryPrev" aria-label="Précédent">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="gallery-nav-arrow next" id="galleryNext" aria-label="Suivant">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+
+            <div class="gallery-dots" id="galleryDots"></div>
           </div>
-          <!-- Bandeau de miniatures -->
+
           <div class="gallery-thumbs" id="galleryThumbs"></div>
         </div>
 
-        <!-- Product Info V2 -->
-        <div class="product-info-v2" id="productInfoV2">
-          <!-- Skeleton -->
-          <div class="product-skeleton">
-            <div class="sk-badge"></div>
-            <div class="sk-line large"></div>
-            <div class="sk-line medium"></div>
-            <div class="sk-line small"></div>
-            <div class="sk-line xlarge"></div>
+        <!-- Colonne droite : infos produit -->
+        <div class="product-info reveal reveal-delay-1" id="productInfo">
+          <div id="productBadge" class="badge badge-primary mb-sm"></div>
+          <h1 id="productName"></h1>
+          <p id="productSubtitle" class="product-subtitle"></p>
+
+          <div class="product-price-block" id="productPriceBlock">
+            <span id="productPrice" class="product-price-current"></span>
+            <span id="productOldPrice" class="product-price-old" style="display:none;"></span>
+            <span id="productDiscount" class="product-discount-badge" style="display:none;"></span>
           </div>
+
+          <p id="productShortDesc" class="product-short-desc"></p>
+
+          <!-- Sélecteur de couleur -->
+          <div class="color-selector" id="colorSelector" style="display:none;">
+            <div class="color-selector-label">
+              <span data-i18n="prod.color.label">Couleur :</span>
+              <span class="active-color" id="activeColorName"></span>
+            </div>
+            <div class="color-options" id="colorOptions"></div>
+          </div>
+
+          <a id="productCtaBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="margin-bottom: var(--space-lg);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="prod.whatsapp">Commander sur WhatsApp</span>
+          </a>
+
+          <div class="product-meta-grid" id="productMeta"></div>
         </div>
+      </div>
+
+      <!-- État erreur -->
+      <div id="productError" class="product-error" style="display: none;">
+        <span class="emoji" data-i18n="prod.error.emoji">😕</span>
+        <h2 data-i18n="prod.error.title">Produit non trouvé</h2>
+        <p data-i18n="prod.error.desc">Le modèle que vous recherchez n'existe pas ou a été retiré.</p>
+        <a href="modeles.html" class="btn btn-primary" data-i18n="prod.error.cta">Voir tous les modèles</a>
       </div>
     </div>
   </section>
 
-  <!-- Product Details Tabs V2 -->
-  <section class="section product-tabs-section">
+  <!-- ============ ONGLET ============ -->
+  <section class="section" style="padding-top: 0;">
     <div class="container">
-      <div class="tabs-nav-v2 reveal">
-        <button class="tab-btn-v2 active" data-tab="tabSpecs">
-          <span class="tab-icon">📋</span>
-          <span class="tab-label">Fiche Technique</span>
+      <div class="tabs-nav-v2 reveal" id="tabsNav">
+        <button class="tab-btn-v2 active" data-tab="specs">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span data-i18n="prod.tab.specs">Fiche Technique</span>
           <span class="tab-count" id="specsCount">0</span>
         </button>
-        <button class="tab-btn-v2" data-tab="tabFeatures">
-          <span class="tab-icon">✨</span>
-          <span class="tab-label">Caractéristiques</span>
+        <button class="tab-btn-v2" data-tab="features">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span data-i18n="prod.tab.features">Caractéristiques</span>
           <span class="tab-count" id="featuresCount">0</span>
         </button>
-        <button class="tab-btn-v2" data-tab="tabDescription">
-          <span class="tab-icon">📝</span>
-          <span class="tab-label">Description</span>
+        <button class="tab-btn-v2" data-tab="description">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span data-i18n="prod.tab.desc">Description</span>
         </button>
       </div>
 
-      <!-- Panels avec conteneur de transition -->
-      <div class="tab-panels-container">
-        <div class="tab-panel-v2 active" id="tabSpecs"></div>
-        <div class="tab-panel-v2" id="tabFeatures"></div>
-        <div class="tab-panel-v2" id="tabDescription"></div>
+      <!-- Fiche Technique -->
+      <div class="tab-panel-v2 active" id="tab-specs">
+        <div class="specs-table" id="specsTable"></div>
+      </div>
+
+      <!-- Caractéristiques -->
+      <div class="tab-panel-v2" id="tab-features">
+        <div class="features-grid-2" id="featuresGrid"></div>
+      </div>
+
+      <!-- Description -->
+      <div class="tab-panel-v2" id="tab-description">
+        <div class="description-content" id="descriptionContent"></div>
+        <div class="warranty-block mt-lg">
+          <h4 data-i18n="prod.warranty.title">✓ Garantie &amp; Service</h4>
+          <p data-i18n-html="prod.warranty.text">Tous nos véhicules électriques sont livrés avec une garantie constructeur <strong>sur le cadre</strong> et <strong>sur la batterie et le moteur</strong>.</p>
+        </div>
       </div>
     </div>
   </section>
-  <!-- Related Products -->
-  <section class="section">
+
+  <!-- ============ PRODUITS SIMILAIRES ============ -->
+  <section class="related-section" style="background: var(--bg-secondary); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 300px; background: var(--gradient-glow); pointer-events: none;"></div>
     <div class="container">
-      <div id="relatedProducts"></div>
+      <div class="section-header reveal">
+        <h2 data-i18n="prod.related.title">Modèles <span class="text-gradient">similaires</span></h2>
+        <p data-i18n="prod.related.subtitle">Découvrez d'autres modèles de la même catégorie</p>
+      </div>
+      <div class="grid-3" id="relatedProducts"></div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Précédent">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <img id="lightboxImg" src="" alt="">
+      <button class="lightbox-nav next" id="lightboxNext" aria-label="Suivant">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <!-- Partie supérieure du footer -->
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <div class="logo-icon">⚡</div>
+          <div class="footer-logo">
+            <div class="logo-icon" style="width:40px;height:40px;font-size:1.1rem;">⚡</div>
             <span>E-Scoot</span>
-          </a>
-          <p class="footer-desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de
-            qualité avec livraison et garantie.</p>
+          </div>
+          <p class="footer-desc" data-i18n="foot.desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de qualité avec livraison et garantie.</p>
         </div>
-
         <div class="footer-links-group">
           <div class="footer-links-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="modeles.html">Modèles</a></li>
-
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <h4 data-i18n="foot.nav.title">Navigation</h4>
+            <a href="index.html" data-i18n="nav.home">Accueil</a>
+            <a href="modeles.html" data-i18n="nav.models">Modèles</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
           </div>
           <div class="footer-links-col">
-            <h4>Nos services</h4>
-            <ul>
-              <li><a href="#">Garantie & SAV</a></li>
-              <li><a href="#">Livraison</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
+            <h4 data-i18n="foot.srv.title">Nos services</h4>
+            <a href="#" data-i18n="foot.srv.1">Garantie &amp; SAV</a>
+            <a href="#" data-i18n="foot.srv.2">Livraison</a>
+            <a href="#" data-i18n="foot.srv.3">FAQ</a>
+            <a href="#" data-i18n="foot.srv.4">Blog</a>
           </div>
           <div class="footer-links-col">
-            <h4>Contact</h4>
+            <h4 data-i18n="foot.contact.title">Contact</h4>
             <ul class="footer-contact-list">
-              <li><i>📞</i> <a href="tel:+213770286269">+213-770286269</a></li>
-              <li><i>✉️</i> <a href="mailto:sarlecocycleinnovations@gmail.com">sarlecocycleinnovations@gmail.com</a>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +213-770286269
               </li>
-              <li><i>📍</i> Bordj El Kiffan, Alger, Algérie</li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                sarlecocycleinnovations@gmail.com
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Bordj El Kiffan, Alger, Algérie
+              </li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Barre inférieure -->
+      <div class="footer-partner-bar">
+        <a href="https://aliexportss.com/en" target="_blank" rel="noopener noreferrer" data-i18n="foot.partner">🔗 Partenaire officiel</a>
+      </div>
+
       <div class="footer-bottom">
-        <p class="copyright">© 2026 E-Scoot. Tous droits réservés.</p>
-        <div class="footer-middle">
-          <div class="footer-partner">
-            <span class="partner-label">Partenaire officiel</span>
-            <a href="https://aliexportss.com/en" target="_blank" rel="noopener" class="partner-link">
-              <span class="partner-icon">🌏</span>
-              <span>AliExports</span>
-            </a>
-          </div>
-        </div>
+        <p class="footer-copyright" data-i18n="foot.copyright">© 2026 E-Scoot. Tous droits réservés.</p>
         <div class="footer-legal">
-          <a href="#">Mentions légales</a>
-          <span>•</span>
-          <a href="#">Politique de confidentialité</a>
-          <span>•</span>
-          <a href="#">CGV</a>
+          <a href="#" data-i18n="foot.legal.1">Mentions légales</a>
+          <a href="#" data-i18n="foot.legal.2">Politique de confidentialité</a>
+          <a href="#" data-i18n="foot.legal.3">CGV</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
+  <!-- ============ ELEMENTS FLOTTANTS ============ -->
+  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <button class="back-to-top" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-      stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 15l-6-6-6 6" />
-    </svg>
+
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
-  <!-- Scripts -->
-  <script src="js/products-data.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/gallery.js"></script>
-  <script src="js/produit.js"></script>
-  <script src="js/whatsapp-integration.js"></script>
-</body>
+  <div class="toast-container" id="toastContainer"></div>
 
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/translations.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/produit.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>

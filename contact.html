@@ -1,306 +1,331 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>contact || E-Scoot - Électrifiez votre vie</title>
-  <meta name="description"
-    content="Contactez E-Scoot pour toute question ou commande de véhicules électriques. WhatsApp, téléphone ou formulaire.">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <meta name="description" content="Contactez E-Scoot - véhicules électriques Algérie. WhatsApp, téléphone, email.">
+  <title data-i18n-title="nav.contact">Contact — E-Scoot</title>
+
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="contact-page">
-  <!-- Navigation (inchangée) -->
-  <nav class="navbar">
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
         <div class="logo-icon">⚡</div>
         <span>E-Scoot</span>
       </a>
-      <div class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="modeles.html">Modèles</a>
-        <a href="contact.html" class="active">Contact</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="modeles.html" data-i18n="nav.models">Modèles</a>
+        <a href="contact.html" class="active" data-i18n="nav.contact">Contact</a>
       </div>
+
       <div class="nav-actions">
-        <button class="btn-ghost" id="themeToggle" title="Changer le thème"></button>
-        <button class="mobile-toggle" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <button class="lang-btn" data-lang="ar" aria-label="العربية">AR</button>
+        </div>
+
+        <button id="themeToggle" aria-label="Basculer le thème">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <div class="page-header">
+  <!-- ============ HEADER CONTACT ============ -->
+  <header class="contact-header">
     <div class="container">
-      <h1>Contactez-<span class="text-gradient">nous</span></h1>
-      <p>Nous sommes à votre disposition pour toute question ou commande</p>
+      <h1><span data-i18n="contact.title"></span></h1>
+      <p data-i18n="contact.subtitle">Nous sommes à votre disposition pour toute question ou commande</p>
     </div>
-  </div>
+  </header>
 
-  <!-- Contact Section -->
-  <section class="section" style="padding-top: 0;">
+  <!-- ============ GRILLE CONTACT ============ -->
+  <main class="section" style="padding-top: 0;">
     <div class="container">
-      <div class="contact-grid reveal">
-        <!-- Contact Info (inchangée, sauf ajout d’une classe pour les icônes animées) -->
-        <div class="contact-info">
-          <h2>Parlons de votre projet</h2>
-          <p>Vous avez une question sur nos modèles ? Vous souhaitez passer commande ? Contactez-nous par le moyen qui
-            vous convient le mieux.</p>
+      <div class="contact-grid">
+        <!-- Colonne gauche : coordonnees -->
+        <div class="contact-info reveal">
+          <h2 data-i18n="contact.info.title">Parlons de votre projet</h2>
+          <p data-i18n="contact.info.desc">
+            Vous avez une question sur nos modèles ? Vous souhaitez passer commande ? Contactez-nous par le moyen qui
+            vous convient le mieux.
+          </p>
 
+          <!-- WhatsApp -->
           <div class="contact-method">
-            <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
                 <path
-                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
             </div>
-            <div>
-              <h4>WhatsApp</h4>
-              <p>+213 770 28 62 69</p>
-              <p style="font-size: 0.8rem; color: var(--primary);">Réponse rapide garantie</p>
+            <div class="contact-method-text">
+              <h3 data-i18n="contact.method.wa">WhatsApp</h3>
+              <p data-i18n="contact.method.wa.val">+213 770 28 62 69</p>
+              <p class="note" data-i18n="contact.method.wa.note">Réponse rapide garantie</p>
             </div>
           </div>
 
+          <!-- Téléphone -->
           <div class="contact-method">
-            <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </div>
-            <div>
-              <h4>Téléphone</h4>
-              <p>07 70 28 62 69</p>
+            <div class="contact-method-text">
+              <h3 data-i18n="contact.method.tel">Téléphone</h3>
+              <p data-i18n="contact.method.tel.val">07 70 28 62 69</p>
             </div>
           </div>
 
+          <!-- Email -->
           <div class="contact-method">
-            <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
             </div>
-            <div>
-              <h4>Email</h4>
-              <p>sarlecocycleinnovations@gmail.com</p>
-              <p style="font-size: 0.8rem;">Réponse sous 24h</p>
+            <div class="contact-method-text">
+              <h3 data-i18n="contact.method.email">Email</h3>
+              <p data-i18n="contact.method.email.val">sarlecocycleinnovations@gmail.com</p>
+              <p class="note" data-i18n="contact.method.email.note">Réponse sous 24h</p>
             </div>
           </div>
 
+          <!-- Adresse -->
           <div class="contact-method">
-            <div class="icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
             </div>
-            <div>
-              <h4>Adresse</h4>
-              <p>Bordj El Kiffan, Alger, Algérie</p>
+            <div class="contact-method-text">
+              <h3 data-i18n="contact.method.addr">Adresse</h3>
+              <p data-i18n="contact.method.addr.val">Bordj El Kiffan, Alger, Algérie</p>
             </div>
           </div>
 
-          <div class="social-links-large">
-            <a href="https://www.facebook.com/share/1CozhGvRGJ/?mibextid=wwXIfr" target="_blank" rel="noopener">
-              <span>📘</span>
-              <span>Facebook</span>
-            </a>
-          </div>
+          <a href="https://www.facebook.com/share/1QEURTyHpE/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+            class="btn-facebook mt-md">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+            <span data-i18n="contact.social.fb">Facebook</span>
+          </a>
         </div>
 
-        <!-- Contact Form -->
-        <div class="contact-form">
-          <h3>Envoyez-nous un message</h3>
+        <!-- Colonne droite : formulaire -->
+        <div class="contact-form-wrapper reveal reveal-delay-1">
+          <h3 data-i18n="contact.form.title">Envoyez-nous un message</h3>
+
           <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">Prénom <span class="required">*</span></label>
-                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Votre prénom"
-                  required>
+                <label for="firstName" data-i18n="contact.form.firstname">Prénom <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" required
+                  data-i18n-placeholder="contact.form.firstname" placeholder="Votre prénom">
               </div>
               <div class="form-group">
-                <label for="lastName">Nom <span class="required">*</span></label>
-                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Votre nom" required>
+                <label for="lastName" data-i18n="contact.form.lastname">Nom <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" required data-i18n-placeholder="contact.form.lastname"
+                  placeholder="Votre nom">
               </div>
             </div>
+
             <div class="form-group">
-              <label for="email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="votre@email.com" required>
+              <label for="email" data-i18n="contact.form.email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required data-i18n-placeholder="contact.form.email"
+                placeholder="votre@email.com">
             </div>
+
             <div class="form-group">
-              <label for="phone">Téléphone</label>
-              <input type="tel" id="phone" name="phone" class="form-control" placeholder="+213 XXX XX XX XX">
-              <p class="form-hint">Format: +213 suivi de 9 chiffres</p>
+              <label for="phone" data-i18n="contact.form.phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone" data-i18n-placeholder="contact.form.phone"
+                placeholder="+213 XXX XX XX XX">
+              <p class="hint" data-i18n="contact.form.phone.hint">Format: +213 suivi de 9 chiffres</p>
             </div>
-            <!-- NOUVEAU : Sélecteur de sujet par boutons -->
+
             <div class="form-group">
-              <label for="subject">Sujet <span class="required">*</span></label>
-              <div class="subject-selector" role="radiogroup" aria-required="true" id="subject">
-                <input type="radio" name="subject" id="sub-commande" value="commande" required>
-                <label for="sub-commande">🛒 Commande</label>
+              <label data-i18n="contact.form.subject">Sujet <span class="required">*</span></label>
+              <div class="subject-selector">
+                <input type="radio" name="subject" id="sub-order" value="Commande" required>
+                <label for="sub-order" data-i18n="contact.form.sub.order">🛒 Commande</label>
 
-                <input type="radio" name="subject" id="sub-renseignement" value="renseignement">
-                <label for="sub-renseignement">💬 Renseignement</label>
+                <input type="radio" name="subject" id="sub-info" value="Renseignement">
+                <label for="sub-info" data-i18n="contact.form.sub.info">💬 Renseignement</label>
 
-                <input type="radio" name="subject" id="sub-essai" value="essai">
-                <label for="sub-essai">🏍️ Essai</label>
+                <input type="radio" name="subject" id="sub-test" value="Essai">
+                <label for="sub-test" data-i18n="contact.form.sub.test">🏍️ Essai</label>
 
-                <input type="radio" name="subject" id="sub-sav" value="sav">
-                <label for="sub-sav">🛠️ SAV</label>
+                <input type="radio" name="subject" id="sub-sav" value="SAV">
+                <label for="sub-sav" data-i18n="contact.form.sub.sav">🛠️ SAV</label>
 
-                <input type="radio" name="subject" id="sub-autre" value="autre">
-                <label for="sub-autre">✨ Autre</label>
+                <input type="radio" name="subject" id="sub-other" value="Autre">
+                <label for="sub-other" data-i18n="contact.form.sub.other">✨ Autre</label>
               </div>
             </div>
+
             <div class="form-group">
-              <label for="message">Message <span class="required">*</span></label>
-              <textarea id="message" name="message" class="form-control" placeholder="Décrivez votre demande..."
-                required></textarea>
+              <label for="message" data-i18n="contact.form.message">Message <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="5" required data-i18n-placeholder="contact.form.message.ph"
+                placeholder="Décrivez votre demande..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-full btn-lg">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              Envoyer le message
+              <span data-i18n="contact.form.submit">Envoyer le message</span>
             </button>
           </form>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Map Section -->
-  <section class="section" style="padding-top: 0;">
+  <!-- ============ MAP ============ -->
+  <section class="map-section">
     <div class="container">
-      <!-- Carte seule -->
-      <div class="map-container reveal">
+      <div class="map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3196.1934836826563!2d3.2329554!3d36.765925599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8038b7135daa5f31%3A0xe1da2e0a03da92d5!2sECOCYCLEINNOVATIONS!5e0!3m2!1sfr!2sdz!4v1776978020220!5m2!1sfr!2sdz"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102478.60587389039!2d3.1608189!3d36.6751743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQwJzMwLjYiTiAzwrAxMCcxOS4wIkU!5e0!3m2!1sfr!2sdz!4v1"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
-
-      <!-- Bloc d’information en dessous -->
-      <div class="map-info reveal">
-        <div class="map-info-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-        </div>
-        <p class="map-info-address">Bordj El Kiffan, Alger, Algérie</p>
-        <p class="map-info-sub">Showroom ouvert</p>
-        <a href="https://maps.app.goo.gl/t59S5ix5UTtQUraT9?g_st=iw" target="_blank" rel="noopener"
-          class="btn btn-primary btn-sm">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          Ouvrir dans Google Maps
-        </a>
+      <div class="map-info">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <p data-i18n="contact.method.addr.val">Bordj El Kiffan, Alger, Algérie</p>
+        <span data-i18n="contact.map.open">Showroom ouvert</span>
+        <br><br>
+        <a href="https://maps.google.com/maps?q=Bordj+El+Kiffan,+Alger" target="_blank" rel="noopener noreferrer"
+          class="btn btn-secondary btn-sm" data-i18n="contact.map.btn">Ouvrir dans Google Maps</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer (inchangé) -->
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <div class="logo-icon">⚡</div>
+          <div class="footer-logo">
+            <div class="logo-icon" style="width:40px;height:40px;font-size:1.1rem;">⚡</div>
             <span>E-Scoot</span>
-          </a>
-          <p class="footer-desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de
-            qualité avec livraison et garantie.</p>
+          </div>
+          <p class="footer-desc" data-i18n="foot.desc">Votre spécialiste des véhicules électriques en Algérie. Motos et
+            trottinettes de qualité avec livraison et garantie.</p>
         </div>
         <div class="footer-links-group">
           <div class="footer-links-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="modeles.html">Modèles</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <h4 data-i18n="foot.nav.title">Navigation</h4>
+            <a href="index.html" data-i18n="nav.home">Accueil</a>
+            <a href="modeles.html" data-i18n="nav.models">Modèles</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
           </div>
           <div class="footer-links-col">
-            <h4>Nos services</h4>
-            <ul>
-              <li><a href="#">Garantie & SAV</a></li>
-              <li><a href="#">Livraison</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
+            <h4 data-i18n="foot.srv.title">Nos services</h4>
+            <a href="#" data-i18n="foot.srv.1">Garantie &amp; SAV</a>
+            <a href="#" data-i18n="foot.srv.2">Livraison</a>
+            <a href="#" data-i18n="foot.srv.3">FAQ</a>
+            <a href="#" data-i18n="foot.srv.4">Blog</a>
           </div>
           <div class="footer-links-col">
-            <h4>Contact</h4>
+            <h4 data-i18n="foot.contact.title">Contact</h4>
             <ul class="footer-contact-list">
-              <li><i>📞</i> <a href="tel:+213770286269">+213-770286269</a></li>
-              <li><i>✉️</i> <a href="mailto:sarlecocycleinnovations@gmail.com">sarlecocycleinnovations@gmail.com</a>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                +213-770286269
               </li>
-              <li><i>📍</i> Bordj El Kiffan, Alger, Algérie</li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                sarlecocycleinnovations@gmail.com
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Bordj El Kiffan, Alger, Algérie
+              </li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="footer-partner-bar">
+        <a href="https://aliexportss.com/en" target="_blank" rel="noopener noreferrer" data-i18n="foot.partner">🔗
+          Partenaire officiel</a>
+      </div>
+
       <div class="footer-bottom">
-        <p class="copyright">© 2026 E-Scoot. Tous droits réservés.</p>
-        <div class="footer-middle">
-          <div class="footer-partner">
-            <span class="partner-label">Partenaire officiel</span>
-            <a href="https://aliexportss.com/en" target="_blank" rel="noopener" class="partner-link">
-              <span class="partner-icon">🌏</span>
-              <span>AliExports</span>
-            </a>
-          </div>
-        </div>
+        <p class="footer-copyright" data-i18n="foot.copyright">© 2026 E-Scoot. Tous droits réservés.</p>
         <div class="footer-legal">
-          <a href="#">Mentions légales</a>
-          <span>•</span>
-          <a href="#">Politique de confidentialité</a>
-          <span>•</span>
-          <a href="#">CGV</a>
+          <a href="#" data-i18n="foot.legal.1">Mentions légales</a>
+          <a href="#" data-i18n="foot.legal.2">Politique de confidentialité</a>
+          <a href="#" data-i18n="foot.legal.3">CGV</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+  <!-- ============ ELEMENTS FLOTTANTS ============ -->
+  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
       <path
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   </a>
-  <button class="back-to-top" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path d="M18 15l-6-6-6 6" />
     </svg>
   </button>
 
-  <!-- Scripts -->
-  <script src="js/products-data.js"></script>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/translations.js"></script>
   <script src="js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="js/contact.js"></script>
-  <script src="js/whatsapp-integration.js"></script>
 </body>
 
 </html>

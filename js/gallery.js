@@ -1,58 +1,37 @@
 /* =============================================
-   E-SCOOT v2.0 — Lightbox
+   E-SCOOT v3.0 — Lightbox
    =============================================
-   Utilisé uniquement sur : produit.html
-   Dépendances : main.js
-
-   Fonctions exposées :
-   - openLightbox(index)
-   - closeLightbox()
-   - nextImage()
-   - prevImage()
+   Utilisé sur : produit.html
    ============================================= */
 
-
-/* ===========================================
-   VARIABLES D'ÉTAT
-   =========================================== */
-
-/** Tableau d'images actuellement visibles dans la lightbox */
 let galleryImages = [];
-
-/** Index de l'image affichée dans la lightbox */
 let currentImageIndex = 0;
-
-
-/* ===========================================
-   INITIALISATION
-   =========================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
   initLightbox();
 });
 
-
-/* ===========================================
-   LIGHTBOX
-   =========================================== */
-
-/**
- * Initialise les interactions de la lightbox :
- * - Fermeture au clic sur le fond
- * - Navigation clavier (Échap, ←, →)
- */
 function initLightbox() {
-  const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return;
+  const overlay = document.getElementById('lightboxOverlay');
+  if (!overlay) return;
 
-  // Fermeture en cliquant sur le fond (pas sur l'image)
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+  // Fermeture clic sur fond
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeLightbox();
   });
 
-  // Navigation clavier
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
+  // Boutons
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
+
+  // Clavier
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('active')) return;
     switch (e.key) {
       case 'Escape': closeLightbox(); break;
       case 'ArrowLeft': prevImage(); break;
@@ -61,69 +40,54 @@ function initLightbox() {
   });
 }
 
-/**
- * Ouvre la lightbox sur l'image cliquée.
- * Reconstruit `galleryImages` depuis le DOM.
- * @param {number} index - Index de l'image dans la grille visible
- */
 function openLightbox(index) {
-  const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return;
+  const overlay = document.getElementById('lightboxOverlay');
+  if (!overlay) return;
 
-  // Lit les images actuellement visibles depuis le DOM
-  const visibleItems = Array.from(document.querySelectorAll('.gallery-item'));
-  galleryImages = visibleItems.map(item => ({
-    src: item.querySelector('img').src,
-    alt: item.querySelector('img').alt
-  }));
+  // Récupère les images depuis les slides de la galerie
+  const slides = document.querySelectorAll('.gallery-slide img');
+  galleryImages = Array.from(slides).map(function(img) {
+    return { src: img.src, alt: img.alt };
+  });
 
-  currentImageIndex = Math.min(index, galleryImages.length - 1);
+  if (galleryImages.length === 0) return;
+
+  currentImageIndex = Math.min(index || 0, galleryImages.length - 1);
   updateLightboxImage();
-
-  lightbox.classList.add('active');
+  overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-/** Ferme la lightbox et rétablit le scroll */
 function closeLightbox() {
-  const lightbox = document.getElementById('lightbox');
-  if (lightbox) {
-    lightbox.classList.remove('active');
+  const overlay = document.getElementById('lightboxOverlay');
+  if (overlay) {
+    overlay.classList.remove('active');
     document.body.style.overflow = '';
   }
 }
 
-/** Passe à l'image suivante (boucle) */
 function nextImage() {
+  if (galleryImages.length === 0) return;
   currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
   updateLightboxImage();
 }
 
-/** Revient à l'image précédente (boucle) */
 function prevImage() {
+  if (galleryImages.length === 0) return;
   currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
   updateLightboxImage();
 }
 
-/**
- * Met à jour l'image affichée dans la lightbox avec un fondu.
- * Met aussi à jour le compteur "N / Total".
- */
 function updateLightboxImage() {
   const img = document.getElementById('lightboxImg');
   const counter = document.getElementById('lightboxCounter');
 
   if (img && galleryImages[currentImageIndex]) {
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = galleryImages[currentImageIndex].src;
-      img.alt = galleryImages[currentImageIndex].alt;
-      img.style.opacity = '1';
-      img.style.transition = 'opacity 0.15s ease';
-    }, 150);
+    img.src = galleryImages[currentImageIndex].src;
+    img.alt = galleryImages[currentImageIndex].alt;
   }
 
-  if (counter) {
-    counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+  if (counter && galleryImages.length > 0) {
+    counter.textContent = (currentImageIndex + 1) + ' / ' + galleryImages.length;
   }
 }

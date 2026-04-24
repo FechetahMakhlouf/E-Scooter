@@ -1,181 +1,189 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
-
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modèles || E-Scoot - Électrifiez votre vie</title>
-  <meta name="description"
-    content="Découvrez notre gamme complète de motos et trottinettes électriques. Q11 MAX, G-63, M8, N7 et plus.">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-</head>
+  <meta name="description" content="Découvrez nos 8 modèles de véhicules électriques - motos et trottinettes. E-Scoot Algérie.">
+  <title data-i18n-title="nav.models">Modèles — E-Scoot</title>
 
-<body class="models-page">
-  <!-- Navigation -->
-  <nav class="navbar">
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
         <div class="logo-icon">⚡</div>
         <span>E-Scoot</span>
       </a>
-      <div class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="modeles.html" class="active">Modèles</a>
 
-        <a href="contact.html">Contact</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="modeles.html" class="active" data-i18n="nav.models">Modèles</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </div>
+
       <div class="nav-actions">
-        <button class="btn-ghost" id="themeToggle" title="Changer le thème"></button>
-        <button class="mobile-toggle" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="fr" aria-label="Français">FR</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <button class="lang-btn" data-lang="ar" aria-label="العربية">AR</button>
+        </div>
+
+        <button id="themeToggle" aria-label="Basculer le thème">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <div class="page-header">
+  <!-- ============ HEADER PAGE ============ -->
+  <header class="models-header">
     <div class="container">
-      <h1>Nos <span class="text-gradient">Modèles</span></h1>
-      <p>8 véhicules électriques pour tous les besoins et tous les budgets</p>
+      <h1 data-i18n="models.title">Nos <span class="text-gradient">Modèles</span></h1>
+      <p data-i18n="models.subtitle">8 véhicules électriques pour tous les besoins et tous les budgets</p>
     </div>
-  </div>
+  </header>
 
-  <!-- Filters Bar -->
-  <div class="container">
-    <div class="filters-bar reveal">
-      <div class="filter-group">
-        <label>Catégorie :</label>
-        <div class="filter-tags">
-          <button class="filter-tag active" data-category="all">Tous</button>
-          <button class="filter-tag" data-category="electric-motorcycle">Motos</button>
-          <button class="filter-tag" data-category="electric-scooter">Trottinettes</button>
+  <!-- ============ FILTRES & GRILLE ============ -->
+  <main class="section" style="padding-top: 0;">
+    <div class="container">
+      <!-- Barre de filtres -->
+      <div class="filters-bar reveal">
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="models.filter.cat">Catégorie :</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-category="all" data-i18n="models.filter.all">Tous</button>
+            <button class="filter-tag" data-category="electric-motorcycle" data-i18n="models.filter.moto">Motos</button>
+            <button class="filter-tag" data-category="electric-scooter" data-i18n="models.filter.trot">Trottinettes</button>
+          </div>
         </div>
-      </div>
-      <div class="filter-group">
-        <label>Prix :</label>
-        <div class="filter-select-wrapper">
-          <select class="filter-select" id="priceSelect">
-            <option value="">Tous les prix</option>
-            <option value="0-0">Moins de 000 000 DA</option>
-            <option value="0-0">000 000 - 000 000 DA</option>
-            <option value="0-0">000 000 - 000 000 DA</option>
-            <option value="0-0">Plus de 000 000 DA</option>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="models.filter.price">Prix :</span>
+          <select id="filterPrice" class="filter-select">
+            <option value="all" data-i18n="models.filter.price.all">Tous les prix</option>
+            <option value="0-150000" data-i18n="models.filter.price.1">Moins de 150 000 DA</option>
+            <option value="150000-300000" data-i18n="models.filter.price.2">150 000 - 300 000 DA</option>
+            <option value="300000-500000" data-i18n="models.filter.price.3">300 000 - 500 000 DA</option>
+            <option value="500000" data-i18n="models.filter.price.4">Plus de 500 000 DA</option>
           </select>
         </div>
-      </div>
-      <div class="filter-group">
-        <label>Trier :</label>
-        <div class="filter-select-wrapper">
-          <select class="filter-select" id="sortSelect">
-            <option value="">Par défaut</option>
-            <option value="price-asc">Prix croissant</option>
-            <option value="price-desc">Prix décroissant</option>
-            <option value="name">Nom A-Z</option>
+
+        <div class="filter-group">
+          <span class="filter-label" data-i18n="models.filter.sort">Trier :</span>
+          <select id="sortOrder" class="filter-select">
+            <option value="default" data-i18n="models.filter.sort.def">Par défaut</option>
+            <option value="price-asc" data-i18n="models.filter.sort.asc">Prix croissant</option>
+            <option value="price-desc" data-i18n="models.filter.sort.desc">Prix décroissant</option>
+            <option value="name" data-i18n="models.filter.sort.name">Nom A-Z</option>
           </select>
         </div>
+
+        <div class="filter-count" id="resultCount">8 <span data-i18n="models.count.plural">modèles</span></div>
       </div>
-      <div class="results-count" id="resultsCount">8 modèles</div>
-    </div>
-  </div>
 
-  <!-- Products Grid -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="products-grid" id="productsGrid"></div>
-    </div>
-  </section>
+      <!-- Grille de produits -->
+      <div id="productsGrid" class="product-grid"></div>
 
-  <!-- Footer -->
+      <!-- État vide -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <span class="emoji" data-i18n="models.empty.emoji">🔍</span>
+        <h3 data-i18n="models.empty.title">Aucun modèle trouvé</h3>
+        <p data-i18n="models.empty.desc">Essayez d'autres critères de recherche</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <!-- Partie supérieure du footer -->
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <div class="logo-icon">⚡</div>
+          <div class="footer-logo">
+            <div class="logo-icon" style="width:40px;height:40px;font-size:1.1rem;">⚡</div>
             <span>E-Scoot</span>
-          </a>
-          <p class="footer-desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de
-            qualité avec livraison et garantie.</p>
+          </div>
+          <p class="footer-desc" data-i18n="foot.desc">Votre spécialiste des véhicules électriques en Algérie. Motos et trottinettes de qualité avec livraison et garantie.</p>
         </div>
-
         <div class="footer-links-group">
           <div class="footer-links-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="modeles.html">Modèles</a></li>
-
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <h4 data-i18n="foot.nav.title">Navigation</h4>
+            <a href="index.html" data-i18n="nav.home">Accueil</a>
+            <a href="modeles.html" data-i18n="nav.models">Modèles</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
           </div>
           <div class="footer-links-col">
-            <h4>Nos services</h4>
-            <ul>
-              <li><a href="#">Garantie & SAV</a></li>
-              <li><a href="#">Livraison</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Blog</a></li>
-            </ul>
+            <h4 data-i18n="foot.srv.title">Nos services</h4>
+            <a href="#" data-i18n="foot.srv.1">Garantie &amp; SAV</a>
+            <a href="#" data-i18n="foot.srv.2">Livraison</a>
+            <a href="#" data-i18n="foot.srv.3">FAQ</a>
+            <a href="#" data-i18n="foot.srv.4">Blog</a>
           </div>
           <div class="footer-links-col">
-            <h4>Contact</h4>
+            <h4 data-i18n="foot.contact.title">Contact</h4>
             <ul class="footer-contact-list">
-              <li><i>📞</i> <a href="tel:+213770286269">+213-770286269</a></li>
-              <li><i>✉️</i> <a href="mailto:sarlecocycleinnovations@gmail.com">sarlecocycleinnovations@gmail.com</a>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +213-770286269
               </li>
-              <li><i>📍</i> Bordj El Kiffan, Alger, Algérie</li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                sarlecocycleinnovations@gmail.com
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Bordj El Kiffan, Alger, Algérie
+              </li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Barre inférieure -->
+      <div class="footer-partner-bar">
+        <a href="https://aliexportss.com/en" target="_blank" rel="noopener noreferrer" data-i18n="foot.partner">🔗 Partenaire officiel</a>
+      </div>
+
       <div class="footer-bottom">
-        <p class="copyright">© 2026 E-Scoot. Tous droits réservés.</p>
-        <div class="footer-middle">
-          <div class="footer-partner">
-            <span class="partner-label">Partenaire officiel</span>
-            <a href="https://aliexportss.com/en" target="_blank" rel="noopener" class="partner-link">
-              <span class="partner-icon">🌏</span>
-              <span>AliExports</span>
-            </a>
-          </div>
-        </div>
+        <p class="footer-copyright" data-i18n="foot.copyright">© 2026 E-Scoot. Tous droits réservés.</p>
         <div class="footer-legal">
-          <a href="#">Mentions légales</a>
-          <span>•</span>
-          <a href="#">Politique de confidentialité</a>
-          <span>•</span>
-          <a href="#">CGV</a>
+          <a href="#" data-i18n="foot.legal.1">Mentions légales</a>
+          <a href="#" data-i18n="foot.legal.2">Politique de confidentialité</a>
+          <a href="#" data-i18n="foot.legal.3">CGV</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
+  <!-- ============ ELEMENTS FLOTTANTS ============ -->
+  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <button class="back-to-top" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-      stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 15l-6-6-6 6" />
-    </svg>
+
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
-  <!-- Scripts -->
-  <script src="js/products-data.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/filtering.js"></script>
-  <script src="js/whatsapp-integration.js"></script>
-</body>
+  <div class="toast-container" id="toastContainer"></div>
 
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/translations.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/filtering.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Force le rendu initial des produits
+    setTimeout(function() {
+      if (typeof applyFilters === 'function') applyFilters();
+    }, 100);
+  </script>
+</body>
 </html>
