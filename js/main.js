@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const isLight = newTheme === 'light';
         const currentSrc = heroImage.src;
         if (isLight) {
-          heroImage.src = 'assets/images/hero-main-2.jpg';
+          heroImage.src = 'assets/images/hero-main-2.webp';
         } else {
-          heroImage.src = 'assets/images/hero-main-1.jpg';
+          heroImage.src = 'assets/images/hero-main-1.webp';
         }
       }
     });

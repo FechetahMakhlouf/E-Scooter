@@ -187,7 +187,7 @@ function initGalleryV2(images, productName) {
   if (thumbsContainer) thumbsContainer.innerHTML = '';
 
   // Slides
-  images.forEach(function(src, i) {
+  images.forEach(function (src, i) {
     const div = document.createElement('div');
     div.className = 'gallery-slide';
     const img = document.createElement('img');
@@ -199,7 +199,7 @@ function initGalleryV2(images, productName) {
   });
 
   // Dots
-  images.forEach(function(_, i) {
+  images.forEach(function (_, i) {
     const dot = document.createElement('button');
     dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
     dot.dataset.index = i;
@@ -209,7 +209,7 @@ function initGalleryV2(images, productName) {
 
   // Thumbs
   if (thumbsContainer) {
-    images.forEach(function(src, i) {
+    images.forEach(function (src, i) {
       const thumb = document.createElement('div');
       thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
       thumb.dataset.index = i;
@@ -218,7 +218,7 @@ function initGalleryV2(images, productName) {
       img.alt = productName + ' - Miniature ' + (i + 1);
       img.loading = 'lazy';
       thumb.appendChild(img);
-      thumb.addEventListener('click', function() {
+      thumb.addEventListener('click', function () {
         updateGalleryPosition(parseInt(thumb.dataset.index));
       });
       thumbsContainer.appendChild(thumb);
@@ -246,7 +246,7 @@ function initGalleryV2(images, productName) {
   function updateThumbnails() {
     if (!thumbsContainer) return;
     const thumbs = thumbsContainer.querySelectorAll('.gallery-thumb');
-    thumbs.forEach(function(thumb, i) {
+    thumbs.forEach(function (thumb, i) {
       thumb.classList.toggle('active', i === currentIndex);
     });
     const activeThumb = thumbs[currentIndex];
@@ -262,7 +262,7 @@ function initGalleryV2(images, productName) {
     slidesContainer.style.transform = 'translateX(' + translateX + '%)';
 
     const dots = dotsContainer.querySelectorAll('.gallery-dot');
-    dots.forEach(function(dot, i) {
+    dots.forEach(function (dot, i) {
       dot.classList.toggle('active', i === index);
     });
 
@@ -273,25 +273,25 @@ function initGalleryV2(images, productName) {
 
   // Flèches
   if (prevBtn) {
-    prevBtn.addEventListener('click', function(e) {
+    prevBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       if (currentIndex > 0) updateGalleryPosition(currentIndex - 1);
     });
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener('click', function(e) {
+    nextBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       if (currentIndex < images.length - 1) updateGalleryPosition(currentIndex + 1);
     });
   }
 
   // Touch
-  slidesContainer.addEventListener('touchstart', function(e) {
+  slidesContainer.addEventListener('touchstart', function (e) {
     onStart(e.touches[0].clientX);
   }, { passive: true });
 
-  slidesContainer.addEventListener('touchmove', function(e) {
+  slidesContainer.addEventListener('touchmove', function (e) {
     onMove(e.touches[0].clientX);
   }, { passive: true });
 
@@ -309,7 +309,7 @@ function initGalleryV2(images, productName) {
     const diffX = clientX - startX;
     const percent = (diffX / slidesContainer.offsetWidth) * 100;
     const bounded = Math.max(-currentIndex * 100 - 20, Math.min(-currentIndex * 100 + 20, percent + translateX));
-    animationFrame = requestAnimationFrame(function() {
+    animationFrame = requestAnimationFrame(function () {
       slidesContainer.style.transform = 'translateX(' + bounded + '%)';
     });
   }
@@ -334,7 +334,7 @@ function initGalleryV2(images, productName) {
   }
 
   // Dots
-  dotsContainer.addEventListener('click', function(e) {
+  dotsContainer.addEventListener('click', function (e) {
     const dot = e.target.closest('.gallery-dot');
     if (dot) {
       updateGalleryPosition(parseInt(dot.dataset.index));
@@ -343,7 +343,7 @@ function initGalleryV2(images, productName) {
 
   // Zoom
   if (zoomBtn) {
-    zoomBtn.addEventListener('click', function() {
+    zoomBtn.addEventListener('click', function () {
       if (typeof openLightbox === 'function') {
         openLightbox(currentIndex);
       }
@@ -351,7 +351,7 @@ function initGalleryV2(images, productName) {
   }
 
   updateArrows();
-  window.getCurrentGalleryIndex = function() { return currentIndex; };
+  window.getCurrentGalleryIndex = function () { return currentIndex; };
 }
 
 /* ===========================================
@@ -362,19 +362,19 @@ function initColorSelector(product) {
   const label = document.getElementById('activeColorName');
   if (!container || !product.colors) return;
 
-  container.innerHTML = product.colors.map(function(color, index) {
+  container.innerHTML = product.colors.map(function (color, index) {
     return '<div class="color-option' + (index === 0 ? ' selected' : '') + '" data-color-index="' + index + '" data-color-name="' + color.name + '">' +
       '<div class="color-swatch" style="background:' + color.hex + '"></div>' +
       '<span class="color-name">' + color.name + '</span>' +
       '</div>';
   }).join('');
 
-  container.querySelectorAll('.color-option').forEach(function(opt) {
-    opt.addEventListener('click', function() {
+  container.querySelectorAll('.color-option').forEach(function (opt) {
+    opt.addEventListener('click', function () {
       const colorIndex = parseInt(opt.dataset.colorIndex);
       const colorName = opt.dataset.colorName;
 
-      container.querySelectorAll('.color-option').forEach(function(o) {
+      container.querySelectorAll('.color-option').forEach(function (o) {
         o.classList.remove('selected');
       });
       opt.classList.add('selected');
@@ -405,11 +405,11 @@ function initTabsV2() {
   const tabBtns = document.querySelectorAll('.tab-btn-v2');
   const tabPanels = document.querySelectorAll('.tab-panel-v2');
 
-  tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
       const target = btn.dataset.tab;
-      tabBtns.forEach(function(b) { b.classList.remove('active'); });
-      tabPanels.forEach(function(p) { p.classList.remove('active'); });
+      tabBtns.forEach(function (b) { b.classList.remove('active'); });
+      tabPanels.forEach(function (p) { p.classList.remove('active'); });
       btn.classList.add('active');
       const panel = document.getElementById('tab-' + target);
       if (panel) panel.classList.add('active');
@@ -428,17 +428,17 @@ function loadSpecsTab(product) {
   if (!table) return;
 
   const specsEntries = Object.entries(product.specs);
-  const specsHtml = specsEntries.map(function(entry) {
+  const specsHtml = specsEntries.map(function (entry) {
     const key = entry[0];
     const value = entry[1];
     var translatedKey = typeof getTranslation === 'function' ? getTranslation('spec.' + key) : null;
     var displayKey = translatedKey || key;
     return '<div class="spec-row">' +
       '<div class="spec-key">' +
-        '<span class="spec-icon">' + getSpecIcon(key) + '</span>' + displayKey +
+      '<span class="spec-icon">' + getSpecIcon(key) + '</span>' + displayKey +
       '</div>' +
       '<div class="spec-value">' + value + '</div>' +
-    '</div>';
+      '</div>';
   }).join('');
 
   table.innerHTML = specsHtml;
@@ -506,15 +506,15 @@ function loadFeaturesTab(product) {
     return;
   }
 
-  grid.innerHTML = features.map(function(f) {
+  grid.innerHTML = features.map(function (f) {
     var icon = getFeatureIcon(f.icon || 'zap');
     return '<div class="feature-card-small">' +
       '<div class="feature-icon-round">' + icon + '</div>' +
       '<div>' +
-        '<h4>' + f.title + '</h4>' +
-        '<p>' + f.desc + '</p>' +
+      '<h4>' + f.title + '</h4>' +
+      '<p>' + f.desc + '</p>' +
       '</div>' +
-    '</div>';
+      '</div>';
   }).join('');
 
   const countEl = document.getElementById('featuresCount');
@@ -557,30 +557,30 @@ function loadRelatedProducts(product) {
   var btnLabel = typeof getTranslation === 'function' ? getTranslation('btn.view') : 'Voir \u2192';
 
   container.style.display = '';
-  container.innerHTML = related.map(function(p, index) {
+  container.innerHTML = related.map(function (p, index) {
     var pSubtitle = typeof getProductText === 'function' ? getProductText(p, 'subtitle', lang) : (p.subtitle || '');
     var pBadgeKey = p.category === 'electric-motorcycle' ? 'badge.moto' : 'badge.trot';
     var pBadgeLabel = typeof getTranslation === 'function' ? getTranslation(pBadgeKey) : p.categoryLabel;
     return '<div class="card product-card">' +
       '<div class="badge">' + (pBadgeLabel || '') + '</div>' +
       '<div class="card-image">' +
-        '<a href="produit.html?id=' + p.id + '">' +
-          '<img src="' + p.mainImage + '" alt="' + p.name + '" loading="lazy">' +
-        '</a>' +
+      '<a href="produit.html?id=' + p.id + '">' +
+      '<img src="' + p.mainImage + '" alt="' + p.name + '" loading="lazy">' +
+      '</a>' +
       '</div>' +
       '<div class="card-content">' +
-        '<h3 class="card-title">' + p.name + '</h3>' +
-        '<p class="card-subtitle">' + (pSubtitle || '') + '</p>' +
-        '<div class="specs-preview">' +
-          '<div class="spec-item"><span class="spec-label">' + vitesseLabel + '</span><span class="spec-value">' + (p.specs['Vitesse Max'] || p.specs['Vitesse'] || '-') + '</span></div>' +
-          '<div class="spec-item"><span class="spec-label">' + autonomieLabel + '</span><span class="spec-value">' + (p.specs['Autonomie'] || '-') + '</span></div>' +
-          '<div class="spec-item"><span class="spec-label">' + moteurLabel + '</span><span class="spec-value">' + (p.specs['Moteur'] ? p.specs['Moteur'].split(' ')[0] : '-') + '</span></div>' +
-        '</div>' +
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;">' +
-          '<span style="font-size:1.1rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;">' + formatPrice(p.price) + '</span>' +
-          '<span style="color:var(--primary);font-size:0.85rem;font-weight:600;">' + btnLabel + '</span>' +
-        '</div>' +
+      '<h3 class="card-title">' + p.name + '</h3>' +
+      '<p class="card-subtitle">' + (pSubtitle || '') + '</p>' +
+      '<div class="specs-preview">' +
+      '<div class="spec-item"><span class="spec-label">' + vitesseLabel + '</span><span class="spec-value">' + (p.specs['Vitesse Max'] || p.specs['Vitesse'] || '-') + '</span></div>' +
+      '<div class="spec-item"><span class="spec-label">' + autonomieLabel + '</span><span class="spec-value">' + (p.specs['Autonomie'] || '-') + '</span></div>' +
+      '<div class="spec-item"><span class="spec-label">' + moteurLabel + '</span><span class="spec-value">' + (p.specs['Moteur'] ? p.specs['Moteur'].split(' ')[0] : '-') + '</span></div>' +
       '</div>' +
-    '</div>';
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;">' +
+      '<span style="font-size:1.1rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;background-clip:text;color:transparent;">' + formatPrice(p.price) + '</span>' +
+      '<span style="color:var(--primary);font-size:0.85rem;font-weight:600;">' + btnLabel + '</span>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
   }).join('');
 }

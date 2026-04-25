@@ -20,46 +20,46 @@ const PRODUCTS = [
     price: 380000,
     oldPrice: 420000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/q11-max/main.jpg",
+    mainImage: "assets/images/models/q11-max/main.webp",
     description: "Ce scooter electrique combine puissance, confort et autonomie grace a son moteur brushless de 2000W et sa batterie Lithium 64V 50Ah. Avec une vitesse maximale de 60 km/h et une autonomie de 120 km, il est parfait pour les trajets quotidiens en ville ou en peripherie. Equipe de freins a disque hydrauliques, d'une double suspension, de pneus tubeless 16 pouces et d'accessoires modernes (eclairage LED, enceinte Bluetooth), il offre une experience de conduite agreable et securisee. Livre avec service apres-vente et garantie.",
     shortDesc: "Scooter electrique 2000W, autonomie 120 km, vitesse 60 km/h, batterie Lithium 64V/50Ah.",
     images: [
-      "assets/images/models/q11-max/main.jpg",
-      "assets/images/models/q11-max/Q11_1.jpeg",
-      "assets/images/models/q11-max/Q11_2.jpeg",
-      "assets/images/models/q11-max/Q11_3.jpeg",
-      "assets/images/models/q11-max/Q11_4.jpeg",
+      "assets/images/models/q11-max/main.webp",
+      "assets/images/models/q11-max/Q11_1.webp",
+      "assets/images/models/q11-max/Q11_2.webp",
+      "assets/images/models/q11-max/Q11_3.webp",
+      "assets/images/models/q11-max/Q11_4.webp",
     ],
     colors: [
       {
         name: "Noir",
         hex: "#000000",
         images: [
-          "assets/images/models/q11-max/main.jpg",
-          "assets/images/models/q11-max/Q11_1.jpeg",
-          "assets/images/models/q11-max/Q11_2.jpeg",
-          "assets/images/models/q11-max/Q11_3.jpeg",
-          "assets/images/models/q11-max/Q11_4.jpeg",
+          "assets/images/models/q11-max/main.webp",
+          "assets/images/models/q11-max/Q11_1.webp",
+          "assets/images/models/q11-max/Q11_2.webp",
+          "assets/images/models/q11-max/Q11_3.webp",
+          "assets/images/models/q11-max/Q11_4.webp",
         ]
       },
       {
         name: "Blanc",
         hex: "#ffffff",
         images: [
-          "assets/images/models/q11-max/Q11_9.jpeg",
-          "assets/images/models/q11-max/Q11_10.jpeg",
-          "assets/images/models/q11-max/Q11_11.jpeg",
-          "assets/images/models/q11-max/Q11_12.jpeg"
+          "assets/images/models/q11-max/Q11_9.webp",
+          "assets/images/models/q11-max/Q11_10.webp",
+          "assets/images/models/q11-max/Q11_11.webp",
+          "assets/images/models/q11-max/Q11_12.webp"
         ]
       },
       {
         name: "Argent",
         hex: "#C0C0C0",
         images: [
-          "assets/images/models/q11-max/Q11_5.jpeg",
-          "assets/images/models/q11-max/Q11_6.jpeg",
-          "assets/images/models/q11-max/Q11_7.jpeg",
-          "assets/images/models/q11-max/Q11_8.jpeg"
+          "assets/images/models/q11-max/Q11_5.webp",
+          "assets/images/models/q11-max/Q11_6.webp",
+          "assets/images/models/q11-max/Q11_7.webp",
+          "assets/images/models/q11-max/Q11_8.webp"
         ]
       }
     ],
@@ -188,48 +188,48 @@ const PRODUCTS = [
     price: 280000,
     oldPrice: 320000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/q11-pro/main.jpg",
+    mainImage: "assets/images/models/q11-pro/main.webp",
     description: "La moto electrique Q11 PRO offre un excellent rapport puissance/prix pour la ville. Avec son moteur de 2000W, elle atteint 60 km/h et offre une autonomie de 60 km. Equipee de freins hydrauliques, de doubles suspensions, d'une batterie Lithium 64V 30Ah et meme d'un haut-parleur Bluetooth, c'est la solution ideale pour des deplacements quotidiens confortables et pratiques.",
     shortDesc: "Moto electrique 2000W, batterie Lithium 64V 30Ah, autonomie 60 km, vitesse max 60 km/h.",
     images: [
-      "assets/images/models/q11-pro/main.jpg",
-      "assets/images/models/q11-pro/Q11_7.jpeg",
-      "assets/images/models/q11-pro/Q11_8.jpeg",
-      "assets/images/models/q11-pro/Q11_9.jpeg",
-      "assets/images/models/q11-pro/Q11_10.jpeg",
-      "assets/images/models/q11-pro/Q11_11.jpeg",
-      "assets/images/models/q11-pro/Q11_12.jpeg"
+      "assets/images/models/q11-pro/main.webp",
+      "assets/images/models/q11-pro/Q11_7.webp",
+      "assets/images/models/q11-pro/Q11_8.webp",
+      "assets/images/models/q11-pro/Q11_9.webp",
+      "assets/images/models/q11-pro/Q11_10.webp",
+      "assets/images/models/q11-pro/Q11_11.webp",
+      "assets/images/models/q11-pro/Q11_12.webp"
     ],
     colors: [
       {
         name: "Noir",
         hex: "#000000",
         images: [
-          "assets/images/models/q11-pro/main.jpg",
-          "assets/images/models/q11-pro/Q11_1.jpeg",
-          "assets/images/models/q11-pro/Q11_2.jpeg",
-          "assets/images/models/q11-pro/Q11_3.jpeg",
-          "assets/images/models/q11-pro/Q11_4.jpeg",
+          "assets/images/models/q11-pro/main.webp",
+          "assets/images/models/q11-pro/Q11_1.webp",
+          "assets/images/models/q11-pro/Q11_2.webp",
+          "assets/images/models/q11-pro/Q11_3.webp",
+          "assets/images/models/q11-pro/Q11_4.webp",
         ]
       },
       {
         name: "Blanc",
         hex: "#ffffff",
         images: [
-          "assets/images/models/q11-pro/Q11_9.jpeg",
-          "assets/images/models/q11-pro/Q11_10.jpeg",
-          "assets/images/models/q11-pro/Q11_11.jpeg",
-          "assets/images/models/q11-pro/Q11_12.jpeg"
+          "assets/images/models/q11-pro/Q11_9.webp",
+          "assets/images/models/q11-pro/Q11_10.webp",
+          "assets/images/models/q11-pro/Q11_11.webp",
+          "assets/images/models/q11-pro/Q11_12.webp"
         ]
       },
       {
         name: "Argent",
         hex: "#C0C0C0",
         images: [
-          "assets/images/models/q11-pro/Q11_5.jpeg",
-          "assets/images/models/q11-pro/Q11_6.jpeg",
-          "assets/images/models/q11-pro/Q11_7.jpeg",
-          "assets/images/models/q11-pro/Q11_8.jpeg"
+          "assets/images/models/q11-pro/Q11_5.webp",
+          "assets/images/models/q11-pro/Q11_6.webp",
+          "assets/images/models/q11-pro/Q11_7.webp",
+          "assets/images/models/q11-pro/Q11_8.webp"
         ]
       }
     ],
@@ -298,36 +298,36 @@ const PRODUCTS = [
     price: 180000,
     oldPrice: 210000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/m8-moto/main.jpg",
+    mainImage: "assets/images/models/m8-moto/main.webp",
     description: "La moto electrique M8 allie un charme vintage a la mobilite electrique. Son design retro avec son phare rond caracteristique et sa couleur mint en font un modele urbain tres attrayant. Dotee d'un moteur de 500W, elle atteint une vitesse de 45 km/h. Sa batterie Acide 48V 24Ah offre une autonomie de 50 km, parfaite pour vos trajets quotidiens en ville en toute tranquillite grace au SAV et a la garantie inclus.",
     shortDesc: "Moto electrique vintage M8 500W, batterie Acide 48V 24Ah, autonomie 50 km, vitesse max 45 km/h.",
     images: [
-      "assets/images/models/m8-moto/main.jpg",
-      "assets/images/models/m8-moto/M8_1.jpeg",
-      "assets/images/models/m8-moto/M8_2.jpeg",
-      "assets/images/models/m8-moto/M8_3.jpeg",
-      "assets/images/models/m8-moto/M8_4.jpeg"
+      "assets/images/models/m8-moto/main.webp",
+      "assets/images/models/m8-moto/M8_1.webp",
+      "assets/images/models/m8-moto/M8_2.webp",
+      "assets/images/models/m8-moto/M8_3.webp",
+      "assets/images/models/m8-moto/M8_4.webp"
     ],
     colors: [
       {
         name: "Vert",
         hex: "#008000",
         images: [
-          "assets/images/models/m8-moto/main.jpg",
-          "assets/images/models/m8-moto/M8_1.jpeg",
-          "assets/images/models/m8-moto/M8_2.jpeg",
-          "assets/images/models/m8-moto/M8_3.jpeg",
-          "assets/images/models/m8-moto/M8_4.jpeg"
+          "assets/images/models/m8-moto/main.webp",
+          "assets/images/models/m8-moto/M8_1.webp",
+          "assets/images/models/m8-moto/M8_2.webp",
+          "assets/images/models/m8-moto/M8_3.webp",
+          "assets/images/models/m8-moto/M8_4.webp"
         ]
       },
       {
         name: "Rose",
         hex: "#FFC0CB",
         images: [
-          "assets/images/models/m8-moto/M8_5.jpeg",
-          "assets/images/models/m8-moto/M8_6.jpeg",
-          "assets/images/models/m8-moto/M8_7.jpeg",
-          "assets/images/models/m8-moto/M8_8.jpeg"
+          "assets/images/models/m8-moto/M8_5.webp",
+          "assets/images/models/m8-moto/M8_6.webp",
+          "assets/images/models/m8-moto/M8_7.webp",
+          "assets/images/models/m8-moto/M8_8.webp"
         ]
       }
     ],
@@ -396,37 +396,37 @@ const PRODUCTS = [
     price: 240000,
     oldPrice: 270000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/n7/main.jpg",
+    mainImage: "assets/images/models/n7/main.webp",
     description: "La moto electrique N7 allie style et praticite urbaine. Son design moderne arbore une decoration sportive epuree. Avec son moteur de 1500W, elle atteint une vitesse de 50 km/h, ce qui la rend parfaite pour les deplacements quotidiens en ville. Elle est equipee de freins hydrauliques, de doubles suspensions, d'une batterie Lithium 48V 30Ah offrant une autonomie de 60 km, ainsi que d'un service apres-vente et d'une garantie inclus.",
     shortDesc: "Moto electrique N7, moteur 1500W, batterie Lithium 48V 30Ah, autonomie 60 km.",
     images: [
-      "assets/images/models/n7/main.jpg",
-      "assets/images/models/n7/N7_5.jpeg"
+      "assets/images/models/n7/main.webp",
+      "assets/images/models/n7/N7_5.webp"
     ],
     colors: [
       {
         name: "Noir",
         hex: "#000000",
         images: [
-          "assets/images/models/n7/main.jpg",
-          "assets/images/models/n7/N7_3.jpeg",
-          "assets/images/models/n7/N7_4.jpeg"
+          "assets/images/models/n7/main.webp",
+          "assets/images/models/n7/N7_3.webp",
+          "assets/images/models/n7/N7_4.webp"
         ]
       },
       {
         name: "Blanc",
         hex: "#ffffff",
         images: [
-          "assets/images/models/n7/N7_1.jpeg",
-          "assets/images/models/n7/N7_2.jpeg"
+          "assets/images/models/n7/N7_1.webp",
+          "assets/images/models/n7/N7_2.webp"
         ]
       },
       {
         name: "Argent",
         hex: "#C0C0C0",
         images: [
-          "assets/images/models/n7/N7_5.jpeg",
-          "assets/images/models/n7/N7_6.jpeg",
+          "assets/images/models/n7/N7_5.webp",
+          "assets/images/models/n7/N7_6.webp",
         ]
       }
     ],
@@ -499,30 +499,30 @@ const PRODUCTS = [
     price: 220000,
     oldPrice: 250000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/g63/main.jpg",
+    mainImage: "assets/images/models/g63/main.webp",
     description: "La G-63 est une trottinette electrique tout-terrain robuste. Avec son moteur puissant de 1500W et sa batterie Lithium-Ion 48V 20Ah geree par un BMS intelligent, elle offre une vitesse allant jusqu'a 60 km/h et une excellente autonomie de 60 a 80 km. Concue pour tous les environnements, elle est equipee de pneus 11 pouces tubeless a crampons, de suspensions avant/arriere, de freins hydrauliques, et beneficie d'une certification d'etancheite IP65.",
     shortDesc: "Trottinette electrique tout-terrain G-63 : Moteur 1500W, batterie 48V 20Ah, etancheite IP65 et jusqu'a 80km d'autonomie.",
     images: [
-      "assets/images/models/g63/main.jpg",
-      "assets/images/models/g63/G63_1.jpeg",
-      "assets/images/models/g63/G63_2.jpeg",
-      "assets/images/models/g63/G63_3.jpeg",
-      "assets/images/models/g63/G63_4.jpeg",
-      "assets/images/models/g63/G63_5.jpeg",
-      "assets/images/models/g63/G63_6.jpeg"
+      "assets/images/models/g63/main.webp",
+      "assets/images/models/g63/G63_1.webp",
+      "assets/images/models/g63/G63_2.webp",
+      "assets/images/models/g63/G63_3.webp",
+      "assets/images/models/g63/G63_4.webp",
+      "assets/images/models/g63/G63_5.webp",
+      "assets/images/models/g63/G63_6.webp"
     ],
     colors: [
       {
         name: "Noir",
         hex: "#000000",
         images: [
-          "assets/images/models/g63/main.jpg",
-          "assets/images/models/g63/G63_1.jpeg",
-          "assets/images/models/g63/G63_2.jpeg",
-          "assets/images/models/g63/G63_3.jpeg",
-          "assets/images/models/g63/G63_4.jpeg",
-          "assets/images/models/g63/G63_5.jpeg",
-          "assets/images/models/g63/G63_6.jpeg"
+          "assets/images/models/g63/main.webp",
+          "assets/images/models/g63/G63_1.webp",
+          "assets/images/models/g63/G63_2.webp",
+          "assets/images/models/g63/G63_3.webp",
+          "assets/images/models/g63/G63_4.webp",
+          "assets/images/models/g63/G63_5.webp",
+          "assets/images/models/g63/G63_6.webp"
         ]
       }
     ],
@@ -652,15 +652,15 @@ const PRODUCTS = [
     price: 85000,
     oldPrice: 100000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/m8-scooter/main.jpg",
+    mainImage: "assets/images/models/m8-scooter/main.webp",
     description: "La E-SCOOTER M8 est une trottinette electrique urbaine pensee pour vous faciliter la vie ('Make your life easier'). Equipee d'un moteur de 350W et d'une batterie de 36V 10.4Ah, elle offre une autonomie fiable de 30 a 35 km pour une vitesse de pointe de 25 km/h. Particulierement securisante grace a ses freins a disque et ses clignotants directement integres au guidon, elle se distingue egalement par sa praticite avec un systeme de pliage rapide en 3 etapes.",
     shortDesc: "Trottinette electrique M8 : Moteur 350W, autonomie de 30-35 km, freins a disque et clignotants au guidon integres.",
     images: [
-      "assets/images/models/m8-scooter/main.jpg"
+      "assets/images/models/m8-scooter/main.webp"
     ],
     colors: [
-      { name: "Noir", hex: "#000000", images: ["assets/images/models/m8-scooter/main.jpg"] },
-      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/m8-scooter/main.jpg"] }
+      { name: "Noir", hex: "#000000", images: ["assets/images/models/m8-scooter/main.webp"] },
+      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/m8-scooter/main.webp"] }
     ],
     specs: {
       "Vitesse Max": "25 km/h",
@@ -727,15 +727,15 @@ const PRODUCTS = [
     price: 70000,
     oldPrice: 85000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/t7/main.jpg",
+    mainImage: "assets/images/models/t7/main.webp",
     description: "La E-SCOOTER T7 est la trottinette urbaine par excellence pour faciliter votre quotidien ('Make your life easier'). Equipee d'un moteur de 350W et d'une batterie de 36V 7.8Ah, elle offre une autonomie pratique de 25 a 35 km et peut atteindre une vitesse de 25 a 30 km/h. Legere et dotee d'un systeme de pliage rapide en 3 etapes, elle est ideale pour les derniers kilometres et les deplacements en ville. Elle assure egalement votre securite grace a son freinage a disque.",
     shortDesc: "Trottinette urbaine T7 : Moteur 350W, pliage en 3 etapes, autonomie de 25-35 km et freins a disque.",
     images: [
-      "assets/images/models/t7/main.jpg"
+      "assets/images/models/t7/main.webp"
     ],
     colors: [
-      { name: "Gris", hex: "#808080", images: ["assets/images/models/t7/main.jpg"] },
-      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/t7/main.jpg"] }
+      { name: "Gris", hex: "#808080", images: ["assets/images/models/t7/main.webp"] },
+      { name: "Blanc", hex: "#ffffff", images: ["assets/images/models/t7/main.webp"] }
     ],
     specs: {
       "Vitesse Max": "25-30 km/h",
@@ -802,16 +802,16 @@ const PRODUCTS = [
     price: 45000,
     oldPrice: 55000,
     badgeColor: "primary",
-    mainImage: "assets/images/models/t5/main.jpg",
+    mainImage: "assets/images/models/t5/main.webp",
     description: "La T5 est la trottinette electrique ideale pour l'initiation des plus jeunes. Concue pour etre 'votre vie plus facile', elle mise sur une securite totale avec une vitesse bridee entre 8 et 10 km/h et un freinage electronique. Son design ludique avec sa pedale lumineuse (LED multicolores sur les cotes) et sa legerete record de 6.5 kg en font le cadeau parfait pour circuler en toute confiance.",
     shortDesc: "Trottinette electrique enfant : Vitesse 8-10 km/h, deck LED multicolore, ultra legere (6.5 kg).",
     images: [
-      "assets/images/models/t5/main.jpg"
+      "assets/images/models/t5/main.webp"
     ],
     colors: [
-      { name: "Noir", hex: "#000000", images: ["assets/images/models/t5/main.jpg"] },
-      { name: "Bleu", hex: "#0000FF", images: ["assets/images/models/t5/main.jpg"] },
-      { name: "Rose", hex: "#FFC0CB", images: ["assets/images/models/t5/main.jpg"] }
+      { name: "Noir", hex: "#000000", images: ["assets/images/models/t5/main.webp"] },
+      { name: "Bleu", hex: "#0000FF", images: ["assets/images/models/t5/main.webp"] },
+      { name: "Rose", hex: "#FFC0CB", images: ["assets/images/models/t5/main.webp"] }
     ],
     specs: {
       "Vitesse Max": "8-10 km/h",
@@ -874,7 +874,7 @@ const PRODUCTS = [
 function getProductText(product, field, lang) {
   lang = lang || (typeof currentLang !== 'undefined' ? currentLang : 'fr');
   if (lang === 'fr' || !product.i18n || !product.i18n[lang]) {
-    return product[field] !== undefined ? product[field] : ''; 
+    return product[field] !== undefined ? product[field] : '';
   }
   var trans = product.i18n[lang][field];
   return trans !== undefined ? trans : product[field];
@@ -893,11 +893,11 @@ function getProductFeatures(product, lang) {
    =========================================== */
 
 function getProductById(id) {
-  return PRODUCTS.find(function(p) { return p.id === id; });
+  return PRODUCTS.find(function (p) { return p.id === id; });
 }
 
 function getProductsByCategory(category) {
-  return PRODUCTS.filter(function(p) { return p.category === category; });
+  return PRODUCTS.filter(function (p) { return p.category === category; });
 }
 
 function getRelatedProducts(productId, limit) {
@@ -905,7 +905,7 @@ function getRelatedProducts(productId, limit) {
   var product = getProductById(productId);
   if (!product) return [];
   return PRODUCTS
-    .filter(function(p) { return p.id !== productId && p.category === product.category; })
+    .filter(function (p) { return p.id !== productId && p.category === product.category; })
     .slice(0, limit);
 }
 

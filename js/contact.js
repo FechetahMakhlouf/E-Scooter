@@ -19,20 +19,20 @@ function initContactForm() {
 
   // Validation en temps réel
   const inputs = form.querySelectorAll('.form-group input, .form-group textarea');
-  inputs.forEach(function(input) {
-    input.addEventListener('blur', function() { validateField(input); });
-    input.addEventListener('input', function() { clearFieldError(input); });
+  inputs.forEach(function (input) {
+    input.addEventListener('blur', function () { validateField(input); });
+    input.addEventListener('input', function () { clearFieldError(input); });
   });
 
   // Radios
   const radios = form.querySelectorAll('input[type="radio"][name="subject"]');
-  radios.forEach(function(radio) {
-    radio.addEventListener('change', function() {
+  radios.forEach(function (radio) {
+    radio.addEventListener('change', function () {
       clearRadioGroupError(form.querySelector('.subject-selector'));
     });
   });
 
-  form.addEventListener('submit', async function(e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -70,7 +70,7 @@ function validateForm(form) {
 
   // Champs requis
   const requiredInputs = form.querySelectorAll('.form-group input[required], .form-group textarea[required]');
-  requiredInputs.forEach(function(field) {
+  requiredInputs.forEach(function (field) {
     if (!validateField(field)) isValid = false;
   });
 
@@ -149,6 +149,6 @@ function clearRadioGroupError(container) {
 function clearRadioGroup(container) {
   if (!container) return;
   var radios = container.querySelectorAll('input[type="radio"]');
-  radios.forEach(function(r) { r.checked = false; });
+  radios.forEach(function (r) { r.checked = false; });
   clearRadioGroupError(container);
 }

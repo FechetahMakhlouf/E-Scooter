@@ -16,7 +16,7 @@ function initLightbox() {
   if (!overlay) return;
 
   // Fermeture clic sur fond
-  overlay.addEventListener('click', function(e) {
+  overlay.addEventListener('click', function (e) {
     if (e.target === overlay) closeLightbox();
   });
 
@@ -26,11 +26,11 @@ function initLightbox() {
   const nextBtn = document.getElementById('lightboxNext');
 
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
-  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
+  if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); prevImage(); });
+  if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); nextImage(); });
 
   // Clavier
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (!overlay.classList.contains('active')) return;
     switch (e.key) {
       case 'Escape': closeLightbox(); break;
@@ -46,7 +46,7 @@ function openLightbox(index) {
 
   // Récupère les images depuis les slides de la galerie
   const slides = document.querySelectorAll('.gallery-slide img');
-  galleryImages = Array.from(slides).map(function(img) {
+  galleryImages = Array.from(slides).map(function (img) {
     return { src: img.src, alt: img.alt };
   });
 
