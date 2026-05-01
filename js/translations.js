@@ -93,6 +93,7 @@ const TRANSLATIONS = {
     // Models Page
     "models.title": "Nos Modèles",
     "models.subtitle": "8 véhicules électriques pour tous les besoins et tous les budgets",
+    "models.search.placeholder": "Rechercher un modèle, une spécification…",
     "models.filter.cat": "Catégorie :",
     "models.filter.all": "Tous",
     "models.filter.moto": "Motos",
@@ -278,6 +279,7 @@ const TRANSLATIONS = {
     // Models Page
     "models.title": "Our Models",
     "models.subtitle": "8 electric vehicles for all needs and budgets",
+    "models.search.placeholder": "Search a model, a spec…",
     "models.filter.cat": "Category:",
     "models.filter.all": "All",
     "models.filter.moto": "Motorcycles",
@@ -463,6 +465,7 @@ const TRANSLATIONS = {
     // Models Page
     "models.title": "موديلاتنا",
     "models.subtitle": "8 مركبات كهربائية لجميع الاحتياجات والميزانيات",
+    "models.search.placeholder": "ابحث عن موديل أو مواصفة…",
     "models.filter.cat": "الفئة:",
     "models.filter.all": "الكل",
     "models.filter.moto": "دراجات نارية",

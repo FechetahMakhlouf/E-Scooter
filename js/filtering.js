@@ -5,6 +5,10 @@
    Dependances : products-data.js, main.js
    ============================================= */
 
+/* Recherche globale */
+var searchQuery = '';
+var searchDebounceTimer = null;
+
 function initFiltering() {
   var grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -16,10 +20,12 @@ function initFiltering() {
   }
 
   initFilters();
+  initSearch();
   applyFilters();
 
   // Re-render les cartes quand la langue change
   document.addEventListener('languageChanged', function () {
+    updateSearchPlaceholder();
     applyFilters();
   });
 }
@@ -33,8 +39,79 @@ if (document.readyState === 'loading') {
 }
 
 /* ===========================================
-   INITIALISATION DES FILTRES
+   INITIALISATION DE LA RECHERCHE
    =========================================== */
+
+function initSearch() {
+  var input = document.getElementById('searchInput');
+  var clearBtn = document.getElementById('searchClear');
+  var container = document.getElementById('searchBarContainer');
+  var kbd = document.getElementById('searchKbd');
+  if (!input) return;
+
+  // Focus avec Ctrl+K / Cmd+K
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+    if (e.key === 'Escape' && document.activeElement === input) {
+      clearSearch();
+      input.blur();
+    }
+  });
+
+  // Saisie avec debounce
+  input.addEventListener('input', function () {
+    searchQuery = input.value.trim();
+    clearBtn.style.display = searchQuery ? 'flex' : 'none';
+    kbd.style.display = searchQuery ? 'none' : 'flex';
+
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(function () {
+      applyFilters();
+    }, 250);
+  });
+
+  // Focus / blur
+  input.addEventListener('focus', function () {
+    container.classList.add('focused');
+    kbd.style.display = 'none';
+  });
+
+  input.addEventListener('blur', function () {
+    container.classList.remove('focused');
+    if (!searchQuery) kbd.style.display = 'flex';
+  });
+
+  // Clear
+  clearBtn.addEventListener('click', function () {
+    clearSearch();
+    input.focus();
+  });
+}
+
+function clearSearch() {
+  var input = document.getElementById('searchInput');
+  var clearBtn = document.getElementById('searchClear');
+  var kbd = document.getElementById('searchKbd');
+  if (!input) return;
+  input.value = '';
+  searchQuery = '';
+  clearBtn.style.display = 'none';
+  if (kbd) kbd.style.display = 'flex';
+  applyFilters();
+}
+
+function updateSearchPlaceholder() {
+  var input = document.getElementById('searchInput');
+  if (!input || typeof getTranslation !== 'function') return;
+  var ph = getTranslation('models.search.placeholder');
+  if (ph) input.placeholder = ph;
+}
+
+
 
 function initFilters() {
   var categoryTags = document.querySelectorAll('.filter-tag[data-category]');
@@ -76,6 +153,23 @@ function applyFilters() {
   }
 
   var filtered = PRODUCTS.slice();
+
+  // 0. Filtre par recherche texte
+  if (searchQuery) {
+    var q = searchQuery.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    filtered = filtered.filter(function (p) {
+      var haystack = [
+        p.name,
+        p.subtitle || '',
+        p.subtitleEn || '',
+        p.subtitleAr || '',
+        p.category || '',
+        p.categoryLabel || '',
+        Object.values(p.specs || {}).join(' ')
+      ].join(' ').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return haystack.indexOf(q) !== -1;
+    });
+  }
 
   // 1. Filtre par categorie
   var activeCategory = document.querySelector('.filter-tag[data-category].active');
@@ -119,6 +213,17 @@ function applyFilters() {
 
   renderProductGrid(filtered);
   updateResultsCount(filtered.length);
+}
+
+/* ===========================================
+   HIGHLIGHT TEXTE RECHERCHÉ
+   =========================================== */
+
+function highlightText(text, query) {
+  if (!query || !text) return text;
+  var q = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  var regex = new RegExp('(' + q + ')', 'gi');
+  return text.replace(regex, '<mark class="search-highlight">$1</mark>');
 }
 
 /* ===========================================
@@ -171,6 +276,9 @@ function renderProductGrid(products) {
 
     var lang = typeof currentLang !== 'undefined' ? currentLang : 'fr';
     var subtitleTxt = typeof getProductText === 'function' ? getProductText(product, 'subtitle', lang) : product.subtitle;
+    var hl = searchQuery;
+    var nameHl = highlightText(product.name, hl);
+    var subtitleHl = highlightText(subtitleTxt || '', hl);
     var badgeKey = product.category === 'electric-motorcycle' ? 'badge.moto' : 'badge.trot';
     var badgeLabel = typeof getTranslation === 'function' ? getTranslation(badgeKey) : product.categoryLabel;
     var vitesseLabel = typeof getTranslation === 'function' ? (getTranslation('spec.Vitesse Max') || 'Vitesse') : 'Vitesse';
@@ -186,8 +294,8 @@ function renderProductGrid(products) {
       colorDots +
       '</div>' +
       '<div class="card-content">' +
-      '<h3 class="card-title">' + product.name + '</h3>' +
-      '<p class="card-subtitle">' + (subtitleTxt || '') + '</p>' +
+      '<h3 class="card-title">' + nameHl + '</h3>' +
+      '<p class="card-subtitle">' + subtitleHl + '</p>' +
       '<div class="specs-preview">' +
       '<div class="spec-item"><span class="spec-label">' + vitesseLabel + '</span><span class="spec-value">' + vitesse + '</span></div>' +
       '<div class="spec-item"><span class="spec-label">' + autonomieLabel + '</span><span class="spec-value">' + autonomie + '</span></div>' +
