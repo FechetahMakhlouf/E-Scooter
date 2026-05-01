@@ -97,6 +97,32 @@
   <!-- ============ FILTRES & GRILLE ============ -->
   <main class="section" style="padding-top: 0;">
     <div class="container">
+      <!-- Barre de recherche -->
+      <div class="search-wrapper reveal">
+        <div class="search-bar-container" id="searchBarContainer">
+          <div class="search-icon-wrap">
+            <svg class="search-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+          <input type="text" id="searchInput" class="search-input" autocomplete="off" spellcheck="false"
+            data-i18n-placeholder="models.search.placeholder" placeholder="Rechercher un modèle, une spec…">
+          <div class="search-kbd" id="searchKbd" aria-hidden="true">
+            <kbd>Ctrl</kbd><span>+</span><kbd>K</kbd>
+          </div>
+          <button class="search-clear-btn" id="searchClear" aria-label="Effacer la recherche" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions" aria-live="polite"></div>
+      </div>
+
       <!-- Barre de filtres -->
       <div class="filters-bar reveal">
         <div class="filter-group">
