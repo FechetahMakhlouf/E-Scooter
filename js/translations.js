@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v3.0 — Système de Traduction Multilingue
+   E-SCOOT v1.0 — Système de Traduction Multilingue
    =============================================
    Langues : Français (fr), English (en), العربية (ar)
    Direction : LTR (fr/en), RTL (ar)
@@ -144,6 +144,9 @@ const TRANSLATIONS = {
     "spec.Charge Max": "Charge Max",
     "spec.Poids": "Poids",
     "spec.Temps de charge": "Temps de charge",
+    "spec.km": "km",
+    "spec.km/h": "km/h",
+    "spec.W": "W",
 
     // Contact Page
     "contact.title": "Contactez-nous",
@@ -330,6 +333,9 @@ const TRANSLATIONS = {
     "spec.Charge Max": "Max Load",
     "spec.Poids": "Weight",
     "spec.Temps de charge": "Charging Time",
+    "spec.km": "km",
+    "spec.km/h": "kmph",
+    "spec.W": "W",
 
     // Contact Page
     "contact.title": "Contact Us",
@@ -399,9 +405,9 @@ const TRANSLATIONS = {
     // Categories
     "cat.title": "فئاتنا",
     "cat.subtitle": "اختر المركبة الكهربائية المناسبة لاحتياجاتك",
-    "cat.moto.title": "🏍️ الدراجات النارية الكهربائية",
+    "cat.moto.title": "الدراجات النارية الكهربائية",
     "cat.moto.subtitle": "4 موديلات • 500W إلى 2000W",
-    "cat.trot.title": "🛴 السكوترات الكهربائية",
+    "cat.trot.title": " السكوترات الكهربائية",
     "cat.trot.subtitle": "4 موديلات • 150W إلى 1500W",
 
     // Popular Models
@@ -516,6 +522,9 @@ const TRANSLATIONS = {
     "spec.Charge Max": "الحمولة القصوى",
     "spec.Poids": "الوزن",
     "spec.Temps de charge": "وقت الشحن",
+    "spec.km": "كم",
+    "spec.km/h": "كم/س",
+    "spec.W": "وات",
 
     // Contact Page
     "contact.title": "اتصل بنا",
