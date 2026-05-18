@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v3.0 — Formulaire de Contact
+   Formulaire de Contact
    =============================================
    Utilisé uniquement sur : contact.html
    Dépendances : main.js (showToast)

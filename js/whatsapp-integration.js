@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT — Intégration WhatsApp
+   Intégration WhatsApp
    =============================================
    Chargé sur toutes les pages (en dernier script).
    Dépendances : aucune

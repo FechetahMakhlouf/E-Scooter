@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT — Base de donnees Produits (i18n v2)
+   Base de donnees Produits (i18n)
    =============================================
    Fichier de donnees central avec traductions
    FR (defaut) / EN / AR

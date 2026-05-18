@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v3.0 — Filtres & Grille Produits
+   Filtres & Grille Produits
    =============================================
    Utilisé uniquement sur : modeles.html
    Dependances : products-data.js, main.js

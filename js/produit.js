@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v3.0 — Page Produit Dynamique
+   Page Produit Dynamique
    =============================================
    Utilisé uniquement sur : produit.html
    Dépendances : products-data.js, main.js

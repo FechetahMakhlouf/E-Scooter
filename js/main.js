@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v3.0 — Script Principal
+   Script Principal
    =============================================
    Gère : navbar, theme, langue, scroll reveal,
    animations, compteurs, parallaxe, mobile menu

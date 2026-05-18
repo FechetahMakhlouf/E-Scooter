@@ -1,5 +1,5 @@
 /* =============================================
-   E-SCOOT v1.0 — Système de Traduction Multilingue
+   Système de Traduction Multilingue
    =============================================
    Langues : Français (fr), English (en), العربية (ar)
    Direction : LTR (fr/en), RTL (ar)
