@@ -1,363 +1,607 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contactez E-Scoot - véhicules électriques Algérie. WhatsApp, téléphone, email."
+    />
+    <title data-i18n-title="nav.contact"></title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contactez E-Scoot - véhicules électriques Algérie. WhatsApp, téléphone, email.">
-  <title data-i18n-title="nav.contact"></title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-  <link rel="icon" href="assets/images/logo.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+  <body>
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
+          <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg" />
+          <span>E-Scoot</span>
+        </a>
 
-<body>
-  <!-- ============ NAVBAR ============ -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
-        <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg">
-        <span>E-Scoot</span>
-      </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" data-i18n="nav.home"></a>
+          <a href="modeles.html" data-i18n="nav.models"></a>
+          <a href="contact.html" class="active" data-i18n="nav.contact"></a>
+        </div>
 
-      <div class="nav-links" id="navLinks">
-        <a href="index.html" data-i18n="nav.home"></a>
-        <a href="modeles.html" data-i18n="nav.models"></a>
-        <a href="contact.html" class="active" data-i18n="nav.contact"></a>
-      </div>
+        <div class="nav-actions">
+          <div class="lang-switcher" id="langSwitcher">
+            <button
+              class="lang-trigger"
+              id="langTrigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span class="lang-current">FR</span>
+              <svg
+                class="lang-chevron"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div
+              class="lang-dropdown"
+              role="listbox"
+              aria-label="Choisir la langue"
+            >
+              <button
+                class="lang-option active"
+                data-lang="fr"
+                data-flag="🇫🇷"
+                data-label="FR"
+                role="option"
+                aria-selected="true"
+              >
+                <span class="lang-option-name">Français</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+              <button
+                class="lang-option"
+                data-lang="en"
+                data-flag="🇬🇧"
+                data-label="EN"
+                role="option"
+                aria-selected="false"
+              >
+                <span class="lang-option-name">English</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+              <button
+                class="lang-option"
+                data-lang="ar"
+                data-flag="🇩🇿"
+                data-label="AR"
+                role="option"
+                aria-selected="false"
+              >
+                <span class="lang-option-name">العربية</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-      <div class="nav-actions">
-        <div class="lang-switcher" id="langSwitcher">
-          <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
-            <span class="lang-current">FR</span>
-            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5">
-              <path d="M6 9l6 6 6-6" />
+          <button id="themeToggle" aria-label="Basculer le thème">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
             </svg>
           </button>
-          <div class="lang-dropdown" role="listbox" aria-label="Choisir la langue">
-            <button class="lang-option active" data-lang="fr" data-flag="🇫🇷" data-label="FR" role="option"
-              aria-selected="true">
-              <span class="lang-option-name">Français</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </button>
-            <button class="lang-option" data-lang="en" data-flag="🇬🇧" data-label="EN" role="option"
-              aria-selected="false">
-              <span class="lang-option-name">English</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </button>
-            <button class="lang-option" data-lang="ar" data-flag="🇩🇿" data-label="AR" role="option"
-              aria-selected="false">
-              <span class="lang-option-name">العربية</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </button>
-          </div>
-        </div>
 
-        <button id="themeToggle" aria-label="Basculer le thème">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5" />
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-          </svg>
-        </button>
-
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ============ HEADER CONTACT ============ -->
-  <header class="contact-header">
-    <div class="container">
-      <h1><span data-i18n="contact.title"></span></h1>
-      <p data-i18n="contact.subtitle"></p>
-    </div>
-  </header>
-
-  <!-- ============ GRILLE CONTACT ============ -->
-  <main class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="contact-grid">
-        <!-- Colonne gauche : coordonnees -->
-        <div class="contact-info reveal">
-          <h2 data-i18n="contact.info.title"></h2>
-          <p data-i18n="contact.info.desc"></p>
-
-          <!-- WhatsApp -->
-          <div class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-            </div>
-            <div class="contact-method-text">
-              <h3 data-i18n="contact.method.wa"></h3>
-              <p data-i18n="contact.method.wa.val"></p>
-              <p class="note" data-i18n="contact.method.wa.note"></p>
-            </div>
-          </div>
-
-          <!-- Téléphone -->
-          <div class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-            </div>
-            <div class="contact-method-text">
-              <h3 data-i18n="contact.method.tel"></h3>
-              <p data-i18n="contact.method.tel.val"></p>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </div>
-            <div class="contact-method-text">
-              <h3 data-i18n="contact.method.email"></h3>
-              <p data-i18n="contact.method.email.val"></p>
-              <p class="note" data-i18n="contact.method.email.note"></p>
-            </div>
-          </div>
-
-          <!-- Adresse -->
-          <div class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <div class="contact-method-text">
-              <h3 data-i18n="contact.method.addr"></h3>
-              <p data-i18n="contact.method.addr.val"></p>
-            </div>
-          </div>
-
-          <a href="https://www.facebook.com/share/1QEURTyHpE/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
-            class="btn-facebook mt-md">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-            <span data-i18n="contact.social.fb"></span>
-          </a>
-        </div>
-
-        <!-- Colonne droite : formulaire -->
-        <div class="contact-form-wrapper reveal reveal-delay-1">
-          <h3 data-i18n="contact.form.title"></h3>
-
-          <form id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName" data-i18n="contact.form.firstname">Prénom <span class="required">*</span></label>
-                <input type="text" id="firstName" name="firstName" required
-                  data-i18n-placeholder="contact.form.firstname" placeholder="Votre prénom">
-              </div>
-              <div class="form-group">
-                <label for="lastName" data-i18n="contact.form.lastname">Nom <span class="required">*</span></label>
-                <input type="text" id="lastName" name="lastName" required data-i18n-placeholder="contact.form.lastname"
-                  placeholder="Votre nom">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email" data-i18n="contact.form.email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" required data-i18n-placeholder="contact.form.email"
-                placeholder="votre@email.com">
-            </div>
-
-            <div class="form-group">
-              <label for="phone" data-i18n="contact.form.phone"></label>
-              <input type="tel" id="phone" name="phone" data-i18n-placeholder="contact.form.phone"
-                placeholder="+213 XXX XX XX XX">
-              <p class="hint" data-i18n="contact.form.phone.hint"></p>
-            </div>
-
-            <div class="form-group">
-              <label data-i18n="contact.form.subject">Sujet <span class="required">*</span></label>
-              <div class="subject-selector">
-                <input type="radio" name="subject" id="sub-order" value="Commande" required>
-                <label for="sub-order" data-i18n="contact.form.sub.order"></label>
-
-                <input type="radio" name="subject" id="sub-info" value="Renseignement">
-                <label for="sub-info" data-i18n="contact.form.sub.info"></label>
-
-                <input type="radio" name="subject" id="sub-test" value="Essai">
-                <label for="sub-test" data-i18n="contact.form.sub.test"></label>
-
-                <input type="radio" name="subject" id="sub-sav" value="SAV">
-                <label for="sub-sav" data-i18n="contact.form.sub.sav"></label>
-
-                <input type="radio" name="subject" id="sub-other" value="Autre">
-                <label for="sub-other" data-i18n="contact.form.sub.other"></label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="message" data-i18n="contact.form.message">Message <span class="required">*</span></label>
-              <textarea id="message" name="message" rows="5" required data-i18n-placeholder="contact.form.message.ph"
-                placeholder="Décrivez votre demande..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <span data-i18n="contact.form.submit"></span>
-            </button>
-          </form>
+          <button
+            class="mobile-toggle"
+            id="mobileToggle"
+            aria-label="Menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
-    </div>
-  </main>
+    </nav>
 
-  <!-- ============ MAP ============ -->
-  <section class="map-section">
-    <div class="container">
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.702665490783!2d3.2329554!3d36.765925599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8038b7135daa5f31%3A0xe1da2e0a03da92d5!2sECOCYCLEINNOVATIONS!5e1!3m2!1sfr!2sdz!4v1777029436387!5m2!1sfr!2sdz"
-          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- ============ HEADER CONTACT ============ -->
+    <header class="contact-header">
+      <div class="container">
+        <h1><span data-i18n="contact.title"></span></h1>
+        <p data-i18n="contact.subtitle"></p>
       </div>
-      <div class="map-info">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
-        <p data-i18n="contact.method.addr.val"></p>
-        <span data-i18n="contact.map.open"></span>
-        <br><br>
-        <a href="https://maps.app.goo.gl/t59S5ix5UTtQUraT9?g_st=iw" target="_blank" rel="noopener noreferrer"
-          class="btn btn-secondary btn-sm" data-i18n="contact.map.btn"></a>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
-              <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg">
-            </a>
-            <span>E-Scoot</span>
-          </div>
-          <p class="footer-desc" data-i18n="foot.desc"></p>
-        </div>
-        <div class="footer-links-group">
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.nav.title"></h4>
-            <a href="index.html" data-i18n="nav.home"></a>
-            <a href="modeles.html" data-i18n="nav.models"></a>
-            <a href="contact.html" data-i18n="nav.contact"></a>
-          </div>
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.srv.title"></h4>
-            <a href="#" data-i18n="foot.srv.1"></a>
-            <a href="#" data-i18n="foot.srv.2"></a>
-            <a href="#" data-i18n="foot.srv.3"></a>
-            <a href="#" data-i18n="foot.srv.4"></a>
-          </div>
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.contact.title"></h4>
-            <ul class="footer-contact-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- ============ GRILLE CONTACT ============ -->
+    <main class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Colonne gauche : coordonnees -->
+          <div class="contact-info reveal">
+            <h2 data-i18n="contact.info.title"></h2>
+            <p data-i18n="contact.info.desc"></p>
+
+            <!-- WhatsApp -->
+            <div class="contact-method">
+              <div class="contact-method-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
                   <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
                 </svg>
-                +213-770286269
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              </div>
+              <div class="contact-method-text">
+                <h3 data-i18n="contact.method.wa"></h3>
+                <p data-i18n="contact.method.wa.val"></p>
+                <p class="note" data-i18n="contact.method.wa.note"></p>
+              </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="contact-method">
+              <div class="contact-method-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div class="contact-method-text">
+                <h3 data-i18n="contact.method.tel"></h3>
+                <p data-i18n="contact.method.tel.val"></p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-method">
+              <div class="contact-method-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                Madjid.training@gmail.com
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              </div>
+              <div class="contact-method-text">
+                <h3 data-i18n="contact.method.email"></h3>
+                <p data-i18n="contact.method.email.val"></p>
+                <p class="note" data-i18n="contact.method.email.note"></p>
+              </div>
+            </div>
+
+            <!-- Adresse -->
+            <div class="contact-method">
+              <div class="contact-method-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                Bordj El Kiffan, Alger, Algérie
-              </li>
-            </ul>
+              </div>
+              <div class="contact-method-text">
+                <h3 data-i18n="contact.method.addr"></h3>
+                <p data-i18n="contact.method.addr.val"></p>
+              </div>
+            </div>
+
+            <a
+              href="https://www.facebook.com/share/1QEURTyHpE/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-facebook mt-md"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+              <span data-i18n="contact.social.fb"></span>
+            </a>
+          </div>
+
+          <!-- Colonne droite : formulaire -->
+          <div class="contact-form-wrapper reveal reveal-delay-1">
+            <h3 data-i18n="contact.form.title"></h3>
+
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName" data-i18n="contact.form.firstname"
+                    >Prénom <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                    data-i18n-placeholder="contact.form.firstname"
+                    placeholder="Votre prénom"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="lastName" data-i18n="contact.form.lastname"
+                    >Nom <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                    data-i18n-placeholder="contact.form.lastname"
+                    placeholder="Votre nom"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" data-i18n="contact.form.email"
+                  >Email <span class="required">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  data-i18n-placeholder="contact.form.email"
+                  placeholder="votre@email.com"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone" data-i18n="contact.form.phone"></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  data-i18n-placeholder="contact.form.phone"
+                  placeholder="+213 XXX XX XX XX"
+                />
+                <p class="hint" data-i18n="contact.form.phone.hint"></p>
+              </div>
+
+              <div class="form-group">
+                <label data-i18n="contact.form.subject"
+                  >Sujet <span class="required">*</span></label
+                >
+                <div class="subject-selector">
+                  <input
+                    type="radio"
+                    name="subject"
+                    id="sub-order"
+                    value="Commande"
+                    required
+                  />
+                  <label
+                    for="sub-order"
+                    data-i18n="contact.form.sub.order"
+                  ></label>
+
+                  <input
+                    type="radio"
+                    name="subject"
+                    id="sub-info"
+                    value="Renseignement"
+                  />
+                  <label
+                    for="sub-info"
+                    data-i18n="contact.form.sub.info"
+                  ></label>
+
+                  <input
+                    type="radio"
+                    name="subject"
+                    id="sub-test"
+                    value="Essai"
+                  />
+                  <label
+                    for="sub-test"
+                    data-i18n="contact.form.sub.test"
+                  ></label>
+
+                  <input type="radio" name="subject" id="sub-sav" value="SAV" />
+                  <label for="sub-sav" data-i18n="contact.form.sub.sav"></label>
+
+                  <input
+                    type="radio"
+                    name="subject"
+                    id="sub-other"
+                    value="Autre"
+                  />
+                  <label
+                    for="sub-other"
+                    data-i18n="contact.form.sub.other"
+                  ></label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message" data-i18n="contact.form.message"
+                  >Message <span class="required">*</span></label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  data-i18n-placeholder="contact.form.message.ph"
+                  placeholder="Décrivez votre demande..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-primary btn-full btn-lg"
+                id="submitBtn"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span data-i18n="contact.form.submit"></span>
+              </button>
+            </form>
           </div>
         </div>
       </div>
+    </main>
 
-      <div class="footer-partner-bar">
-        <a href="https://aliexportss.com/en" target="_blank" rel="noopener noreferrer" data-i18n="foot.partner">🔗
-          Partenaire officiel</a>
-      </div>
-
-      <div class="footer-bottom">
-        <p class="footer-copyright" data-i18n="foot.copyright"></p>
-        <div class="footer-legal">
-          <a href="#" data-i18n="foot.legal.1"></a>
-          <a href="#" data-i18n="foot.legal.2"></a>
-          <a href="#" data-i18n="foot.legal.3"></a>
+    <!-- ============ MAP ============ -->
+    <section class="map-section">
+      <div class="container">
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.702665490783!2d3.2329554!3d36.765925599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8038b7135daa5f31%3A0xe1da2e0a03da92d5!2sECOCYCLEINNOVATIONS!5e1!3m2!1sfr!2sdz!4v1777029436387!5m2!1sfr!2sdz"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="map-info">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--primary)"
+            stroke-width="2"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <p data-i18n="contact.method.addr.val"></p>
+          <span data-i18n="contact.map.open"></span>
+          <br /><br />
+          <a
+            href="https://maps.app.goo.gl/t59S5ix5UTtQUraT9?g_st=iw"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary btn-sm"
+            data-i18n="contact.map.btn"
+          ></a>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- ============ ELEMENTS FLOTTANTS ============ -->
-  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
-    aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  </a>
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
+                <img
+                  src="assets/images/logo.svg"
+                  alt="E-Scoot"
+                  class="logo-svg"
+                />
+              </a>
+              <span>E-Scoot</span>
+            </div>
+            <p class="footer-desc" data-i18n="foot.desc"></p>
+          </div>
+          <div class="footer-links-group">
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.nav.title"></h4>
+              <a href="index.html" data-i18n="nav.home"></a>
+              <a href="modeles.html" data-i18n="nav.models"></a>
+              <a href="contact.html" data-i18n="nav.contact"></a>
+            </div>
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.srv.title"></h4>
+              <a href="#" data-i18n="foot.srv.1"></a>
+              <a href="#" data-i18n="foot.srv.2"></a>
+              <a href="#" data-i18n="foot.srv.3"></a>
+              <a href="#" data-i18n="foot.srv.4"></a>
+            </div>
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.contact.title"></h4>
+              <ul class="footer-contact-list">
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                  +213-770286269
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  Madjid.training@gmail.com
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Bordj El Kiffan, Alger, Algérie
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 15l-6-6-6 6" />
-    </svg>
-  </button>
+        <div class="footer-partner-bar">
+          <a
+            href="https://aliexportss.com/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="foot.partner"
+            >🔗 Partenaire officiel</a
+          >
+        </div>
 
-  <div class="toast-container" id="toastContainer"></div>
+        <div class="footer-bottom">
+          <p class="footer-copyright" data-i18n="foot.copyright"></p>
+          <div class="footer-legal">
+            <a href="#" data-i18n="foot.legal.1"></a>
+            <a href="#" data-i18n="foot.legal.2"></a>
+            <a href="#" data-i18n="foot.legal.3"></a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-  <!-- ============ SCRIPTS ============ -->
-  <script src="js/translations.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/contact.js"></script>
-</body>
+    <!-- ============ ELEMENTS FLOTTANTS ============ -->
+    <a
+      href="https://wa.me/213770286269"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="WhatsApp"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
 
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+  </body>
 </html>

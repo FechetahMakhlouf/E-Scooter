@@ -1,424 +1,694 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Détails du produit E-Scoot - véhicule électrique haute performance. Algérie."
+    />
+    <title data-i18n-title="nav.models"></title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Détails du produit E-Scoot - véhicule électrique haute performance. Algérie.">
-  <title data-i18n-title="nav.models"></title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+  <body>
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
+          <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg" />
+          <span>E-Scoot</span>
+        </a>
 
-<body>
-  <!-- ============ NAVBAR ============ -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
-        <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg">
-        <span>E-Scoot</span>
-      </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" data-i18n="nav.home"></a>
+          <a href="modeles.html" class="active" data-i18n="nav.models"></a>
+          <a href="contact.html" data-i18n="nav.contact"></a>
+        </div>
 
-      <div class="nav-links" id="navLinks">
-        <a href="index.html" data-i18n="nav.home"></a>
-        <a href="modeles.html" class="active" data-i18n="nav.models"></a>
-        <a href="contact.html" data-i18n="nav.contact"></a>
-      </div>
+        <div class="nav-actions">
+          <div class="lang-switcher" id="langSwitcher">
+            <button
+              class="lang-trigger"
+              id="langTrigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span class="lang-current">FR</span>
+              <svg
+                class="lang-chevron"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div
+              class="lang-dropdown"
+              role="listbox"
+              aria-label="Choisir la langue"
+            >
+              <button
+                class="lang-option active"
+                data-lang="fr"
+                data-flag="🇫🇷"
+                data-label="FR"
+                role="option"
+                aria-selected="true"
+              >
+                <span class="lang-option-name">Français</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+              <button
+                class="lang-option"
+                data-lang="en"
+                data-flag="🇬🇧"
+                data-label="EN"
+                role="option"
+                aria-selected="false"
+              >
+                <span class="lang-option-name">English</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+              <button
+                class="lang-option"
+                data-lang="ar"
+                data-flag="🇩🇿"
+                data-label="AR"
+                role="option"
+                aria-selected="false"
+              >
+                <span class="lang-option-name">العربية</span>
+                <svg
+                  class="lang-check"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
-      <div class="nav-actions">
-        <div class="lang-switcher" id="langSwitcher">
-          <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
-            <span class="lang-current">FR</span>
-            <svg class="lang-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5">
-              <path d="M6 9l6 6 6-6" />
+          <button id="themeToggle" aria-label="Basculer le thème">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5" />
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              />
             </svg>
           </button>
-          <div class="lang-dropdown" role="listbox" aria-label="Choisir la langue">
-            <button class="lang-option active" data-lang="fr" data-flag="🇫🇷" data-label="FR" role="option"
-              aria-selected="true">
-              <span class="lang-option-name">Français</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
+
+          <button
+            class="mobile-toggle"
+            id="mobileToggle"
+            aria-label="Menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ PRODUCT HERO ============ -->
+    <section class="product-hero" id="productHero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="index.html" data-i18n="prod.breadcrumb.home"></a>
+          <span class="sep">/</span>
+          <a href="modeles.html" data-i18n="prod.breadcrumb.models"></a>
+          <span class="sep">/</span>
+          <span id="breadcrumbProduct">Produit</span>
+        </nav>
+
+        <div id="productContent" class="product-hero-grid">
+          <!-- Colonne gauche : galerie -->
+          <div class="gallery-container reveal">
+            <div class="gallery-swipe-wrapper" id="gallerySwipeWrapper">
+              <div class="gallery-slides" id="gallerySlides"></div>
+
+              <button
+                class="gallery-zoom-btn"
+                id="galleryZoomBtn"
+                aria-label="Zoom"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35M11 8v6M8 11h6" />
+                </svg>
+              </button>
+
+              <div class="gallery-counter" id="galleryCounter">1 / 1</div>
+
+              <button
+                class="gallery-nav-arrow prev"
+                id="galleryPrev"
+                aria-label="Précédent"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                class="gallery-nav-arrow next"
+                id="galleryNext"
+                aria-label="Suivant"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+
+              <div class="gallery-dots" id="galleryDots"></div>
+            </div>
+
+            <div class="gallery-thumbs" id="galleryThumbs"></div>
+          </div>
+
+          <!-- Colonne droite : infos produit -->
+          <div class="product-info reveal reveal-delay-1" id="productInfo">
+            <div id="productBadge" class="badge badge-primary mb-sm"></div>
+            <h1 id="productName"></h1>
+            <p id="productSubtitle" class="product-subtitle"></p>
+
+            <div class="product-price-block" id="productPriceBlock">
+              <span id="productPrice" class="product-price-current"></span>
+              <span
+                id="productOldPrice"
+                class="product-price-old"
+                style="display: none"
+              ></span>
+              <span
+                id="productDiscount"
+                class="product-discount-badge"
+                style="display: none"
+              ></span>
+            </div>
+
+            <p id="productShortDesc" class="product-short-desc"></p>
+
+            <!-- Sélecteur de couleur -->
+            <div
+              class="color-selector"
+              id="colorSelector"
+              style="display: none"
+            >
+              <div class="color-selector-label">
+                <span data-i18n="prod.color.label"></span>
+                <span class="active-color" id="activeColorName"></span>
+              </div>
+              <div class="color-options" id="colorOptions"></div>
+            </div>
+
+            <a
+              id="productCtaBtn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-lg"
+              style="margin-bottom: var(--space-lg)"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
               </svg>
-            </button>
-            <button class="lang-option" data-lang="en" data-flag="🇬🇧" data-label="EN" role="option"
-              aria-selected="false">
-              <span class="lang-option-name">English</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </button>
-            <button class="lang-option" data-lang="ar" data-flag="🇩🇿" data-label="AR" role="option"
-              aria-selected="false">
-              <span class="lang-option-name">العربية</span>
-              <svg class="lang-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.5">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </button>
+              <span data-i18n="prod.whatsapp"></span>
+            </a>
+
+            <div class="product-meta-grid" id="productMeta"></div>
           </div>
         </div>
 
-        <button id="themeToggle" aria-label="Basculer le thème">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5" />
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        <!-- État erreur -->
+        <div id="productError" class="product-error" style="display: none">
+          <span class="emoji" data-i18n="prod.error.emoji"></span>
+          <h2 data-i18n="prod.error.title"></h2>
+          <p data-i18n="prod.error.desc"></p>
+          <a
+            href="modeles.html"
+            class="btn btn-primary"
+            data-i18n="prod.error.cta"
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ONGLETS (version mobile avec flèches) ============ -->
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="tabs-nav-v2 reveal" id="tabsNav">
+          <!-- Flèche gauche -->
+          <button
+            class="tab-nav-arrow prev"
+            id="tabArrowPrev"
+            aria-label="Onglet précédent"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          <!-- Conteneur scrollable des boutons d'onglets -->
+          <div class="tabs-scroll-wrapper" id="tabsScrollWrapper">
+            <button class="tab-btn-v2 active" data-tab="specs">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              <span data-i18n="prod.tab.specs"></span>
+              <span class="tab-count" id="specsCount">0</span>
+            </button>
+            <button class="tab-btn-v2" data-tab="features">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+              <span data-i18n="prod.tab.features"></span>
+              <span class="tab-count" id="featuresCount">0</span>
+            </button>
+            <button class="tab-btn-v2" data-tab="description">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span data-i18n="prod.tab.desc"></span>
+            </button>
+          </div>
+
+          <!-- Flèche droite -->
+          <button
+            class="tab-nav-arrow next"
+            id="tabArrowNext"
+            aria-label="Onglet suivant"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Fiche Technique -->
+        <div class="tab-panel-v2 active" id="tab-specs">
+          <div class="specs-table" id="specsTable"></div>
+        </div>
+
+        <!-- Caractéristiques -->
+        <div class="tab-panel-v2" id="tab-features">
+          <div class="features-grid-2" id="featuresGrid"></div>
+        </div>
+
+        <!-- Description -->
+        <div class="tab-panel-v2" id="tab-description">
+          <div class="description-content" id="descriptionContent"></div>
+          <div class="warranty-block mt-lg">
+            <h4 data-i18n="prod.warranty.title"></h4>
+            <p data-i18n-html="prod.warranty.text">
+              Tous nos véhicules électriques sont livrés avec une garantie
+              constructeur <strong>sur le cadre</strong> et
+              <strong>sur la batterie et le moteur</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUITS SIMILAIRES ============ -->
+    <section
+      class="related-section"
+      style="
+        background: var(--bg-secondary);
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          height: 300px;
+          background: var(--gradient-glow);
+          pointer-events: none;
+        "
+      ></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 data-i18n="prod.related.title"></h2>
+          <p data-i18n="prod.related.subtitle"></p>
+        </div>
+        <div class="grid-3" id="relatedProducts"></div>
+      </div>
+    </section>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>
-
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ============ PRODUCT HERO ============ -->
-  <section class="product-hero" id="productHero">
-    <div class="container">
-      <nav class="breadcrumb">
-        <a href="index.html" data-i18n="prod.breadcrumb.home"></a>
-        <span class="sep">/</span>
-        <a href="modeles.html" data-i18n="prod.breadcrumb.models"></a>
-        <span class="sep">/</span>
-        <span id="breadcrumbProduct">Produit</span>
-      </nav>
-
-      <div id="productContent" class="product-hero-grid">
-        <!-- Colonne gauche : galerie -->
-        <div class="gallery-container reveal">
-          <div class="gallery-swipe-wrapper" id="gallerySwipeWrapper">
-            <div class="gallery-slides" id="gallerySlides"></div>
-
-            <button class="gallery-zoom-btn" id="galleryZoomBtn" aria-label="Zoom">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35M11 8v6M8 11h6" />
-              </svg>
-            </button>
-
-            <div class="gallery-counter" id="galleryCounter">1 / 1</div>
-
-            <button class="gallery-nav-arrow prev" id="galleryPrev" aria-label="Précédent">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-            <button class="gallery-nav-arrow next" id="galleryNext" aria-label="Suivant">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-
-            <div class="gallery-dots" id="galleryDots"></div>
-          </div>
-
-          <div class="gallery-thumbs" id="galleryThumbs"></div>
-        </div>
-
-        <!-- Colonne droite : infos produit -->
-        <div class="product-info reveal reveal-delay-1" id="productInfo">
-          <div id="productBadge" class="badge badge-primary mb-sm"></div>
-          <h1 id="productName"></h1>
-          <p id="productSubtitle" class="product-subtitle"></p>
-
-          <div class="product-price-block" id="productPriceBlock">
-            <span id="productPrice" class="product-price-current"></span>
-            <span id="productOldPrice" class="product-price-old" style="display:none;"></span>
-            <span id="productDiscount" class="product-discount-badge" style="display:none;"></span>
-          </div>
-
-          <p id="productShortDesc" class="product-short-desc"></p>
-
-          <!-- Sélecteur de couleur -->
-          <div class="color-selector" id="colorSelector" style="display:none;">
-            <div class="color-selector-label">
-              <span data-i18n="prod.color.label"></span>
-              <span class="active-color" id="activeColorName"></span>
-            </div>
-            <div class="color-options" id="colorOptions"></div>
-          </div>
-
-          <a id="productCtaBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg"
-            style="margin-bottom: var(--space-lg);">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            <span data-i18n="prod.whatsapp"></span>
-          </a>
-
-          <div class="product-meta-grid" id="productMeta"></div>
-        </div>
-      </div>
-
-      <!-- État erreur -->
-      <div id="productError" class="product-error" style="display: none;">
-        <span class="emoji" data-i18n="prod.error.emoji"></span>
-        <h2 data-i18n="prod.error.title"></h2>
-        <p data-i18n="prod.error.desc"></p>
-        <a href="modeles.html" class="btn btn-primary" data-i18n="prod.error.cta"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ONGLETS (version mobile avec flèches) ============ -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="tabs-nav-v2 reveal" id="tabsNav">
-        <!-- Flèche gauche -->
-        <button class="tab-nav-arrow prev" id="tabArrowPrev" aria-label="Onglet précédent">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button
+          class="lightbox-nav prev"
+          id="lightboxPrev"
+          aria-label="Précédent"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="m15 18-6-6 6-6" />
           </svg>
         </button>
-
-        <!-- Conteneur scrollable des boutons d'onglets -->
-        <div class="tabs-scroll-wrapper" id="tabsScrollWrapper">
-          <button class="tab-btn-v2 active" data-tab="specs">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </svg>
-            <span data-i18n="prod.tab.specs"></span>
-            <span class="tab-count" id="specsCount">0</span>
-          </button>
-          <button class="tab-btn-v2" data-tab="features">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <span data-i18n="prod.tab.features"></span>
-            <span class="tab-count" id="featuresCount">0</span>
-          </button>
-          <button class="tab-btn-v2" data-tab="description">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-            <span data-i18n="prod.tab.desc"></span>
-          </button>
-        </div>
-
-        <!-- Flèche droite -->
-        <button class="tab-nav-arrow next" id="tabArrowNext" aria-label="Onglet suivant">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <img id="lightboxImg" src="" alt="" />
+        <button
+          class="lightbox-nav next"
+          id="lightboxNext"
+          aria-label="Suivant"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="m9 18 6-6-6-6" />
           </svg>
         </button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
       </div>
+    </div>
 
-      <!-- Fiche Technique -->
-      <div class="tab-panel-v2 active" id="tab-specs">
-        <div class="specs-table" id="specsTable"></div>
-      </div>
-
-      <!-- Caractéristiques -->
-      <div class="tab-panel-v2" id="tab-features">
-        <div class="features-grid-2" id="featuresGrid"></div>
-      </div>
-
-      <!-- Description -->
-      <div class="tab-panel-v2" id="tab-description">
-        <div class="description-content" id="descriptionContent"></div>
-        <div class="warranty-block mt-lg">
-          <h4 data-i18n="prod.warranty.title"></h4>
-          <p data-i18n-html="prod.warranty.text">Tous nos véhicules électriques sont livrés avec une garantie
-            constructeur <strong>sur le cadre</strong> et <strong>sur la batterie et le moteur</strong>.</p>
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
+                <img
+                  src="assets/images/logo.svg"
+                  alt="E-Scoot"
+                  class="logo-svg"
+                />
+              </a>
+              <span>E-Scoot</span>
+            </div>
+            <p class="footer-desc" data-i18n="foot.desc"></p>
+          </div>
+          <div class="footer-links-group">
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.nav.title"></h4>
+              <a href="index.html" data-i18n="nav.home"></a>
+              <a href="modeles.html" data-i18n="nav.models"></a>
+              <a href="contact.html" data-i18n="nav.contact"></a>
+            </div>
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.srv.title"></h4>
+              <a href="#" data-i18n="foot.srv.1"></a>
+              <a href="#" data-i18n="foot.srv.2"></a>
+              <a href="#" data-i18n="foot.srv.3"></a>
+              <a href="#" data-i18n="foot.srv.4"></a>
+            </div>
+            <div class="footer-links-col">
+              <h4 data-i18n="foot.contact.title"></h4>
+              <ul class="footer-contact-list">
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                  +213-770286269
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  Madjid.training@gmail.com
+                </li>
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Bordj El Kiffan, Alger, Algérie
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ PRODUITS SIMILAIRES ============ -->
-  <section class="related-section" style="background: var(--bg-secondary); position: relative; overflow: hidden;">
-    <div
-      style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 300px; background: var(--gradient-glow); pointer-events: none;">
-    </div>
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 data-i18n="prod.related.title"></h2>
-        <p data-i18n="prod.related.subtitle"></p>
-      </div>
-      <div class="grid-3" id="relatedProducts"></div>
-    </div>
-  </section>
-
-  <!-- ============ LIGHTBOX ============ -->
-  <div class="lightbox-overlay" id="lightboxOverlay">
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </button>
-      <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Précédent">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-      </button>
-      <img id="lightboxImg" src="" alt="">
-      <button class="lightbox-nav next" id="lightboxNext" aria-label="Suivant">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-      </button>
-      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
-    </div>
-  </div>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <a href="index.html" class="logo" aria-label="E-Scoot Accueil">
-              <img src="assets/images/logo.svg" alt="E-Scoot" class="logo-svg">
-            </a>
-            <span>E-Scoot</span>
-          </div>
-          <p class="footer-desc" data-i18n="foot.desc"></p>
+        <div class="footer-partner-bar">
+          <a
+            href="https://aliexportss.com/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="foot.partner"
+            >🔗 Partenaire officiel</a
+          >
         </div>
-        <div class="footer-links-group">
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.nav.title"></h4>
-            <a href="index.html" data-i18n="nav.home"></a>
-            <a href="modeles.html" data-i18n="nav.models"></a>
-            <a href="contact.html" data-i18n="nav.contact"></a>
-          </div>
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.srv.title"></h4>
-            <a href="#" data-i18n="foot.srv.1"></a>
-            <a href="#" data-i18n="foot.srv.2"></a>
-            <a href="#" data-i18n="foot.srv.3"></a>
-            <a href="#" data-i18n="foot.srv.4"></a>
-          </div>
-          <div class="footer-links-col">
-            <h4 data-i18n="foot.contact.title"></h4>
-            <ul class="footer-contact-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                +213-770286269
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                Madjid.training@gmail.com
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Bordj El Kiffan, Alger, Algérie
-              </li>
-            </ul>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright" data-i18n="foot.copyright"></p>
+          <div class="footer-legal">
+            <a href="#" data-i18n="foot.legal.1"></a>
+            <a href="#" data-i18n="foot.legal.2"></a>
+            <a href="#" data-i18n="foot.legal.3"></a>
           </div>
         </div>
       </div>
+    </footer>
 
-      <div class="footer-partner-bar">
-        <a href="https://aliexportss.com/en" target="_blank" rel="noopener noreferrer" data-i18n="foot.partner">🔗
-          Partenaire officiel</a>
-      </div>
+    <!-- ============ ELEMENTS FLOTTANTS ============ -->
+    <a
+      href="https://wa.me/213770286269"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="WhatsApp"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
 
-      <div class="footer-bottom">
-        <p class="footer-copyright" data-i18n="foot.copyright"></p>
-        <div class="footer-legal">
-          <a href="#" data-i18n="foot.legal.1"></a>
-          <a href="#" data-i18n="foot.legal.2"></a>
-          <a href="#" data-i18n="foot.legal.3"></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
 
-  <!-- ============ ELEMENTS FLOTTANTS ============ -->
-  <a href="https://wa.me/213770286269" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
-    aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-      <path
-        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-    </svg>
-  </a>
+    <div class="toast-container" id="toastContainer"></div>
 
-  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 15l-6-6-6 6" />
-    </svg>
-  </button>
+    <!-- ============ SCRIPTS EXTERNES ============ -->
+    <script src="js/translations.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/produit.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/main.js"></script>
 
-  <div class="toast-container" id="toastContainer"></div>
+    <!-- ============ SCRIPT POUR LES FLÈCHES DE DÉFILEMENT DES ONGLETS ============ -->
+    <script>
+      (function () {
+        // Attendre que le DOM soit prêt
+        function initTabsScroll() {
+          const wrapper = document.getElementById("tabsScrollWrapper");
+          const prevBtn = document.getElementById("tabArrowPrev");
+          const nextBtn = document.getElementById("tabArrowNext");
+          if (!wrapper || !prevBtn || !nextBtn) return;
 
-  <!-- ============ SCRIPTS EXTERNES ============ -->
-  <script src="js/translations.js"></script>
-  <script src="js/products-data.js"></script>
-  <script src="js/produit.js"></script>
-  <script src="js/gallery.js"></script>
-  <script src="js/main.js"></script>
+          function updateArrowState() {
+            const scrollLeft = wrapper.scrollLeft;
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            prevBtn.disabled = scrollLeft <= 0;
+            nextBtn.disabled = scrollLeft >= maxScroll - 1;
+          }
 
-  <!-- ============ SCRIPT POUR LES FLÈCHES DE DÉFILEMENT DES ONGLETS ============ -->
-  <script>
-    (function () {
-      // Attendre que le DOM soit prêt
-      function initTabsScroll() {
-        const wrapper = document.getElementById('tabsScrollWrapper');
-        const prevBtn = document.getElementById('tabArrowPrev');
-        const nextBtn = document.getElementById('tabArrowNext');
-        if (!wrapper || !prevBtn || !nextBtn) return;
+          prevBtn.addEventListener("click", () => {
+            wrapper.scrollBy({ left: -200, behavior: "smooth" });
+          });
 
-        function updateArrowState() {
-          const scrollLeft = wrapper.scrollLeft;
-          const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-          prevBtn.disabled = scrollLeft <= 0;
-          nextBtn.disabled = scrollLeft >= maxScroll - 1;
+          nextBtn.addEventListener("click", () => {
+            wrapper.scrollBy({ left: 200, behavior: "smooth" });
+          });
+
+          wrapper.addEventListener("scroll", updateArrowState, {
+            passive: true,
+          });
+          window.addEventListener("resize", updateArrowState);
+          updateArrowState();
+
+          // S'assurer que les onglets restent utilisables (l'événement de clic sur les boutons n'est pas affecté)
+          // Les boutons d'onglet ont déjà leurs gestionnaires dans produit.js (initTabsV2)
         }
 
-        prevBtn.addEventListener('click', () => {
-          wrapper.scrollBy({ left: -200, behavior: 'smooth' });
-        });
-
-        nextBtn.addEventListener('click', () => {
-          wrapper.scrollBy({ left: 200, behavior: 'smooth' });
-        });
-
-        wrapper.addEventListener('scroll', updateArrowState, { passive: true });
-        window.addEventListener('resize', updateArrowState);
-        updateArrowState();
-
-        // S'assurer que les onglets restent utilisables (l'événement de clic sur les boutons n'est pas affecté)
-        // Les boutons d'onglet ont déjà leurs gestionnaires dans produit.js (initTabsV2)
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTabsScroll);
-      } else {
-        initTabsScroll();
-      }
-    })();
-  </script>
-</body>
-
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initTabsScroll);
+        } else {
+          initTabsScroll();
+        }
+      })();
+    </script>
+  </body>
 </html>
